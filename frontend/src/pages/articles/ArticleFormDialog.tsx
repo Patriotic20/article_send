@@ -39,12 +39,10 @@ export function ArticleFormDialog({
   open,
   onOpenChange,
   article,
-  currentUserId,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   article?: Article | null;
-  currentUserId: number | null;
 }) {
   const { t } = useTranslation();
   const isEdit = !!article;
@@ -99,10 +97,9 @@ export function ArticleFormDialog({
         { onSuccess: () => onOpenChange(false) }
       );
     } else {
-      // user_id подставляется автоматически из «текущего пользователя».
-      if (currentUserId === null) return;
+      // user_id проставляет бэкенд из токена текущего пользователя.
       createArticle.mutate(
-        { file_path: filePath, status, user_id: currentUserId },
+        { file_path: filePath, status },
         { onSuccess: () => onOpenChange(false) }
       );
     }
@@ -116,9 +113,7 @@ export function ArticleFormDialog({
             {isEdit ? t("articles.editTitle") : t("articles.createTitle")}
           </DialogTitle>
           {!isEdit && (
-            <DialogDescription>
-              {t("articles.autoUserId", { id: currentUserId })}
-            </DialogDescription>
+            <DialogDescription>{t("articles.autoUserIdAuth")}</DialogDescription>
           )}
         </DialogHeader>
         <form onSubmit={onSubmit} className="space-y-4">

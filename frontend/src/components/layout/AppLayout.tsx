@@ -1,20 +1,35 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FileText, KeyRound, ShieldCheck, Users } from "lucide-react";
+import { FileText, KeyRound, LogOut, ShieldCheck, Users } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { CurrentUserSelect } from "./CurrentUserSelect";
+import { useAuth } from "@/context/AuthContext";
+import { Button } from "@/components/ui/button";
 import { LanguageSelect } from "./LanguageSelect";
 
+// Каждый пункт меню виден только при наличии соответствующего права.
 const navItems = [
-  { to: "/users", labelKey: "nav.users", icon: Users },
-  { to: "/roles", labelKey: "nav.roles", icon: ShieldCheck },
-  { to: "/permissions", labelKey: "nav.permissions", icon: KeyRound },
-  { to: "/articles", labelKey: "nav.articles", icon: FileText },
+  { to: "/users", labelKey: "nav.users", icon: Users, perm: "user:read" },
+  { to: "/roles", labelKey: "nav.roles", icon: ShieldCheck, perm: "role:read" },
+  {
+    to: "/permissions",
+    labelKey: "nav.permissions",
+    icon: KeyRound,
+    perm: "permission:read",
+  },
+  {
+    to: "/articles",
+    labelKey: "nav.articles",
+    icon: FileText,
+    perm: "article:read",
+  },
 ];
 
 export function AppLayout() {
   const { t } = useTranslation();
+  const { user, logout, hasPermission } = useAuth();
+
+  const visibleNav = navItems.filter((item) => hasPermission(item.perm));
 
   return (
     <div className="flex min-h-screen bg-muted/30">
@@ -23,7 +38,7 @@ export function AppLayout() {
           {t("appName")}
         </div>
         <nav className="flex flex-col gap-1 p-3">
-          {navItems.map(({ to, labelKey, icon: Icon }) => (
+          {visibleNav.map(({ to, labelKey, icon: Icon }) => (
             <NavLink
               key={to}
               to={to}
@@ -46,7 +61,13 @@ export function AppLayout() {
       <div className="flex flex-1 flex-col">
         <header className="flex h-14 items-center justify-end gap-4 border-b bg-background px-6">
           <LanguageSelect />
-          <CurrentUserSelect />
+          {user && (
+            <span className="text-sm text-muted-foreground">{user.email}</span>
+          )}
+          <Button variant="outline" size="sm" onClick={logout}>
+            <LogOut className="h-4 w-4" />
+            {t("header.logout")}
+          </Button>
         </header>
         <main className="flex-1 overflow-auto p-6">
           <Outlet />

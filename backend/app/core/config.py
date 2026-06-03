@@ -14,6 +14,16 @@ class Settings(BaseSettings):
     max_upload_size: int = 10 * 1024 * 1024  # 10 МБ
     allowed_upload_ext: str = ".pdf,.doc,.docx"
 
+    # JWT / аутентификация.
+    jwt_secret: str = "dev-secret-change-me-please-32+bytes-long"
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 7
+
+    # Учётка администратора, создаётся при старте (bootstrap).
+    admin_email: str = "admin@example.com"
+    admin_password: str = "admin12345"
+
     @property
     def cors_origins_list(self) -> list[str]:
         return [

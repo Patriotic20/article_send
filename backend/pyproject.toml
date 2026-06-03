@@ -10,6 +10,7 @@ dependencies = [
     "sqlalchemy[asyncio]>=2.0.50",
     "asyncpg>=0.30.0",
     "pydantic-settings>=2.6.0",
+    "pyjwt>=2.10.0",
     # passlib 1.7.4 несовместим с bcrypt>=4.1 (ошибка self-теста бэкенда),
     # поэтому фиксируем последнюю рабочую версию.
     "bcrypt==4.0.1",

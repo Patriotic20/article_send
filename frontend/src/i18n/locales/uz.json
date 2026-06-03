@@ -24,7 +24,18 @@
   "header": {
     "currentUser": "Joriy foydalanuvchi:",
     "selectUser": "Foydalanuvchini tanlang",
-    "loadError": "Yuklab boʻlmadi"
+    "loadError": "Yuklab boʻlmadi",
+    "logout": "Chiqish"
+  },
+  "auth": {
+    "loginTitle": "Kirish",
+    "registerTitle": "Roʻyxatdan oʻtish",
+    "email": "Email",
+    "password": "Parol",
+    "signIn": "Kirish",
+    "signUp": "Roʻyxatdan oʻtish",
+    "noAccount": "Akkaunt yoʻqmi?",
+    "haveAccount": "Akkaunt bormi?"
   },
   "users": {
     "title": "Foydalanuvchilar",
@@ -36,7 +47,9 @@
     "active": "Faol",
     "inactive": "Faol emas",
     "empty": "Foydalanuvchilar topilmadi",
-    "pageInfo": "{{page}}-sahifa / {{totalPages}} · jami {{total}}"
+    "pageInfo": "{{page}}-sahifa / {{totalPages}} · jami {{total}}",
+    "createUser": "Foydalanuvchi yaratish",
+    "createTitle": "Yangi foydalanuvchi"
   },
   "userDetail": {
     "back": "Roʻyxatga qaytish",
@@ -93,6 +106,7 @@
     "createTitle": "Yangi maqola",
     "editTitle": "Maqolani tahrirlash",
     "autoUserId": "user_id avtomatik qoʻyiladi (#{{id}}).",
+    "autoUserIdAuth": "user_id sizning akkauntingizdan avtomatik qoʻyiladi.",
     "fileLabel": "Fayl",
     "uploadButton": "Fayl yuklash",
     "replaceButton": "Faylni almashtirish",
@@ -126,6 +140,7 @@
     "articleCreated": "Maqola yaratildi",
     "articleUpdated": "Maqola yangilandi",
     "articleDeleted": "Maqola oʻchirildi",
-    "fileUploaded": "Fayl yuklandi"
+    "fileUploaded": "Fayl yuklandi",
+    "userCreated": "Foydalanuvchi yaratildi"
   }
 }

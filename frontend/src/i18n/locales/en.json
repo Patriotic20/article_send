@@ -24,7 +24,18 @@
   "header": {
     "currentUser": "Current user:",
     "selectUser": "Select a user",
-    "loadError": "Failed to load"
+    "loadError": "Failed to load",
+    "logout": "Log out"
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "registerTitle": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "noAccount": "No account?",
+    "haveAccount": "Already have an account?"
   },
   "users": {
     "title": "Users",
@@ -36,7 +47,9 @@
     "active": "Active",
     "inactive": "Inactive",
     "empty": "No users found",
-    "pageInfo": "Page {{page}} of {{totalPages}} · total {{total}}"
+    "pageInfo": "Page {{page}} of {{totalPages}} · total {{total}}",
+    "createUser": "Create user",
+    "createTitle": "New user"
   },
   "userDetail": {
     "back": "Back to list",
@@ -93,6 +106,7 @@
     "createTitle": "New article",
     "editTitle": "Edit article",
     "autoUserId": "user_id will be set automatically (#{{id}}).",
+    "autoUserIdAuth": "user_id will be set automatically from your account.",
     "fileLabel": "File",
     "uploadButton": "Upload file",
     "replaceButton": "Replace file",
@@ -126,6 +140,7 @@
     "articleCreated": "Article created",
     "articleUpdated": "Article updated",
     "articleDeleted": "Article deleted",
-    "fileUploaded": "File uploaded"
+    "fileUploaded": "File uploaded",
+    "userCreated": "User created"
   }
 }

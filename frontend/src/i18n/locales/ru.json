@@ -24,7 +24,18 @@
   "header": {
     "currentUser": "Текущий пользователь:",
     "selectUser": "Выберите пользователя",
-    "loadError": "Не удалось загрузить"
+    "loadError": "Не удалось загрузить",
+    "logout": "Выход"
+  },
+  "auth": {
+    "loginTitle": "Вход",
+    "registerTitle": "Регистрация",
+    "email": "Email",
+    "password": "Пароль",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "noAccount": "Нет аккаунта?",
+    "haveAccount": "Уже есть аккаунт?"
   },
   "users": {
     "title": "Пользователи",
@@ -36,7 +47,9 @@
     "active": "Активен",
     "inactive": "Неактивен",
     "empty": "Пользователи не найдены",
-    "pageInfo": "Стр. {{page}} из {{totalPages}} · всего {{total}}"
+    "pageInfo": "Стр. {{page}} из {{totalPages}} · всего {{total}}",
+    "createUser": "Создать пользователя",
+    "createTitle": "Новый пользователь"
   },
   "userDetail": {
     "back": "К списку",
@@ -93,6 +106,7 @@
     "createTitle": "Новая статья",
     "editTitle": "Редактировать статью",
     "autoUserId": "user_id будет проставлен автоматически (#{{id}}).",
+    "autoUserIdAuth": "user_id будет проставлен автоматически из вашего аккаунта.",
     "fileLabel": "Файл",
     "uploadButton": "Загрузить файл",
     "replaceButton": "Заменить файл",
@@ -126,6 +140,7 @@
     "articleCreated": "Статья создана",
     "articleUpdated": "Статья обновлена",
     "articleDeleted": "Статья удалена",
-    "fileUploaded": "Файл загружен"
+    "fileUploaded": "Файл загружен",
+    "userCreated": "Пользователь создан"
   }
 }

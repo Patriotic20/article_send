@@ -10,9 +10,15 @@ import app.models  # noqa: F401 — регистрирует все модели
 from app.core.base import Base
 from app.core.config import settings
 from app.core.db_helper import engine, session_maker
-from app.core.seed import seed
-from app.exceptions import AppException, ConflictError, NotFoundError
-from app.routers import article, permission, role, users
+from app.core.seed import bootstrap, seed_demo
+from app.exceptions import (
+    AppException,
+    ConflictError,
+    ForbiddenError,
+    NotFoundError,
+    UnauthorizedError,
+)
+from app.routers import article, auth, permission, role, users
 
 
 @asynccontextmanager
@@ -23,7 +29,9 @@ async def lifespan(_: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     async with session_maker() as session:
-        await seed(session)
+        # bootstrap всегда (права/роли/admin), демо — только при пустой БД.
+        await bootstrap(session)
+        await seed_demo(session)
     yield
     await engine.dispose()
 
@@ -47,10 +55,23 @@ def create_app() -> FastAPI:
     async def conflict_handler(_: Request, exc: ConflictError):
         return JSONResponse(status_code=409, content={"detail": str(exc)})
 
+    @app.exception_handler(UnauthorizedError)
+    async def unauthorized_handler(_: Request, exc: UnauthorizedError):
+        return JSONResponse(
+            status_code=401,
+            content={"detail": str(exc)},
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    @app.exception_handler(ForbiddenError)
+    async def forbidden_handler(_: Request, exc: ForbiddenError):
+        return JSONResponse(status_code=403, content={"detail": str(exc)})
+
     @app.exception_handler(AppException)
     async def app_exception_handler(_: Request, exc: AppException):
         return JSONResponse(status_code=400, content={"detail": str(exc)})
 
+    app.include_router(auth.router)
     app.include_router(users.router)
     app.include_router(role.router)
     app.include_router(permission.router)

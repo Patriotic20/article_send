@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { KeyRound, Pencil, Plus, Trash2 } from "lucide-react";
 
 import { useDeleteRole, useRoles } from "@/api/roles";
+import { useAuth } from "@/context/AuthContext";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { PageHeader } from "@/components/PageHeader";
 import { QueryState } from "@/components/QueryState";
@@ -22,6 +23,8 @@ import { RolePermissionsDialog } from "./RolePermissionsDialog";
 
 export function RolesPage() {
   const { t } = useTranslation();
+  const { hasPermission } = useAuth();
+  const canManage = hasPermission("role:manage");
   const { data, isLoading, isError, error } = useRoles();
   const deleteRole = useDeleteRole();
 
@@ -45,10 +48,12 @@ export function RolesPage() {
         title={t("roles.title")}
         description={t("roles.description")}
         action={
-          <Button onClick={openCreate}>
-            <Plus className="h-4 w-4" />
-            {t("roles.new")}
-          </Button>
+          canManage ? (
+            <Button onClick={openCreate}>
+              <Plus className="h-4 w-4" />
+              {t("roles.new")}
+            </Button>
+          ) : undefined
         }
       />
 
@@ -75,31 +80,33 @@ export function RolesPage() {
                   {formatDateTime(role.created_at)}
                 </TableCell>
                 <TableCell className="text-right">
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => setPermRole(role)}
-                    >
-                      <KeyRound className="h-4 w-4" />
-                      {t("roles.permissionsBtn")}
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      onClick={() => openEdit(role)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="text-destructive hover:text-destructive"
-                      onClick={() => setDeleteTarget(role)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  {canManage && (
+                    <div className="flex justify-end gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setPermRole(role)}
+                      >
+                        <KeyRound className="h-4 w-4" />
+                        {t("roles.permissionsBtn")}
+                      </Button>
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => openEdit(role)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="text-destructive hover:text-destructive"
+                        onClick={() => setDeleteTarget(role)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
                 </TableCell>
               </TableRow>
             ))}

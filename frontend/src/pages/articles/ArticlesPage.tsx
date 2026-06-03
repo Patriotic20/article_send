@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 
 import { useArticles, useDeleteArticle } from "@/api/articles";
-import { useCurrentUser } from "@/context/CurrentUserContext";
+import { useAuth } from "@/context/AuthContext";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { PageHeader } from "@/components/PageHeader";
 import { QueryState } from "@/components/QueryState";
@@ -29,7 +29,7 @@ function fileName(path: string): string {
 
 export function ArticlesPage() {
   const { t } = useTranslation();
-  const { currentUserId } = useCurrentUser();
+  const { hasPermission } = useAuth();
   const { data, isLoading, isError, error } = useArticles();
   const deleteArticle = useDeleteArticle();
 
@@ -37,7 +37,10 @@ export function ArticlesPage() {
   const [editArticle, setEditArticle] = useState<Article | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Article | null>(null);
 
-  const noUser = currentUserId === null;
+  const canCreate = hasPermission("article:create");
+  const canUpdate = hasPermission("article:update");
+  const canDelete = hasPermission("article:delete");
+  const showActions = canUpdate || canDelete;
 
   const openCreate = () => {
     setEditArticle(null);
@@ -50,22 +53,14 @@ export function ArticlesPage() {
         title={t("articles.title")}
         description={t("articles.description")}
         action={
-          <Button
-            onClick={openCreate}
-            disabled={noUser}
-            title={noUser ? t("articles.noUserTooltip") : undefined}
-          >
-            <Plus className="h-4 w-4" />
-            {t("articles.new")}
-          </Button>
+          canCreate ? (
+            <Button onClick={openCreate}>
+              <Plus className="h-4 w-4" />
+              {t("articles.new")}
+            </Button>
+          ) : undefined
         }
       />
-
-      {noUser && (
-        <div className="mb-4 rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          {t("articles.noUserWarning")}
-        </div>
-      )}
 
       <div className="rounded-md border bg-background">
         <Table>
@@ -76,9 +71,11 @@ export function ArticlesPage() {
               <TableHead>{t("articles.file")}</TableHead>
               <TableHead className="w-40">{t("common.status")}</TableHead>
               <TableHead className="w-44">{t("articles.createdAt")}</TableHead>
-              <TableHead className="w-28 text-right">
-                {t("common.actions")}
-              </TableHead>
+              {showActions && (
+                <TableHead className="w-28 text-right">
+                  {t("common.actions")}
+                </TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -108,28 +105,34 @@ export function ArticlesPage() {
                 <TableCell className="text-muted-foreground">
                   {formatDateTime(a.created_at)}
                 </TableCell>
-                <TableCell className="text-right">
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      onClick={() => {
-                        setEditArticle(a);
-                        setFormOpen(true);
-                      }}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="text-destructive hover:text-destructive"
-                      onClick={() => setDeleteTarget(a)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </TableCell>
+                {showActions && (
+                  <TableCell className="text-right">
+                    <div className="flex justify-end gap-2">
+                      {canUpdate && (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => {
+                            setEditArticle(a);
+                            setFormOpen(true);
+                          }}
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </Button>
+                      )}
+                      {canDelete && (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="text-destructive hover:text-destructive"
+                          onClick={() => setDeleteTarget(a)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
@@ -147,7 +150,6 @@ export function ArticlesPage() {
         open={formOpen}
         onOpenChange={setFormOpen}
         article={editArticle}
-        currentUserId={currentUserId}
       />
       <ConfirmDialog
         open={!!deleteTarget}

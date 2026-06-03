@@ -28,7 +28,7 @@ export function useArticles() {
 export function useCreateArticle() {
   const qc = useQueryClient();
   return useMutation({
-    // user_id передаётся вызывающим кодом из CurrentUserContext.
+    // user_id проставляет бэкенд из токена текущего пользователя.
     mutationFn: (payload: ArticleCreate) =>
       api.post<Article>("/articles/", payload),
     onSuccess: () => {

@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import { Toaster } from "@/components/ui/sonner";
-import { CurrentUserProvider } from "@/context/CurrentUserContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { queryClient } from "@/lib/queryClient";
 import "@/i18n";
 import "./index.css";
@@ -14,9 +14,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <CurrentUserProvider>
+        <AuthProvider>
           <App />
-        </CurrentUserProvider>
+        </AuthProvider>
       </BrowserRouter>
       <Toaster position="top-right" richColors />
     </QueryClientProvider>

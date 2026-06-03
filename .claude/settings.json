@@ -22,7 +22,8 @@
       "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python -c 'import importlib; m=importlib.import_module\\('\\\\''app.main'\\\\''\\); print\\('\\\\''import OK, routes:'\\\\'', len\\(m.app.routes\\)\\)')",
       "Bash(sed -i -e 's/toast.success\\(\"Роль назначена пользователю\"\\)/toast.success\\(i18n.t\\(\"toasts.roleAssignedUser\"\\)\\)/' -e 's/toast.success\\(\"Роль отозвана у пользователя\"\\)/toast.success\\(i18n.t\\(\"toasts.roleRemovedUser\"\\)\\)/' src/api/users.ts)",
       "Bash(sed -i -e 's/toast.success\\(\"Статья создана\"\\)/toast.success\\(i18n.t\\(\"toasts.articleCreated\"\\)\\)/' -e 's/toast.success\\(\"Статья обновлена\"\\)/toast.success\\(i18n.t\\(\"toasts.articleUpdated\"\\)\\)/' -e 's/toast.success\\(\"Статья удалена\"\\)/toast.success\\(i18n.t\\(\"toasts.articleDeleted\"\\)\\)/' src/api/articles.ts)",
-      "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python /tmp/cleanup2.py)"
+      "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python /tmp/cleanup2.py)",
+      "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python /tmp/cleanup3.py)"
     ],
     "additionalDirectories": [
       "/tmp"

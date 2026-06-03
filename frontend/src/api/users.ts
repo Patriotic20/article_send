@@ -5,6 +5,11 @@ import { api, getErrorMessage } from "@/lib/api";
 import i18n from "@/i18n";
 import type { Role, User, UserInfo, UserListResponse } from "@/types";
 
+export interface CreateUserPayload {
+  email: string;
+  password: string;
+}
+
 export const userKeys = {
   all: ["users"] as const,
   list: (params: UsersListParams) => ["users", "list", params] as const,
@@ -26,6 +31,19 @@ export function useUsers(params: UsersListParams) {
       const { data } = await api.get<UserListResponse>("/users/", { params });
       return data;
     },
+  });
+}
+
+export function useCreateUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: CreateUserPayload) =>
+      api.post<User>("/users/", payload),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: userKeys.all });
+      toast.success(i18n.t("toasts.userCreated"));
+    },
+    onError: (e) => toast.error(getErrorMessage(e)),
   });
 }
 

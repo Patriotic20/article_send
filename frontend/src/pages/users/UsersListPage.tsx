@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Search } from "lucide-react";
 
 import { useUsers } from "@/api/users";
+import { useAuth } from "@/context/AuthContext";
 import { PageHeader } from "@/components/PageHeader";
+import { UserCreateDialog } from "./UserCreateDialog";
 import { QueryState } from "@/components/QueryState";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,10 +25,13 @@ const PAGE_SIZE = 10;
 
 export function UsersListPage() {
   const { t } = useTranslation();
+  const { hasPermission } = useAuth();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [emailInput, setEmailInput] = useState("");
   const [email, setEmail] = useState("");
+  const [createOpen, setCreateOpen] = useState(false);
+  const canCreate = hasPermission("user:create");
 
   const { data, isLoading, isError, error } = useUsers({
     page,
@@ -47,6 +52,14 @@ export function UsersListPage() {
       <PageHeader
         title={t("users.title")}
         description={t("users.description")}
+        action={
+          canCreate ? (
+            <Button onClick={() => setCreateOpen(true)}>
+              <Plus className="h-4 w-4" />
+              {t("users.createUser")}
+            </Button>
+          ) : undefined
+        }
       />
 
       <form onSubmit={onSearch} className="mb-4 flex max-w-sm gap-2">
@@ -130,6 +143,8 @@ export function UsersListPage() {
           </Button>
         </div>
       )}
+
+      <UserCreateDialog open={createOpen} onOpenChange={setCreateOpen} />
     </div>
   );
 }

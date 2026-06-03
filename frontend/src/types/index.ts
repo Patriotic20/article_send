@@ -57,7 +57,7 @@ export interface Article {
 export interface ArticleCreate {
   file_path: string;
   status: ArticleStatus;
-  user_id: number; // подставляется автоматически из CurrentUser
+  // user_id больше не передаётся — бэкенд берёт его из токена.
 }
 
 export interface ArticleUpdate {
@@ -68,4 +68,18 @@ export interface ArticleUpdate {
 export interface ArticleUploadResult {
   file_path: string;
   original_name: string;
+}
+
+export interface TokenPair {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+}
+
+export interface Me {
+  id: number;
+  email: string;
+  is_active: boolean;
+  roles: string[];
+  permissions: string[];
 }

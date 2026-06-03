@@ -1,4 +1,9 @@
-from app.exceptions import NotFoundError, RoleNotFoundError, UserNotFoundError
+from app.exceptions import (
+    ConflictError,
+    NotFoundError,
+    RoleNotFoundError,
+    UserNotFoundError,
+)
 from app.repositories.role import RoleRepository
 from app.repositories.user import UserRepository
 from app.schemas.role import RoleResponse
@@ -23,6 +28,14 @@ class UserService:
     async def get_all_users(self, user_list: UserListRequest) -> UserListResponse:
         return await self.user_repository.list(user_list)
 
+    async def create_user(
+        self, data: UserCreateRequest
+    ) -> UserCreateResponse:
+        existing = await self.user_repository.get_model_by_email(data.email)
+        if existing is not None:
+            raise ConflictError("Email already registered")
+        return await self.user_repository.create_user(data.email, data.password)
+
     async def get_by_id(self, user_id: int) -> UserCreateResponse:
         user = await self.user_repository.get_by_id(user_id)
         if user is None:
@@ -32,17 +45,15 @@ class UserService:
     async def update_user(
         self, user_id: int, user_update: UserCreateRequest
     ) -> UserCreateResponse:
-        async with self.user_repository.session.begin():
-            user = await self.user_repository.update(user_id, user_update)
-            if user is None:
-                raise UserNotFoundError(user_id)
-            return user
+        user = await self.user_repository.update(user_id, user_update)
+        if user is None:
+            raise UserNotFoundError(user_id)
+        return user
 
     async def delete_user(self, user_id: int) -> None:
-        async with self.user_repository.session.begin():
-            deleted = await self.user_repository.delete(user_id)
-            if not deleted:
-                raise UserNotFoundError(user_id)
+        deleted = await self.user_repository.delete(user_id)
+        if not deleted:
+            raise UserNotFoundError(user_id)
 
     # --- расширенный профиль ---
 
@@ -62,18 +73,16 @@ class UserService:
         return await self.user_repository.list_roles(user_id)
 
     async def assign_role(self, user_id: int, role_id: int) -> None:
-        async with self.user_repository.session.begin():
-            if await self.user_repository.get_by_id(user_id) is None:
-                raise UserNotFoundError(user_id)
-            if (
-                self.role_repository is None
-                or not await self.role_repository.exists(role_id)
-            ):
-                raise RoleNotFoundError(role_id)
-            await self.user_repository.assign_role(user_id, role_id)
+        if await self.user_repository.get_by_id(user_id) is None:
+            raise UserNotFoundError(user_id)
+        if (
+            self.role_repository is None
+            or not await self.role_repository.exists(role_id)
+        ):
+            raise RoleNotFoundError(role_id)
+        await self.user_repository.assign_role(user_id, role_id)
 
     async def remove_role(self, user_id: int, role_id: int) -> None:
-        async with self.user_repository.session.begin():
-            if await self.user_repository.get_by_id(user_id) is None:
-                raise UserNotFoundError(user_id)
-            await self.user_repository.remove_role(user_id, role_id)
+        if await self.user_repository.get_by_id(user_id) is None:
+            raise UserNotFoundError(user_id)
+        await self.user_repository.remove_role(user_id, role_id)

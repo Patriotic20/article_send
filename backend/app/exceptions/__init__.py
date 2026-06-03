@@ -10,6 +10,20 @@ class ConflictError(AppException):
     """Конфликт состояния (маппится в HTTP 409)."""
 
 
+class UnauthorizedError(AppException):
+    """Не аутентифицирован / невалидный токен (маппится в HTTP 401)."""
+
+    def __init__(self, message: str = "Not authenticated"):
+        super().__init__(message)
+
+
+class ForbiddenError(AppException):
+    """Недостаточно прав (маппится в HTTP 403)."""
+
+    def __init__(self, message: str = "Not enough permissions"):
+        super().__init__(message)
+
+
 class UserNotFoundError(NotFoundError):
     def __init__(self, user_id: int | None = None):
         self.user_id = user_id
@@ -50,6 +64,8 @@ __all__ = [
     "AppException",
     "NotFoundError",
     "ConflictError",
+    "UnauthorizedError",
+    "ForbiddenError",
     "UserNotFoundError",
     "RoleNotFoundError",
     "PermissionNotFoundError",

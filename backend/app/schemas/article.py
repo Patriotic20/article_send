@@ -5,9 +5,9 @@ from app.schemas.mixins import TimestampSchema
 
 
 class ArticleCreateRequest(BaseModel):
+    # user_id больше не приходит от клиента — ставится из токена на бэкенде.
     file_path: str
     status: ArticleStatus = ArticleStatus.pending
-    user_id: int
 
 
 class ArticleUpdateRequest(BaseModel):

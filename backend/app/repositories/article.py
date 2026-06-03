@@ -36,9 +36,21 @@ class ArticleRepository:
         result = await self.session.execute(select(Article).order_by(Article.id))
         return [self._to_response(a) for a in result.scalars().all()]
 
-    async def create(self, article_create: ArticleCreateRequest) -> ArticleResponse:
+    async def list_by_user(self, user_id: int) -> list[ArticleResponse]:
+        result = await self.session.execute(
+            select(Article).where(Article.user_id == user_id).order_by(Article.id)
+        )
+        return [self._to_response(a) for a in result.scalars().all()]
+
+    async def get_owner_id(self, article_id: int) -> int | None:
+        article = await self._get_one(article_id)
+        return article.user_id if article is not None else None
+
+    async def create(
+        self, article_create: ArticleCreateRequest, user_id: int
+    ) -> ArticleResponse:
         article = Article(
-            user_id=article_create.user_id,
+            user_id=user_id,
             file_path=article_create.file_path,
             status=article_create.status,
         )

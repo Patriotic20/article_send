@@ -1,7 +1,8 @@
 from sqlalchemy import delete, func, insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.associations import user_roles
+from app.models.associations import role_permissions, user_roles
+from app.models.permission import Permission
 from app.models.role import Role
 from app.models.user import User
 from app.models.user_info import UserInfo
@@ -165,3 +166,59 @@ class UserRepository:
                 user_roles.c.role_id == role_id,
             )
         )
+
+    # --- аутентификация / RBAC ---
+
+    async def get_model_by_email(self, email: str) -> User | None:
+        result = await self.session.execute(
+            select(User).where(User.email == email)
+        )
+        return result.scalar_one_or_none()
+
+    async def get_role_names(self, user_id: int) -> list[str]:
+        result = await self.session.execute(
+            select(Role.name)
+            .join(user_roles, user_roles.c.role_id == Role.id)
+            .where(user_roles.c.user_id == user_id)
+            .order_by(Role.name)
+        )
+        return list(result.scalars().all())
+
+    async def get_permission_names(self, user_id: int) -> set[str]:
+        result = await self.session.execute(
+            select(Permission.name)
+            .join(
+                role_permissions,
+                role_permissions.c.permission_id == Permission.id,
+            )
+            .join(user_roles, user_roles.c.role_id == role_permissions.c.role_id)
+            .where(user_roles.c.user_id == user_id)
+        )
+        return set(result.scalars().all())
+
+    async def create_user(
+        self, email: str, password: str
+    ) -> UserCreateResponse:
+        # Без собственной транзакции — вызывающий сервис оборачивает в begin().
+        user = User(email=email, hashed_password=hash_password(password))
+        self.session.add(user)
+        await self.session.flush()
+        await self.session.refresh(user)
+        return self._to_response(user)
+
+    async def create_with_role(
+        self, email: str, password: str, role_name: str
+    ) -> User:
+        user = User(email=email, hashed_password=hash_password(password))
+        self.session.add(user)
+        await self.session.flush()
+        role_result = await self.session.execute(
+            select(Role).where(Role.name == role_name)
+        )
+        role = role_result.scalar_one_or_none()
+        if role is not None:
+            await self.session.execute(
+                insert(user_roles).values(user_id=user.id, role_id=role.id)
+            )
+        await self.session.refresh(user)
+        return user
