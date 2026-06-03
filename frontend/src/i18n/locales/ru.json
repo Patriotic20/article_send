@@ -1,0 +1,131 @@
+{
+  "appName": "Article Send",
+  "nav": {
+    "users": "Пользователи",
+    "roles": "Роли",
+    "permissions": "Разрешения",
+    "articles": "Статьи"
+  },
+  "common": {
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "create": "Создать",
+    "delete": "Удалить",
+    "loading": "Загрузка…",
+    "errorLoad": "Ошибка загрузки: {{message}}",
+    "backendHint": "Возможно, бэкенд-эндпоинт ещё не реализован.",
+    "noData": "Нет данных",
+    "confirmTitle": "Подтвердите действие",
+    "id": "ID",
+    "status": "Статус",
+    "created": "Создан",
+    "actions": "Действия"
+  },
+  "header": {
+    "currentUser": "Текущий пользователь:",
+    "selectUser": "Выберите пользователя",
+    "loadError": "Не удалось загрузить"
+  },
+  "users": {
+    "title": "Пользователи",
+    "description": "Клик по строке — расширенная информация о пользователе.",
+    "searchPlaceholder": "Поиск по email",
+    "find": "Найти",
+    "email": "Email",
+    "createdAt": "Создан",
+    "active": "Активен",
+    "inactive": "Неактивен",
+    "empty": "Пользователи не найдены",
+    "pageInfo": "Стр. {{page}} из {{totalPages}} · всего {{total}}"
+  },
+  "userDetail": {
+    "back": "К списку",
+    "fallbackTitle": "Пользователь #{{id}}",
+    "description": "Расширенная информация и роли пользователя.",
+    "main": "Основное",
+    "email": "Email",
+    "createdAt": "Создан",
+    "updatedAt": "Обновлён",
+    "active": "Активен",
+    "inactive": "Неактивен",
+    "profile": "Профиль",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "phone": "Телефон",
+    "university": "Университет",
+    "roles": "Роли",
+    "assignedRoles": "Роли пользователя",
+    "availableRoles": "Доступные роли"
+  },
+  "roles": {
+    "title": "Роли",
+    "description": "Создание, редактирование и удаление ролей. Назначение разрешений.",
+    "new": "Новая роль",
+    "name": "Название",
+    "createdAt": "Создана",
+    "permissionsBtn": "Разрешения",
+    "empty": "Ролей пока нет",
+    "createTitle": "Новая роль",
+    "editTitle": "Редактировать роль",
+    "namePlaceholder": "например, admin",
+    "deleteTitle": "Удалить роль?",
+    "deleteDesc": "Роль «{{name}}» будет удалена безвозвратно.",
+    "permsTitle": "Разрешения роли «{{name}}»",
+    "permsDesc": "Назначайте и отзывайте разрешения для этой роли."
+  },
+  "permissions": {
+    "title": "Разрешения",
+    "description": "Список разрешений (только просмотр). Назначаются ролям на странице «Роли».",
+    "name": "Название",
+    "createdAt": "Создано",
+    "empty": "Разрешений пока нет"
+  },
+  "articles": {
+    "title": "Статьи",
+    "description": "user_id проставляется автоматически из «текущего пользователя» в шапке.",
+    "new": "Новая статья",
+    "userId": "User ID",
+    "file": "Файл",
+    "createdAt": "Создана",
+    "empty": "Статей пока нет",
+    "noUserWarning": "Чтобы создавать статьи, выберите «текущего пользователя» в шапке — его id будет проставлен автоматически.",
+    "noUserTooltip": "Сначала выберите текущего пользователя в шапке",
+    "createTitle": "Новая статья",
+    "editTitle": "Редактировать статью",
+    "autoUserId": "user_id будет проставлен автоматически (#{{id}}).",
+    "fileLabel": "Файл",
+    "uploadButton": "Загрузить файл",
+    "replaceButton": "Заменить файл",
+    "uploading": "Загрузка…",
+    "fileRequired": "Сначала загрузите файл",
+    "fileTypeError": "Допустимы только файлы .pdf, .doc, .docx",
+    "fileSizeError": "Файл слишком большой (максимум 10 МБ)",
+    "statusLabel": "Статус",
+    "deleteTitle": "Удалить статью?",
+    "deleteDesc": "Статья #{{id}} будет удалена безвозвратно.",
+    "status": {
+      "pending": "На рассмотрении",
+      "accept": "Принята",
+      "rejected": "Отклонена"
+    }
+  },
+  "assign": {
+    "assigned": "Назначено",
+    "available": "Доступно",
+    "emptyAssigned": "Ничего не назначено",
+    "emptyAvailable": "Нет доступных"
+  },
+  "toasts": {
+    "roleCreated": "Роль создана",
+    "roleUpdated": "Роль обновлена",
+    "roleDeleted": "Роль удалена",
+    "permAssigned": "Разрешение назначено роли",
+    "permRemoved": "Разрешение отозвано у роли",
+    "roleAssignedUser": "Роль назначена пользователю",
+    "roleRemovedUser": "Роль отозвана у пользователя",
+    "articleCreated": "Статья создана",
+    "articleUpdated": "Статья обновлена",
+    "articleDeleted": "Статья удалена",
+    "fileUploaded": "Файл загружен"
+  }
+}

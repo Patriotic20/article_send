@@ -1,0 +1,196 @@
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FileCheck2, Loader2, Upload } from "lucide-react";
+import { toast } from "sonner";
+
+import {
+  useCreateArticle,
+  useUpdateArticle,
+  useUploadArticleFile,
+} from "@/api/articles";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import type { Article, ArticleStatus } from "@/types";
+import { ARTICLE_STATUSES, statusLabelKey } from "./articleStatus";
+
+const ALLOWED_EXT = [".pdf", ".doc", ".docx"];
+const MAX_SIZE = 10 * 1024 * 1024;
+
+function baseName(path: string): string {
+  return path.split("/").pop() || path;
+}
+
+export function ArticleFormDialog({
+  open,
+  onOpenChange,
+  article,
+  currentUserId,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  article?: Article | null;
+  currentUserId: number | null;
+}) {
+  const { t } = useTranslation();
+  const isEdit = !!article;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [filePath, setFilePath] = useState("");
+  const [fileLabel, setFileLabel] = useState(""); // имя для показа
+  const [status, setStatus] = useState<ArticleStatus>("pending");
+
+  const createArticle = useCreateArticle();
+  const updateArticle = useUpdateArticle();
+  const uploadFile = useUploadArticleFile();
+  const pending = createArticle.isPending || updateArticle.isPending;
+
+  useEffect(() => {
+    if (open) {
+      setFilePath(article?.file_path ?? "");
+      setFileLabel(article?.file_path ? baseName(article.file_path) : "");
+      setStatus(article?.status ?? "pending");
+    }
+  }, [open, article]);
+
+  const onPickFile = () => fileInputRef.current?.click();
+
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // позволяем выбрать тот же файл повторно
+    if (!file) return;
+
+    const ext = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+    if (!ALLOWED_EXT.includes(ext)) {
+      toast.error(t("articles.fileTypeError"));
+      return;
+    }
+    if (file.size > MAX_SIZE) {
+      toast.error(t("articles.fileSizeError"));
+      return;
+    }
+
+    const result = await uploadFile.mutateAsync(file);
+    setFilePath(result.file_path);
+    setFileLabel(result.original_name);
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!filePath) return;
+
+    if (isEdit && article) {
+      updateArticle.mutate(
+        { id: article.id, file_path: filePath, status },
+        { onSuccess: () => onOpenChange(false) }
+      );
+    } else {
+      // user_id подставляется автоматически из «текущего пользователя».
+      if (currentUserId === null) return;
+      createArticle.mutate(
+        { file_path: filePath, status, user_id: currentUserId },
+        { onSuccess: () => onOpenChange(false) }
+      );
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle>
+            {isEdit ? t("articles.editTitle") : t("articles.createTitle")}
+          </DialogTitle>
+          {!isEdit && (
+            <DialogDescription>
+              {t("articles.autoUserId", { id: currentUserId })}
+            </DialogDescription>
+          )}
+        </DialogHeader>
+        <form onSubmit={onSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label>{t("articles.fileLabel")}</Label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,.doc,.docx"
+              className="hidden"
+              onChange={onFileChange}
+            />
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onPickFile}
+                disabled={uploadFile.isPending}
+              >
+                {uploadFile.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Upload className="h-4 w-4" />
+                )}
+                {filePath
+                  ? t("articles.replaceButton")
+                  : t("articles.uploadButton")}
+              </Button>
+              {filePath && (
+                <span className="flex items-center gap-1 truncate text-sm text-muted-foreground">
+                  <FileCheck2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                  <span className="truncate">{fileLabel}</span>
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label>{t("articles.statusLabel")}</Label>
+            <Select
+              value={status}
+              onValueChange={(v) => setStatus(v as ArticleStatus)}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {ARTICLE_STATUSES.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    {t(statusLabelKey(s))}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+              disabled={pending}
+            >
+              {t("common.cancel")}
+            </Button>
+            <Button
+              type="submit"
+              disabled={pending || uploadFile.isPending || !filePath}
+            >
+              {isEdit ? t("common.save") : t("common.create")}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}

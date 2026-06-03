@@ -1,13 +1,18 @@
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.models.associations import user_roles
+from app.models.role import Role
 from app.models.user import User
+from app.models.user_info import UserInfo
+from app.schemas.role import RoleResponse
 from app.schemas.user import (
     UserCreateRequest,
     UserCreateResponse,
     UserListRequest,
     UserListResponse,
 )
+from app.schemas.user_info import UserInfoResponse
 from app.utils import hash_password
 
 
@@ -52,18 +57,22 @@ class UserRepository:
         return self._to_response(user)
 
     async def list(self, user_list: UserListRequest) -> UserListResponse:
+        # Фильтр по email необязателен; если задан — ищем по подстроке.
+        filters = []
+        if user_list.email:
+            filters.append(User.email.ilike(f"%{user_list.email}%"))
+
         result = await self.session.execute(
             select(User)
-            .where(User.email == user_list.email)
+            .where(*filters)
+            .order_by(User.id)
             .offset(user_list.offset)
             .limit(user_list.limit)
         )
         users = result.scalars().all()
 
         total_result = await self.session.execute(
-            select(func.count())
-            .select_from(User)
-            .where(User.email == user_list.email)
+            select(func.count()).select_from(User).where(*filters)
         )
         total = total_result.scalar_one()
 
@@ -92,3 +101,67 @@ class UserRepository:
         await self.session.delete(user)
         await self.session.flush()
         return True
+
+    # --- расширенный профиль (user_info) ---
+
+    async def get_info(self, user_id: int) -> UserInfoResponse | None:
+        result = await self.session.execute(
+            select(UserInfo).where(UserInfo.user_id == user_id)
+        )
+        info = result.scalar_one_or_none()
+        if info is None:
+            return None
+        return UserInfoResponse(
+            id=info.id,
+            user_id=info.user_id,
+            first_name=info.first_name,
+            last_name=info.last_name,
+            phone_number=info.phone_number,
+            university=info.university,
+            created_at=info.created_at,
+            updated_at=info.updated_at,
+        )
+
+    # --- роли пользователя ---
+
+    async def list_roles(self, user_id: int) -> list[RoleResponse]:
+        result = await self.session.execute(
+            select(Role)
+            .join(user_roles, user_roles.c.role_id == Role.id)
+            .where(user_roles.c.user_id == user_id)
+            .order_by(Role.id)
+        )
+        return [
+            RoleResponse(
+                id=role.id,
+                name=role.name,
+                created_at=role.created_at,
+                updated_at=role.updated_at,
+            )
+            for role in result.scalars().all()
+        ]
+
+    async def has_role(self, user_id: int, role_id: int) -> bool:
+        result = await self.session.execute(
+            select(user_roles.c.user_id).where(
+                user_roles.c.user_id == user_id,
+                user_roles.c.role_id == role_id,
+            )
+        )
+        return result.first() is not None
+
+    async def assign_role(self, user_id: int, role_id: int) -> None:
+        # Идемпотентно: повторное назначение не вызывает ошибку.
+        if await self.has_role(user_id, role_id):
+            return
+        await self.session.execute(
+            insert(user_roles).values(user_id=user_id, role_id=role_id)
+        )
+
+    async def remove_role(self, user_id: int, role_id: int) -> None:
+        await self.session.execute(
+            delete(user_roles).where(
+                user_roles.c.user_id == user_id,
+                user_roles.c.role_id == role_id,
+            )
+        )

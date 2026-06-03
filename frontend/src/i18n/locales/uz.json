@@ -1,0 +1,131 @@
+{
+  "appName": "Article Send",
+  "nav": {
+    "users": "Foydalanuvchilar",
+    "roles": "Rollar",
+    "permissions": "Ruxsatlar",
+    "articles": "Maqolalar"
+  },
+  "common": {
+    "cancel": "Bekor qilish",
+    "save": "Saqlash",
+    "create": "Yaratish",
+    "delete": "Oʻchirish",
+    "loading": "Yuklanmoqda…",
+    "errorLoad": "Yuklashda xatolik: {{message}}",
+    "backendHint": "Ehtimol, backend endpoint hali tayyor emas.",
+    "noData": "Maʼlumot yoʻq",
+    "confirmTitle": "Amalni tasdiqlang",
+    "id": "ID",
+    "status": "Holat",
+    "created": "Yaratilgan",
+    "actions": "Amallar"
+  },
+  "header": {
+    "currentUser": "Joriy foydalanuvchi:",
+    "selectUser": "Foydalanuvchini tanlang",
+    "loadError": "Yuklab boʻlmadi"
+  },
+  "users": {
+    "title": "Foydalanuvchilar",
+    "description": "Qatorga bosing — foydalanuvchi haqida toʻliq maʼlumot.",
+    "searchPlaceholder": "Email boʻyicha qidirish",
+    "find": "Qidirish",
+    "email": "Email",
+    "createdAt": "Yaratilgan",
+    "active": "Faol",
+    "inactive": "Faol emas",
+    "empty": "Foydalanuvchilar topilmadi",
+    "pageInfo": "{{page}}-sahifa / {{totalPages}} · jami {{total}}"
+  },
+  "userDetail": {
+    "back": "Roʻyxatga qaytish",
+    "fallbackTitle": "Foydalanuvchi #{{id}}",
+    "description": "Foydalanuvchining toʻliq maʼlumotlari va rollari.",
+    "main": "Asosiy",
+    "email": "Email",
+    "createdAt": "Yaratilgan",
+    "updatedAt": "Yangilangan",
+    "active": "Faol",
+    "inactive": "Faol emas",
+    "profile": "Profil",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "phone": "Telefon",
+    "university": "Universitet",
+    "roles": "Rollar",
+    "assignedRoles": "Foydalanuvchi rollari",
+    "availableRoles": "Mavjud rollar"
+  },
+  "roles": {
+    "title": "Rollar",
+    "description": "Rollarni yaratish, tahrirlash va oʻchirish. Ruxsatlarni biriktirish.",
+    "new": "Yangi rol",
+    "name": "Nomi",
+    "createdAt": "Yaratilgan",
+    "permissionsBtn": "Ruxsatlar",
+    "empty": "Hozircha rollar yoʻq",
+    "createTitle": "Yangi rol",
+    "editTitle": "Rolni tahrirlash",
+    "namePlaceholder": "masalan, admin",
+    "deleteTitle": "Rol oʻchirilsinmi?",
+    "deleteDesc": "«{{name}}» roli butunlay oʻchiriladi.",
+    "permsTitle": "«{{name}}» roli ruxsatlari",
+    "permsDesc": "Ushbu rol uchun ruxsatlarni biriktiring yoki olib tashlang."
+  },
+  "permissions": {
+    "title": "Ruxsatlar",
+    "description": "Ruxsatlar roʻyxati (faqat koʻrish). «Rollar» sahifasida biriktiriladi.",
+    "name": "Nomi",
+    "createdAt": "Yaratilgan",
+    "empty": "Hozircha ruxsatlar yoʻq"
+  },
+  "articles": {
+    "title": "Maqolalar",
+    "description": "user_id yuqoridagi «joriy foydalanuvchi»dan avtomatik qoʻyiladi.",
+    "new": "Yangi maqola",
+    "userId": "User ID",
+    "file": "Fayl",
+    "createdAt": "Yaratilgan",
+    "empty": "Hozircha maqolalar yoʻq",
+    "noUserWarning": "Maqola yaratish uchun yuqorida «joriy foydalanuvchi»ni tanlang — uning id'si avtomatik qoʻyiladi.",
+    "noUserTooltip": "Avval yuqorida joriy foydalanuvchini tanlang",
+    "createTitle": "Yangi maqola",
+    "editTitle": "Maqolani tahrirlash",
+    "autoUserId": "user_id avtomatik qoʻyiladi (#{{id}}).",
+    "fileLabel": "Fayl",
+    "uploadButton": "Fayl yuklash",
+    "replaceButton": "Faylni almashtirish",
+    "uploading": "Yuklanmoqda…",
+    "fileRequired": "Avval fayl yuklang",
+    "fileTypeError": "Faqat .pdf, .doc, .docx fayllar ruxsat etiladi",
+    "fileSizeError": "Fayl juda katta (eng koʻpi 10 MB)",
+    "statusLabel": "Holat",
+    "deleteTitle": "Maqola oʻchirilsinmi?",
+    "deleteDesc": "#{{id}} maqola butunlay oʻchiriladi.",
+    "status": {
+      "pending": "Koʻrib chiqilmoqda",
+      "accept": "Qabul qilingan",
+      "rejected": "Rad etilgan"
+    }
+  },
+  "assign": {
+    "assigned": "Biriktirilgan",
+    "available": "Mavjud",
+    "emptyAssigned": "Hech narsa biriktirilmagan",
+    "emptyAvailable": "Mavjud emas"
+  },
+  "toasts": {
+    "roleCreated": "Rol yaratildi",
+    "roleUpdated": "Rol yangilandi",
+    "roleDeleted": "Rol oʻchirildi",
+    "permAssigned": "Ruxsat rolga biriktirildi",
+    "permRemoved": "Ruxsat roldan olib tashlandi",
+    "roleAssignedUser": "Rol foydalanuvchiga biriktirildi",
+    "roleRemovedUser": "Rol foydalanuvchidan olib tashlandi",
+    "articleCreated": "Maqola yaratildi",
+    "articleUpdated": "Maqola yangilandi",
+    "articleDeleted": "Maqola oʻchirildi",
+    "fileUploaded": "Fayl yuklandi"
+  }
+}

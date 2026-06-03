@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -f main.tsx)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(docker compose *)",
+      "Bash(docker exec *)",
+      "Bash(break)",
+      "Bash(uv sync *)",
+      "Bash(uv run *)",
+      "Bash(echo \"launched pid $!\")",
+      "Read(//tmp/**)",
+      "Bash(pkill -f 'uvicorn app.main')",
+      "Bash(rm -f /tmp/api2.log)",
+      "Bash(disown)",
+      "Bash(curl -s -o /dev/null -w '' http://127.0.0.1:8000/health)",
+      "Bash(curl -s -w '\\\\nHTTP %{http_code}\\\\n' http://127.0.0.1:8000/health)",
+      "Bash(cat > *)",
+      "Bash(PYTHONPATH=/home/bekzod/Projects/Production/article_send/backend uv run python /tmp/verify_backend.py)",
+      "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python /tmp/cleanup.py)",
+      "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python -c 'import importlib; m=importlib.import_module\\('\\\\''app.main'\\\\''\\); print\\('\\\\''import OK, routes:'\\\\'', len\\(m.app.routes\\)\\)')",
+      "Bash(sed -i -e 's/toast.success\\(\"Роль назначена пользователю\"\\)/toast.success\\(i18n.t\\(\"toasts.roleAssignedUser\"\\)\\)/' -e 's/toast.success\\(\"Роль отозвана у пользователя\"\\)/toast.success\\(i18n.t\\(\"toasts.roleRemovedUser\"\\)\\)/' src/api/users.ts)",
+      "Bash(sed -i -e 's/toast.success\\(\"Статья создана\"\\)/toast.success\\(i18n.t\\(\"toasts.articleCreated\"\\)\\)/' -e 's/toast.success\\(\"Статья обновлена\"\\)/toast.success\\(i18n.t\\(\"toasts.articleUpdated\"\\)\\)/' -e 's/toast.success\\(\"Статья удалена\"\\)/toast.success\\(i18n.t\\(\"toasts.articleDeleted\"\\)\\)/' src/api/articles.ts)",
+      "Bash(PYTHONPATH=__TRACKED_VAR__ uv run python /tmp/cleanup2.py)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

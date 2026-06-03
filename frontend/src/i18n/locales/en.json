@@ -1,0 +1,131 @@
+{
+  "appName": "Article Send",
+  "nav": {
+    "users": "Users",
+    "roles": "Roles",
+    "permissions": "Permissions",
+    "articles": "Articles"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "create": "Create",
+    "delete": "Delete",
+    "loading": "Loading…",
+    "errorLoad": "Loading error: {{message}}",
+    "backendHint": "The backend endpoint may not be implemented yet.",
+    "noData": "No data",
+    "confirmTitle": "Confirm action",
+    "id": "ID",
+    "status": "Status",
+    "created": "Created",
+    "actions": "Actions"
+  },
+  "header": {
+    "currentUser": "Current user:",
+    "selectUser": "Select a user",
+    "loadError": "Failed to load"
+  },
+  "users": {
+    "title": "Users",
+    "description": "Click a row for extended user information.",
+    "searchPlaceholder": "Search by email",
+    "find": "Search",
+    "email": "Email",
+    "createdAt": "Created",
+    "active": "Active",
+    "inactive": "Inactive",
+    "empty": "No users found",
+    "pageInfo": "Page {{page}} of {{totalPages}} · total {{total}}"
+  },
+  "userDetail": {
+    "back": "Back to list",
+    "fallbackTitle": "User #{{id}}",
+    "description": "Extended information and roles of the user.",
+    "main": "General",
+    "email": "Email",
+    "createdAt": "Created",
+    "updatedAt": "Updated",
+    "active": "Active",
+    "inactive": "Inactive",
+    "profile": "Profile",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "university": "University",
+    "roles": "Roles",
+    "assignedRoles": "User roles",
+    "availableRoles": "Available roles"
+  },
+  "roles": {
+    "title": "Roles",
+    "description": "Create, edit and delete roles. Assign permissions.",
+    "new": "New role",
+    "name": "Name",
+    "createdAt": "Created",
+    "permissionsBtn": "Permissions",
+    "empty": "No roles yet",
+    "createTitle": "New role",
+    "editTitle": "Edit role",
+    "namePlaceholder": "e.g. admin",
+    "deleteTitle": "Delete role?",
+    "deleteDesc": "The role \"{{name}}\" will be deleted permanently.",
+    "permsTitle": "Permissions of role \"{{name}}\"",
+    "permsDesc": "Assign and revoke permissions for this role."
+  },
+  "permissions": {
+    "title": "Permissions",
+    "description": "List of permissions (read-only). Assigned to roles on the \"Roles\" page.",
+    "name": "Name",
+    "createdAt": "Created",
+    "empty": "No permissions yet"
+  },
+  "articles": {
+    "title": "Articles",
+    "description": "user_id is set automatically from the \"current user\" in the header.",
+    "new": "New article",
+    "userId": "User ID",
+    "file": "File",
+    "createdAt": "Created",
+    "empty": "No articles yet",
+    "noUserWarning": "To create articles, select a \"current user\" in the header — their id will be set automatically.",
+    "noUserTooltip": "First select the current user in the header",
+    "createTitle": "New article",
+    "editTitle": "Edit article",
+    "autoUserId": "user_id will be set automatically (#{{id}}).",
+    "fileLabel": "File",
+    "uploadButton": "Upload file",
+    "replaceButton": "Replace file",
+    "uploading": "Uploading…",
+    "fileRequired": "Upload a file first",
+    "fileTypeError": "Only .pdf, .doc, .docx files are allowed",
+    "fileSizeError": "File is too large (max 10 MB)",
+    "statusLabel": "Status",
+    "deleteTitle": "Delete article?",
+    "deleteDesc": "Article #{{id}} will be deleted permanently.",
+    "status": {
+      "pending": "Pending",
+      "accept": "Accepted",
+      "rejected": "Rejected"
+    }
+  },
+  "assign": {
+    "assigned": "Assigned",
+    "available": "Available",
+    "emptyAssigned": "Nothing assigned",
+    "emptyAvailable": "Nothing available"
+  },
+  "toasts": {
+    "roleCreated": "Role created",
+    "roleUpdated": "Role updated",
+    "roleDeleted": "Role deleted",
+    "permAssigned": "Permission assigned to role",
+    "permRemoved": "Permission revoked from role",
+    "roleAssignedUser": "Role assigned to user",
+    "roleRemovedUser": "Role revoked from user",
+    "articleCreated": "Article created",
+    "articleUpdated": "Article updated",
+    "articleDeleted": "Article deleted",
+    "fileUploaded": "File uploaded"
+  }
+}

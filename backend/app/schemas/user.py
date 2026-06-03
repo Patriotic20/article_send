@@ -19,8 +19,10 @@ class UserCreateResponse(TimestampSchema):
 
 
 class UserListRequest(PaginationSchema):
-    email: EmailStr
-    
-    
+    # Необязательный фильтр-подстрока по email (фронтенд может звать без него).
+    email: str | None = None
+
+
+
 class UserListResponse(PaginationResponseSchema):
     users: list[UserCreateResponse]
