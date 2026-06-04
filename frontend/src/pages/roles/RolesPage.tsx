@@ -46,7 +46,6 @@ export function RolesPage() {
     <div>
       <PageHeader
         title={t("roles.title")}
-        description={t("roles.description")}
         action={
           canManage ? (
             <Button onClick={openCreate}>

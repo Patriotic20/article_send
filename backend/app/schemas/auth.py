@@ -4,6 +4,10 @@ from pydantic import BaseModel, EmailStr
 class RegisterRequest(BaseModel):
     email: EmailStr
     password: str
+    first_name: str
+    last_name: str
+    phone_number: str
+    university: str
 
 
 class LoginRequest(BaseModel):
@@ -27,3 +31,12 @@ class MeResponse(BaseModel):
     is_active: bool
     roles: list[str]
     permissions: list[str]
+
+
+class MyProfileResponse(BaseModel):
+    # Личные данные пользователя без роли; поля профиля могут отсутствовать.
+    email: EmailStr
+    first_name: str | None = None
+    last_name: str | None = None
+    phone_number: str | None = None
+    university: str | None = None

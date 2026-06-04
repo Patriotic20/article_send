@@ -39,6 +39,9 @@ async def get_current_user(
     if user is None or not user.is_active:
         raise UnauthorizedError("User no longer exists or is inactive")
 
+    # Отмечаем активность — основа для online/offline статуса.
+    await repo.touch_last_seen(user_id)
+
     permissions = await repo.get_permission_names(user_id)
     roles = await repo.get_role_names(user_id)
     return CurrentUser(

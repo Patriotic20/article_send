@@ -16,6 +16,8 @@ class UserCreateResponse(TimestampSchema):
     id: int
     email: EmailStr
     is_active: bool
+    # Онлайн, если активность была недавно (порог в репозитории).
+    is_online: bool = False
 
 
 class UserListRequest(PaginationSchema):

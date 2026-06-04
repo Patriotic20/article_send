@@ -1,18 +1,30 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from app.models.mixins.article_enum import ArticleStatus
 from app.schemas.mixins import TimestampSchema
 
 
 class ArticleCreateRequest(BaseModel):
-    # user_id больше не приходит от клиента — ставится из токена на бэкенде.
+    # user_id берётся из токена, status всегда pending — клиент их не передаёт.
     file_path: str
-    status: ArticleStatus = ArticleStatus.pending
 
 
 class ArticleUpdateRequest(BaseModel):
     file_path: str | None = None
     status: ArticleStatus | None = None
+
+
+class ArticleReviewRequest(BaseModel):
+    # Решение админа: принять или отклонить, плюс необязательный комментарий.
+    status: ArticleStatus
+    comment: str | None = None
+
+    @field_validator("status")
+    @classmethod
+    def status_must_be_decision(cls, v: ArticleStatus) -> ArticleStatus:
+        if v not in (ArticleStatus.accept, ArticleStatus.rejected):
+            raise ValueError("status must be 'accept' or 'rejected'")
+        return v
 
 
 class ArticleResponse(TimestampSchema):

@@ -21,7 +21,6 @@ export function PermissionsPage() {
     <div>
       <PageHeader
         title={t("permissions.title")}
-        description={t("permissions.description")}
       />
 
       <div className="rounded-md border bg-background">

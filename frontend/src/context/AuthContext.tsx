@@ -10,13 +10,14 @@ import {
 
 import { fetchMe, loginRequest, registerRequest } from "@/api/auth";
 import { clearTokens, getAccessToken, setTokens } from "@/lib/authTokens";
-import type { Me } from "@/types";
+import { queryClient } from "@/lib/queryClient";
+import type { Me, RegisterPayload } from "@/types";
 
 interface AuthContextValue {
   user: Me | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  register: (data: RegisterPayload) => Promise<void>;
   logout: () => void;
   hasPermission: (permission: string) => boolean;
 }
@@ -51,13 +52,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = useCallback(async (email: string, password: string) => {
+    // Чистим кэш React Query, чтобы не показать данные прошлого пользователя.
+    queryClient.clear();
     const tokens = await loginRequest(email, password);
     setTokens(tokens.access_token, tokens.refresh_token);
     setUser(await fetchMe());
   }, []);
 
-  const register = useCallback(async (email: string, password: string) => {
-    const tokens = await registerRequest(email, password);
+  const register = useCallback(async (data: RegisterPayload) => {
+    queryClient.clear();
+    const tokens = await registerRequest(data);
     setTokens(tokens.access_token, tokens.refresh_token);
     setUser(await fetchMe());
   }, []);
@@ -65,6 +69,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(() => {
     clearTokens();
     setUser(null);
+    // Сбрасываем кэшированные данные текущего пользователя.
+    queryClient.clear();
   }, []);
 
   const hasPermission = useCallback(

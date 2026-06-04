@@ -8,6 +8,7 @@ import { UserDetailPage } from "@/pages/users/UserDetailPage";
 import { RolesPage } from "@/pages/roles/RolesPage";
 import { PermissionsPage } from "@/pages/permissions/PermissionsPage";
 import { ArticlesPage } from "@/pages/articles/ArticlesPage";
+import { ProfilePage } from "@/pages/profile/ProfilePage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="roles" element={<RolesPage />} />
         <Route path="permissions" element={<PermissionsPage />} />
         <Route path="articles" element={<ArticlesPage />} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="*" element={<Navigate to="/articles" replace />} />
       </Route>
     </Routes>

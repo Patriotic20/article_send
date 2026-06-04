@@ -35,7 +35,20 @@
     "signIn": "Войти",
     "signUp": "Зарегистрироваться",
     "noAccount": "Нет аккаунта?",
-    "haveAccount": "Уже есть аккаунт?"
+    "haveAccount": "Уже есть аккаунт?",
+    "stepIndicator": "Шаг {{n}} из {{total}}",
+    "stepUniversity": "Выбор университета",
+    "stepName": "Имя и фамилия",
+    "stepPhone": "Номер телефона",
+    "stepAccount": "Аккаунт",
+    "university": "Университет",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "phone": "Телефон",
+    "otherUniversity": "Другое (ввести вручную)",
+    "otherUniversityPlaceholder": "Введите название университета",
+    "next": "Далее",
+    "back": "Назад"
   },
   "users": {
     "title": "Пользователи",
@@ -46,6 +59,8 @@
     "createdAt": "Создан",
     "active": "Активен",
     "inactive": "Неактивен",
+    "online": "В сети",
+    "offline": "Не в сети",
     "empty": "Пользователи не найдены",
     "pageInfo": "Стр. {{page}} из {{totalPages}} · всего {{total}}",
     "createUser": "Создать пользователя",
@@ -61,6 +76,8 @@
     "updatedAt": "Обновлён",
     "active": "Активен",
     "inactive": "Неактивен",
+    "online": "В сети",
+    "offline": "Не в сети",
     "profile": "Профиль",
     "firstName": "Имя",
     "lastName": "Фамилия",
@@ -121,7 +138,30 @@
       "pending": "На рассмотрении",
       "accept": "Принята",
       "rejected": "Отклонена"
+    },
+    "review": {
+      "accept": "Принять",
+      "reject": "Отклонить",
+      "comment": "Комментарий (необязательно)",
+      "commentPlaceholder": "Укажите причину…",
+      "confirmAccept": "Принять статью",
+      "confirmReject": "Отклонить статью"
     }
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "empty": "Уведомлений нет",
+    "accepted": "Вашу статью приняли",
+    "rejected": "Вашу статью отклонили",
+    "comment": "Комментарий"
+  },
+  "profile": {
+    "title": "Профиль",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "phone": "Телефон",
+    "university": "Университет",
+    "noData": "—"
   },
   "assign": {
     "assigned": "Назначено",
@@ -140,6 +180,7 @@
     "articleCreated": "Статья создана",
     "articleUpdated": "Статья обновлена",
     "articleDeleted": "Статья удалена",
+    "articleReviewed": "Статус статьи обновлён",
     "fileUploaded": "Файл загружен",
     "userCreated": "Пользователь создан"
   }

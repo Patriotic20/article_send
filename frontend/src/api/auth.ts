@@ -1,5 +1,5 @@
 import { api } from "@/lib/api";
-import type { Me, TokenPair } from "@/types";
+import type { Me, RegisterPayload, TokenPair } from "@/types";
 
 export async function loginRequest(
   email: string,
@@ -10,13 +10,9 @@ export async function loginRequest(
 }
 
 export async function registerRequest(
-  email: string,
-  password: string
+  payload: RegisterPayload
 ): Promise<TokenPair> {
-  const { data } = await api.post<TokenPair>("/auth/register", {
-    email,
-    password,
-  });
+  const { data } = await api.post<TokenPair>("/auth/register", payload);
   return data;
 }
 

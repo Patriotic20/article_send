@@ -55,7 +55,6 @@ export function UserDetailPage() {
               ? user.data.email
               : t("userDetail.fallbackTitle", { id: userId })
           }
-          description={t("userDetail.description")}
         />
       </div>
 
@@ -77,10 +76,10 @@ export function UserDetailPage() {
               <Field
                 label={t("common.status")}
                 value={
-                  <Badge variant={user.data.is_active ? "success" : "secondary"}>
-                    {user.data.is_active
-                      ? t("userDetail.active")
-                      : t("userDetail.inactive")}
+                  <Badge variant={user.data.is_online ? "success" : "secondary"}>
+                    {user.data.is_online
+                      ? t("userDetail.online")
+                      : t("userDetail.offline")}
                   </Badge>
                 }
               />
@@ -103,11 +102,7 @@ export function UserDetailPage() {
           <CardTitle>{t("userDetail.profile")}</CardTitle>
         </CardHeader>
         <CardContent>
-          <QueryState
-            isLoading={info.isLoading}
-            isError={info.isError}
-            error={info.error}
-          />
+          {/* Профиль опционален: если info нет — не показываем ничего. */}
           {info.data && (
             <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
               <Field label={t("userDetail.firstName")} value={info.data.first_name} />

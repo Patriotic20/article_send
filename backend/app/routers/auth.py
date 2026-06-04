@@ -7,6 +7,7 @@ from app.repositories.user import UserRepository
 from app.schemas.auth import (
     LoginRequest,
     MeResponse,
+    MyProfileResponse,
     RefreshRequest,
     RegisterRequest,
     TokenResponse,
@@ -54,3 +55,11 @@ async def me(
     service: AuthService = Depends(get_auth_service),
 ):
     return await service.get_me(current_user.id)
+
+
+@router.get("/me/profile", response_model=MyProfileResponse)
+async def my_profile(
+    current_user: CurrentUser = Depends(get_current_user),
+    service: AuthService = Depends(get_auth_service),
+):
+    return await service.get_my_profile(current_user.id)

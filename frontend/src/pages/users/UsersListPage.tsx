@@ -51,7 +51,6 @@ export function UsersListPage() {
     <div>
       <PageHeader
         title={t("users.title")}
-        description={t("users.description")}
         action={
           canCreate ? (
             <Button onClick={() => setCreateOpen(true)}>
@@ -96,8 +95,8 @@ export function UsersListPage() {
                 </TableCell>
                 <TableCell className="font-medium">{u.email}</TableCell>
                 <TableCell>
-                  <Badge variant={u.is_active ? "success" : "secondary"}>
-                    {u.is_active ? t("users.active") : t("users.inactive")}
+                  <Badge variant={u.is_online ? "success" : "secondary"}>
+                    {u.is_online ? t("users.online") : t("users.offline")}
                   </Badge>
                 </TableCell>
                 <TableCell className="text-muted-foreground">

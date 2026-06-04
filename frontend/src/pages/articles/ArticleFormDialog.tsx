@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -97,9 +96,9 @@ export function ArticleFormDialog({
         { onSuccess: () => onOpenChange(false) }
       );
     } else {
-      // user_id проставляет бэкенд из токена текущего пользователя.
+      // user_id и status (pending) проставляет бэкенд — клиент шлёт только файл.
       createArticle.mutate(
-        { file_path: filePath, status },
+        { file_path: filePath },
         { onSuccess: () => onOpenChange(false) }
       );
     }
@@ -112,9 +111,6 @@ export function ArticleFormDialog({
           <DialogTitle>
             {isEdit ? t("articles.editTitle") : t("articles.createTitle")}
           </DialogTitle>
-          {!isEdit && (
-            <DialogDescription>{t("articles.autoUserIdAuth")}</DialogDescription>
-          )}
         </DialogHeader>
         <form onSubmit={onSubmit} className="space-y-4">
           <div className="space-y-2">
@@ -143,31 +139,33 @@ export function ArticleFormDialog({
                   : t("articles.uploadButton")}
               </Button>
               {filePath && (
-                <span className="flex items-center gap-1 truncate text-sm text-muted-foreground">
+                <span className="flex min-w-0 flex-1 items-center gap-1 text-sm text-muted-foreground">
                   <FileCheck2 className="h-4 w-4 shrink-0 text-emerald-600" />
                   <span className="truncate">{fileLabel}</span>
                 </span>
               )}
             </div>
           </div>
-          <div className="space-y-2">
-            <Label>{t("articles.statusLabel")}</Label>
-            <Select
-              value={status}
-              onValueChange={(v) => setStatus(v as ArticleStatus)}
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {ARTICLE_STATUSES.map((s) => (
-                  <SelectItem key={s} value={s}>
-                    {t(statusLabelKey(s))}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          {isEdit && (
+            <div className="space-y-2">
+              <Label>{t("articles.statusLabel")}</Label>
+              <Select
+                value={status}
+                onValueChange={(v) => setStatus(v as ArticleStatus)}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {ARTICLE_STATUSES.map((s) => (
+                    <SelectItem key={s} value={s}>
+                      {t(statusLabelKey(s))}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
           <DialogFooter>
             <Button
               type="button"

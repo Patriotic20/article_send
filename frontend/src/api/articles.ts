@@ -3,9 +3,11 @@ import { toast } from "sonner";
 
 import { api, getErrorMessage } from "@/lib/api";
 import i18n from "@/i18n";
+import { notificationKeys } from "@/api/notifications";
 import type {
   Article,
   ArticleCreate,
+  ArticleReview,
   ArticleUpdate,
   ArticleUploadResult,
 } from "@/types";
@@ -52,6 +54,21 @@ export function useUpdateArticle() {
   });
 }
 
+// Принять/отклонить статью (админ). Бэкенд создаёт уведомление автору.
+export function useReviewArticle() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, ...payload }: { id: number } & ArticleReview) =>
+      api.post<Article>(`/articles/${id}/review`, payload),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: articleKeys.all });
+      qc.invalidateQueries({ queryKey: notificationKeys.all });
+      toast.success(i18n.t("toasts.articleReviewed"));
+    },
+    onError: (e) => toast.error(getErrorMessage(e)),
+  });
+}
+
 export function useDeleteArticle() {
   const qc = useQueryClient();
   return useMutation({
@@ -62,6 +79,22 @@ export function useDeleteArticle() {
     },
     onError: (e) => toast.error(getErrorMessage(e)),
   });
+}
+
+// Скачивание файла статьи через защищённый эндпоинт (с Bearer-токеном).
+// Простая ссылка <a href> не подойдёт — токен бы не ушёл, поэтому качаем blob.
+export async function downloadArticleFile(id: number, filename: string) {
+  const { data } = await api.get(`/articles/${id}/download`, {
+    responseType: "blob",
+  });
+  const url = URL.createObjectURL(data as Blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 }
 
 // Загрузка файла статьи: multipart → бэкенд сохраняет файл и возвращает путь.

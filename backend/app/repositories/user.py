@@ -1,4 +1,6 @@
-from sqlalchemy import delete, func, insert, select
+from datetime import datetime, timedelta, timezone
+
+from sqlalchemy import delete, func, insert, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.associations import role_permissions, user_roles
@@ -21,17 +23,36 @@ class UserRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
 
+    # Пользователь считается онлайн, если активность была за это время.
+    ONLINE_THRESHOLD = timedelta(minutes=5)
+
+    def _is_online(self, last_seen: datetime | None) -> bool:
+        if last_seen is None:
+            return False
+        if last_seen.tzinfo is None:
+            last_seen = last_seen.replace(tzinfo=timezone.utc)
+        return datetime.now(timezone.utc) - last_seen < self.ONLINE_THRESHOLD
+
     def _to_response(self, user: User) -> UserCreateResponse:
         return UserCreateResponse(
             id=user.id,
             email=user.email,
             is_active=user.is_active,
+            is_online=self._is_online(user.last_seen),
             created_at=user.created_at,
             updated_at=user.updated_at,
         )
 
     async def _get_one(self, user_id: int) -> User | None:
         return await self.session.get(User, user_id)
+
+    async def touch_last_seen(self, user_id: int) -> None:
+        """Отметить активность пользователя (вызывается на каждый запрос)."""
+        await self.session.execute(
+            update(User)
+            .where(User.id == user_id)
+            .values(last_seen=datetime.now(timezone.utc))
+        )
 
     async def get_by_email(self, email: str) -> UserCreateResponse | None:
         result = await self.session.execute(select(User).where(User.email == email))
@@ -104,6 +125,31 @@ class UserRepository:
         return True
 
     # --- расширенный профиль (user_info) ---
+
+    async def phone_number_exists(self, phone_number: str) -> bool:
+        result = await self.session.execute(
+            select(UserInfo.id).where(UserInfo.phone_number == phone_number)
+        )
+        return result.first() is not None
+
+    async def create_info(
+        self,
+        user_id: int,
+        first_name: str,
+        last_name: str,
+        phone_number: str,
+        university: str,
+    ) -> None:
+        # Без собственной транзакции — вызывающий сервис оборачивает в begin().
+        info = UserInfo(
+            user_id=user_id,
+            first_name=first_name,
+            last_name=last_name,
+            phone_number=phone_number,
+            university=university,
+        )
+        self.session.add(info)
+        await self.session.flush()
 
     async def get_info(self, user_id: int) -> UserInfoResponse | None:
         result = await self.session.execute(

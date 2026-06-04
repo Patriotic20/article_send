@@ -35,7 +35,20 @@
     "signIn": "Kirish",
     "signUp": "Roʻyxatdan oʻtish",
     "noAccount": "Akkaunt yoʻqmi?",
-    "haveAccount": "Akkaunt bormi?"
+    "haveAccount": "Akkaunt bormi?",
+    "stepIndicator": "{{n}}/{{total}}-qadam",
+    "stepUniversity": "Universitetni tanlang",
+    "stepName": "Ism va familiya",
+    "stepPhone": "Telefon raqami",
+    "stepAccount": "Akkaunt",
+    "university": "Universitet",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "phone": "Telefon",
+    "otherUniversity": "Boshqa (qoʻlda kiriting)",
+    "otherUniversityPlaceholder": "Universitet nomini kiriting",
+    "next": "Keyingi",
+    "back": "Orqaga"
   },
   "users": {
     "title": "Foydalanuvchilar",
@@ -46,6 +59,8 @@
     "createdAt": "Yaratilgan",
     "active": "Faol",
     "inactive": "Faol emas",
+    "online": "Onlayn",
+    "offline": "Oflayn",
     "empty": "Foydalanuvchilar topilmadi",
     "pageInfo": "{{page}}-sahifa / {{totalPages}} · jami {{total}}",
     "createUser": "Foydalanuvchi yaratish",
@@ -61,6 +76,8 @@
     "updatedAt": "Yangilangan",
     "active": "Faol",
     "inactive": "Faol emas",
+    "online": "Onlayn",
+    "offline": "Oflayn",
     "profile": "Profil",
     "firstName": "Ism",
     "lastName": "Familiya",
@@ -121,7 +138,30 @@
       "pending": "Koʻrib chiqilmoqda",
       "accept": "Qabul qilingan",
       "rejected": "Rad etilgan"
+    },
+    "review": {
+      "accept": "Qabul qilish",
+      "reject": "Rad etish",
+      "comment": "Izoh (ixtiyoriy)",
+      "commentPlaceholder": "Sababini yozing…",
+      "confirmAccept": "Maqolani qabul qilish",
+      "confirmReject": "Maqolani rad etish"
     }
+  },
+  "notifications": {
+    "title": "Bildirishnomalar",
+    "empty": "Bildirishnomalar yoʻq",
+    "accepted": "Maqolangiz qabul qilindi",
+    "rejected": "Maqolangiz rad etildi",
+    "comment": "Izoh"
+  },
+  "profile": {
+    "title": "Profil",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "phone": "Telefon",
+    "university": "Universitet",
+    "noData": "—"
   },
   "assign": {
     "assigned": "Biriktirilgan",
@@ -140,6 +180,7 @@
     "articleCreated": "Maqola yaratildi",
     "articleUpdated": "Maqola yangilandi",
     "articleDeleted": "Maqola oʻchirildi",
+    "articleReviewed": "Maqola holati yangilandi",
     "fileUploaded": "Fayl yuklandi",
     "userCreated": "Foydalanuvchi yaratildi"
   }

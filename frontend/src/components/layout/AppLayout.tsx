@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { LanguageSelect } from "./LanguageSelect";
+import { NotificationBell } from "./NotificationBell";
 
 // Каждый пункт меню виден только при наличии соответствующего права.
 const navItems = [
@@ -61,8 +62,14 @@ export function AppLayout() {
       <div className="flex flex-1 flex-col">
         <header className="flex h-14 items-center justify-end gap-4 border-b bg-background px-6">
           <LanguageSelect />
+          <NotificationBell />
           {user && (
-            <span className="text-sm text-muted-foreground">{user.email}</span>
+            <NavLink
+              to="/profile"
+              className="text-sm text-muted-foreground hover:text-foreground hover:underline"
+            >
+              {user.email}
+            </NavLink>
           )}
           <Button variant="outline" size="sm" onClick={logout}>
             <LogOut className="h-4 w-4" />

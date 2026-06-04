@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Check, Download, Pencil, Plus, Trash2, X } from "lucide-react";
+import { toast } from "sonner";
 
-import { useArticles, useDeleteArticle } from "@/api/articles";
+import {
+  downloadArticleFile,
+  useArticles,
+  useDeleteArticle,
+} from "@/api/articles";
+import { getErrorMessage } from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { PageHeader } from "@/components/PageHeader";
@@ -20,7 +26,10 @@ import {
 import { formatDateTime } from "@/lib/format";
 import type { Article } from "@/types";
 import { ArticleFormDialog } from "./ArticleFormDialog";
+import { ArticleReviewDialog } from "./ArticleReviewDialog";
 import { STATUS_VARIANT, statusLabelKey } from "./articleStatus";
+
+type ReviewState = { article: Article; decision: "accept" | "rejected" };
 
 // Короткое имя файла из пути вида "uploads/<uuid>.pdf".
 function fileName(path: string): string {
@@ -36,11 +45,16 @@ export function ArticlesPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [editArticle, setEditArticle] = useState<Article | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Article | null>(null);
+  const [reviewTarget, setReviewTarget] = useState<ReviewState | null>(null);
 
   const canCreate = hasPermission("article:create");
   const canUpdate = hasPermission("article:update");
   const canDelete = hasPermission("article:delete");
+  // Право article:update даёт возможность принимать/отклонять статьи (админ).
+  const canReview = canUpdate;
   const showActions = canUpdate || canDelete;
+  // Служебные колонки (ID, User ID, дата) — только для админа.
+  const isAdmin = hasPermission("article:manage_all");
 
   const openCreate = () => {
     setEditArticle(null);
@@ -51,7 +65,6 @@ export function ArticlesPage() {
     <div>
       <PageHeader
         title={t("articles.title")}
-        description={t("articles.description")}
         action={
           canCreate ? (
             <Button onClick={openCreate}>
@@ -66,11 +79,21 @@ export function ArticlesPage() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-16">{t("common.id")}</TableHead>
-              <TableHead className="w-24">{t("articles.userId")}</TableHead>
+              {isAdmin && (
+                <>
+                  <TableHead className="w-16">{t("common.id")}</TableHead>
+                  <TableHead className="w-24">
+                    {t("articles.userId")}
+                  </TableHead>
+                </>
+              )}
               <TableHead>{t("articles.file")}</TableHead>
               <TableHead className="w-40">{t("common.status")}</TableHead>
-              <TableHead className="w-44">{t("articles.createdAt")}</TableHead>
+              {isAdmin && (
+                <TableHead className="w-44">
+                  {t("articles.createdAt")}
+                </TableHead>
+              )}
               {showActions && (
                 <TableHead className="w-28 text-right">
                   {t("common.actions")}
@@ -81,33 +104,72 @@ export function ArticlesPage() {
           <TableBody>
             {data?.map((a) => (
               <TableRow key={a.id}>
-                <TableCell className="font-mono text-muted-foreground">
-                  {a.id}
-                </TableCell>
-                <TableCell className="font-mono text-muted-foreground">
-                  {a.user_id}
-                </TableCell>
+                {isAdmin && (
+                  <>
+                    <TableCell className="font-mono text-muted-foreground">
+                      {a.id}
+                    </TableCell>
+                    <TableCell className="font-mono text-muted-foreground">
+                      {a.user_id}
+                    </TableCell>
+                  </>
+                )}
                 <TableCell className="font-medium">
-                  <a
-                    href={`/api/${a.file_path}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-primary underline-offset-4 hover:underline"
+                  <button
+                    type="button"
+                    onClick={() =>
+                      downloadArticleFile(a.id, fileName(a.file_path)).catch(
+                        (e) => toast.error(getErrorMessage(e))
+                      )
+                    }
+                    className="inline-flex items-center gap-1.5 text-primary underline-offset-4 hover:underline"
                   >
+                    <Download className="h-4 w-4 shrink-0" />
                     {fileName(a.file_path)}
-                  </a>
+                  </button>
                 </TableCell>
                 <TableCell>
                   <Badge variant={STATUS_VARIANT[a.status]}>
                     {t(statusLabelKey(a.status))}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-muted-foreground">
-                  {formatDateTime(a.created_at)}
-                </TableCell>
+                {isAdmin && (
+                  <TableCell className="text-muted-foreground">
+                    {formatDateTime(a.created_at)}
+                  </TableCell>
+                )}
                 {showActions && (
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      {canReview && a.status === "pending" && (
+                        <>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="text-emerald-600 hover:text-emerald-600"
+                            title={t("articles.review.accept")}
+                            onClick={() =>
+                              setReviewTarget({ article: a, decision: "accept" })
+                            }
+                          >
+                            <Check className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="text-destructive hover:text-destructive"
+                            title={t("articles.review.reject")}
+                            onClick={() =>
+                              setReviewTarget({
+                                article: a,
+                                decision: "rejected",
+                              })
+                            }
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </>
+                      )}
                       {canUpdate && (
                         <Button
                           size="icon"
@@ -150,6 +212,12 @@ export function ArticlesPage() {
         open={formOpen}
         onOpenChange={setFormOpen}
         article={editArticle}
+      />
+      <ArticleReviewDialog
+        open={!!reviewTarget}
+        onOpenChange={(open) => !open && setReviewTarget(null)}
+        article={reviewTarget?.article ?? null}
+        decision={reviewTarget?.decision ?? "accept"}
       />
       <ConfirmDialog
         open={!!deleteTarget}

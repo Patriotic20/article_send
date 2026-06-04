@@ -49,10 +49,10 @@ class ArticleRepository:
     async def create(
         self, article_create: ArticleCreateRequest, user_id: int
     ) -> ArticleResponse:
+        # status не передаём — сработает дефолт модели ArticleStatus.pending.
         article = Article(
             user_id=user_id,
             file_path=article_create.file_path,
-            status=article_create.status,
         )
         self.session.add(article)
         await self.session.flush()

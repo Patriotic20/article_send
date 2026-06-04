@@ -18,7 +18,7 @@ from app.exceptions import (
     NotFoundError,
     UnauthorizedError,
 )
-from app.routers import article, auth, permission, role, users
+from app.routers import article, auth, notification, permission, role, users
 
 
 @asynccontextmanager
@@ -76,6 +76,7 @@ def create_app() -> FastAPI:
     app.include_router(role.router)
     app.include_router(permission.router)
     app.include_router(article.router)
+    app.include_router(notification.router)
 
     # Отдаём загруженные файлы (фронт обращается через прокси /api/uploads/...).
     os.makedirs(settings.upload_dir, exist_ok=True)

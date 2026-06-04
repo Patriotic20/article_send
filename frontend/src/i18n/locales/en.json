@@ -35,7 +35,20 @@
     "signIn": "Sign in",
     "signUp": "Sign up",
     "noAccount": "No account?",
-    "haveAccount": "Already have an account?"
+    "haveAccount": "Already have an account?",
+    "stepIndicator": "Step {{n}} of {{total}}",
+    "stepUniversity": "Choose university",
+    "stepName": "First and last name",
+    "stepPhone": "Phone number",
+    "stepAccount": "Account",
+    "university": "University",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "otherUniversity": "Other (enter manually)",
+    "otherUniversityPlaceholder": "Enter university name",
+    "next": "Next",
+    "back": "Back"
   },
   "users": {
     "title": "Users",
@@ -46,6 +59,8 @@
     "createdAt": "Created",
     "active": "Active",
     "inactive": "Inactive",
+    "online": "Online",
+    "offline": "Offline",
     "empty": "No users found",
     "pageInfo": "Page {{page}} of {{totalPages}} · total {{total}}",
     "createUser": "Create user",
@@ -61,6 +76,8 @@
     "updatedAt": "Updated",
     "active": "Active",
     "inactive": "Inactive",
+    "online": "Online",
+    "offline": "Offline",
     "profile": "Profile",
     "firstName": "First name",
     "lastName": "Last name",
@@ -121,7 +138,30 @@
       "pending": "Pending",
       "accept": "Accepted",
       "rejected": "Rejected"
+    },
+    "review": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "comment": "Comment (optional)",
+      "commentPlaceholder": "Provide a reason…",
+      "confirmAccept": "Accept article",
+      "confirmReject": "Reject article"
     }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "accepted": "Your article was accepted",
+    "rejected": "Your article was rejected",
+    "comment": "Comment"
+  },
+  "profile": {
+    "title": "Profile",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "university": "University",
+    "noData": "—"
   },
   "assign": {
     "assigned": "Assigned",
@@ -140,6 +180,7 @@
     "articleCreated": "Article created",
     "articleUpdated": "Article updated",
     "articleDeleted": "Article deleted",
+    "articleReviewed": "Article status updated",
     "fileUploaded": "File uploaded",
     "userCreated": "User created"
   }
