@@ -7,10 +7,12 @@ from app.schemas.mixins import TimestampSchema
 class ArticleCreateRequest(BaseModel):
     # user_id берётся из токена, status всегда pending — клиент их не передаёт.
     file_path: str
+    original_name: str | None = None
 
 
 class ArticleUpdateRequest(BaseModel):
     file_path: str | None = None
+    original_name: str | None = None
     status: ArticleStatus | None = None
 
 
@@ -31,6 +33,7 @@ class ArticleResponse(TimestampSchema):
     id: int
     user_id: int
     file_path: str
+    original_name: str | None = None
     status: ArticleStatus
 
 

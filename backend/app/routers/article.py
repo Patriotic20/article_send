@@ -120,7 +120,8 @@ async def download_article_file(
     path = os.path.join(settings.upload_dir, name)
     if not os.path.isfile(path):
         raise HTTPException(status_code=404, detail="File not found")
-    return FileResponse(path, filename=name)
+    # Скачиваем под исходным именем (кириллица ок), а не под uuid на диске.
+    return FileResponse(path, filename=article.original_name or name)
 
 
 @router.post("/{article_id}/review", response_model=ArticleResponse)

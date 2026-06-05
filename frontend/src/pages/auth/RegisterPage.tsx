@@ -19,6 +19,16 @@ import { LanguageSelect } from "@/components/layout/LanguageSelect";
 
 const TOTAL_STEPS = 4;
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^\+?[1-9]\d{7,14}$/; // E.164: 8–15 цифр
+const isValidEmail = (v: string) => EMAIL_RE.test(v.trim());
+const isValidPhone = (v: string) => PHONE_RE.test(v.trim());
+// Оставляем только цифры и единственный ведущий «+».
+const sanitizePhone = (v: string) => {
+  const digits = v.replace(/[^\d]/g, "");
+  return (v.trimStart().startsWith("+") ? "+" : "") + digits;
+};
+
 export function RegisterPage() {
   const { t } = useTranslation();
   const { register } = useAuth();
@@ -40,8 +50,8 @@ export function RegisterPage() {
       : step === 2
         ? firstName.trim().length > 0 && lastName.trim().length > 0
         : step === 3
-          ? phone.trim().length > 0
-          : email.trim().length > 0 && password.length >= 6;
+          ? isValidPhone(phone)
+          : isValidEmail(email) && password.length >= 6;
 
   const titleKey = ["", "stepUniversity", "stepName", "stepPhone", "stepAccount"][
     step
@@ -132,12 +142,18 @@ export function RegisterPage() {
                   <Input
                     id="phone"
                     type="tel"
+                    inputMode="tel"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setPhone(sanitizePhone(e.target.value))}
                     placeholder="+998901234567"
                     required
                     autoFocus
                   />
+                  {phone.length > 0 && !isValidPhone(phone) && (
+                    <p className="text-sm text-destructive">
+                      {t("auth.phoneInvalid")}
+                    </p>
+                  )}
                 </div>
               )}
 
@@ -153,6 +169,11 @@ export function RegisterPage() {
                       required
                       autoFocus
                     />
+                    {email.length > 0 && !isValidEmail(email) && (
+                      <p className="text-sm text-destructive">
+                        {t("auth.emailInvalid")}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="password">{t("auth.password")}</Label>

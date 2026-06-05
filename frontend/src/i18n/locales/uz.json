@@ -48,7 +48,9 @@
     "otherUniversity": "Boshqa (qoʻlda kiriting)",
     "otherUniversityPlaceholder": "Universitet nomini kiriting",
     "next": "Keyingi",
-    "back": "Orqaga"
+    "back": "Orqaga",
+    "phoneInvalid": "Telefon raqamini toʻgʻri kiriting (faqat raqamlar)",
+    "emailInvalid": "Email manzilini toʻgʻri kiriting"
   },
   "users": {
     "title": "Foydalanuvchilar",

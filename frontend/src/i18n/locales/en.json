@@ -48,7 +48,9 @@
     "otherUniversity": "Other (enter manually)",
     "otherUniversityPlaceholder": "Enter university name",
     "next": "Next",
-    "back": "Back"
+    "back": "Back",
+    "phoneInvalid": "Enter a valid phone number",
+    "emailInvalid": "Enter a valid email address"
   },
   "users": {
     "title": "Users",

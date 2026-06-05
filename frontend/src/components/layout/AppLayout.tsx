@@ -7,6 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { LanguageSelect } from "./LanguageSelect";
 import { NotificationBell } from "./NotificationBell";
+import logoUrl from "@/assets/logo.png";
 
 // Каждый пункт меню виден только при наличии соответствующего права.
 const navItems = [
@@ -35,8 +36,13 @@ export function AppLayout() {
   return (
     <div className="flex min-h-screen bg-muted/30">
       <aside className="flex w-60 flex-col border-r bg-background">
-        <div className="flex h-14 items-center border-b px-6 font-semibold">
-          {t("appName")}
+        <div className="flex h-14 items-center gap-2 border-b px-4 font-semibold">
+          <img
+            src={logoUrl}
+            alt={t("appName")}
+            className="h-8 w-8 shrink-0 object-contain"
+          />
+          <span className="truncate">{t("appName")}</span>
         </div>
         <nav className="flex flex-col gap-1 p-3">
           {visibleNav.map(({ to, labelKey, icon: Icon }) => (

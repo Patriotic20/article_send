@@ -59,7 +59,10 @@ export function ArticleFormDialog({
   useEffect(() => {
     if (open) {
       setFilePath(article?.file_path ?? "");
-      setFileLabel(article?.file_path ? baseName(article.file_path) : "");
+      setFileLabel(
+        article?.original_name ??
+          (article?.file_path ? baseName(article.file_path) : "")
+      );
       setStatus(article?.status ?? "pending");
     }
   }, [open, article]);
@@ -92,13 +95,18 @@ export function ArticleFormDialog({
 
     if (isEdit && article) {
       updateArticle.mutate(
-        { id: article.id, file_path: filePath, status },
+        {
+          id: article.id,
+          file_path: filePath,
+          original_name: fileLabel || undefined,
+          status,
+        },
         { onSuccess: () => onOpenChange(false) }
       );
     } else {
       // user_id и status (pending) проставляет бэкенд — клиент шлёт только файл.
       createArticle.mutate(
-        { file_path: filePath },
+        { file_path: filePath, original_name: fileLabel || undefined },
         { onSuccess: () => onOpenChange(false) }
       );
     }
@@ -112,7 +120,7 @@ export function ArticleFormDialog({
             {isEdit ? t("articles.editTitle") : t("articles.createTitle")}
           </DialogTitle>
         </DialogHeader>
-        <form onSubmit={onSubmit} className="space-y-4">
+        <form onSubmit={onSubmit} className="min-w-0 space-y-4">
           <div className="space-y-2">
             <Label>{t("articles.fileLabel")}</Label>
             <input
@@ -122,7 +130,7 @@ export function ArticleFormDialog({
               className="hidden"
               onChange={onFileChange}
             />
-            <div className="flex items-center gap-2">
+            <div className="space-y-2">
               <Button
                 type="button"
                 variant="outline"
@@ -139,10 +147,13 @@ export function ArticleFormDialog({
                   : t("articles.uploadButton")}
               </Button>
               {filePath && (
-                <span className="flex min-w-0 flex-1 items-center gap-1 text-sm text-muted-foreground">
+                <p
+                  className="flex min-w-0 items-center gap-1 text-sm text-muted-foreground"
+                  title={fileLabel}
+                >
                   <FileCheck2 className="h-4 w-4 shrink-0 text-emerald-600" />
                   <span className="truncate">{fileLabel}</span>
-                </span>
+                </p>
               )}
             </div>
           </div>

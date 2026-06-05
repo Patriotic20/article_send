@@ -18,6 +18,7 @@ class ArticleRepository:
             id=article.id,
             user_id=article.user_id,
             file_path=article.file_path,
+            original_name=article.original_name,
             status=article.status,
             created_at=article.created_at,
             updated_at=article.updated_at,
@@ -53,6 +54,7 @@ class ArticleRepository:
         article = Article(
             user_id=user_id,
             file_path=article_create.file_path,
+            original_name=article_create.original_name,
         )
         self.session.add(article)
         await self.session.flush()
@@ -67,6 +69,8 @@ class ArticleRepository:
             return None
         if article_update.file_path is not None:
             article.file_path = article_update.file_path
+        if article_update.original_name is not None:
+            article.original_name = article_update.original_name
         if article_update.status is not None:
             article.status = article_update.status
         await self.session.flush()

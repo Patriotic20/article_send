@@ -36,6 +36,11 @@ function fileName(path: string): string {
   return path.split("/").pop() || path;
 }
 
+// Имя для показа/скачивания: исходное имя файла, иначе — uuid из пути.
+function displayName(a: Article): string {
+  return a.original_name || fileName(a.file_path);
+}
+
 export function ArticlesPage() {
   const { t } = useTranslation();
   const { hasPermission } = useAuth();
@@ -117,15 +122,16 @@ export function ArticlesPage() {
                 <TableCell className="font-medium">
                   <button
                     type="button"
+                    title={displayName(a)}
                     onClick={() =>
-                      downloadArticleFile(a.id, fileName(a.file_path)).catch(
-                        (e) => toast.error(getErrorMessage(e))
+                      downloadArticleFile(a.id, displayName(a)).catch((e) =>
+                        toast.error(getErrorMessage(e))
                       )
                     }
-                    className="inline-flex items-center gap-1.5 text-primary underline-offset-4 hover:underline"
+                    className="inline-flex max-w-[480px] items-center gap-1.5 text-primary underline-offset-4 hover:underline"
                   >
                     <Download className="h-4 w-4 shrink-0" />
-                    {fileName(a.file_path)}
+                    <span className="truncate">{displayName(a)}</span>
                   </button>
                 </TableCell>
                 <TableCell>

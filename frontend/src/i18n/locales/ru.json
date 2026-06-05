@@ -48,7 +48,9 @@
     "otherUniversity": "Другое (ввести вручную)",
     "otherUniversityPlaceholder": "Введите название университета",
     "next": "Далее",
-    "back": "Назад"
+    "back": "Назад",
+    "phoneInvalid": "Введите корректный номер телефона",
+    "emailInvalid": "Введите корректный email"
   },
   "users": {
     "title": "Пользователи",

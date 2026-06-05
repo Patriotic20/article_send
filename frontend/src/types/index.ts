@@ -50,6 +50,7 @@ export interface Article {
   id: number;
   user_id: number;
   file_path: string;
+  original_name: string | null;
   status: ArticleStatus;
   created_at: string;
   updated_at: string;
@@ -57,11 +58,13 @@ export interface Article {
 
 export interface ArticleCreate {
   file_path: string;
+  original_name?: string;
   // user_id и status (pending) проставляет бэкенд — клиент шлёт только файл.
 }
 
 export interface ArticleUpdate {
   file_path?: string;
+  original_name?: string;
   status?: ArticleStatus;
 }
 
