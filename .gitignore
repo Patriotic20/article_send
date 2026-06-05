@@ -67,3 +67,6 @@ Thumbs.db
 logs/
 
 backend/.venv
+
+# ---------- Загруженные файлы (bind-mount на хост) ----------
+uploads/

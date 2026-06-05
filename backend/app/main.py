@@ -7,7 +7,6 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 import app.models  # noqa: F401 — регистрирует все модели в Base.metadata
-from app.core.base import Base
 from app.core.config import settings
 from app.core.db_helper import engine, session_maker
 from app.core.seed import bootstrap, seed_demo
@@ -25,9 +24,8 @@ from app.routers import article, auth, notification, permission, role, users
 async def lifespan(_: FastAPI):
     # Каталог для загруженных файлов.
     os.makedirs(settings.upload_dir, exist_ok=True)
-    # Создаём таблицы и наполняем демо-данными при старте.
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    # Схему создаёт Alembic (alembic upgrade head в entrypoint контейнера),
+    # здесь только наполняем данными.
     async with session_maker() as session:
         # bootstrap всегда (права/роли/admin), демо — только при пустой БД.
         await bootstrap(session)

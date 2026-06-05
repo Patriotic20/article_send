@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile, status
@@ -46,9 +47,12 @@ async def upload_article_file(file: UploadFile = File(...)):
             detail=f"Недопустимый тип файла. Разрешены: {settings.allowed_upload_ext}",
         )
 
-    os.makedirs(settings.upload_dir, exist_ok=True)
+    # Раскладываем файлы по подпапкам-годам: uploads/<год>/<uuid>.ext.
+    year = str(datetime.now().year)
+    subdir = os.path.join(settings.upload_dir, year)
+    os.makedirs(subdir, exist_ok=True)
     stored_name = f"{uuid4().hex}{ext}"
-    dest = os.path.join(settings.upload_dir, stored_name)
+    dest = os.path.join(subdir, stored_name)
 
     size = 0
     try:
@@ -67,7 +71,7 @@ async def upload_article_file(file: UploadFile = File(...)):
         await file.close()
 
     return ArticleUploadResponse(
-        file_path=f"{settings.upload_dir}/{stored_name}",
+        file_path=f"{settings.upload_dir}/{year}/{stored_name}",
         original_name=file.filename or stored_name,
     )
 
@@ -116,12 +120,16 @@ async def download_article_file(
     article = await service.get_by_id(
         article_id, current_user.id, current_user.has(_MANAGE_ALL)
     )
-    name = os.path.basename(article.file_path)  # защита от path traversal
-    path = os.path.join(settings.upload_dir, name)
-    if not os.path.isfile(path):
+    # Разрешаем путь относительно upload_dir с поддержкой подпапок-годов;
+    # realpath внутри upload_dir защищает от path traversal. Обратная
+    # совместимость: старые «плоские» пути (uploads/<uuid>.ext) тоже работают.
+    rel = os.path.relpath(article.file_path, settings.upload_dir)
+    base = os.path.realpath(settings.upload_dir)
+    path = os.path.realpath(os.path.join(settings.upload_dir, rel))
+    if not (path == base or path.startswith(base + os.sep)) or not os.path.isfile(path):
         raise HTTPException(status_code=404, detail="File not found")
     # Скачиваем под исходным именем (кириллица ок), а не под uuid на диске.
-    return FileResponse(path, filename=article.original_name or name)
+    return FileResponse(path, filename=article.original_name or os.path.basename(path))
 
 
 @router.post("/{article_id}/review", response_model=ArticleResponse)
