@@ -10,5 +10,4 @@ class UserInfo(IdMixin, TimestampMixin, Base):
     user_id: Mapped[int] = mapped_column(unique=True, index=True)
     first_name: Mapped[str]
     last_name: Mapped[str]
-    phone_number: Mapped[str] = mapped_column(unique=True, index=True)
     university: Mapped[str]

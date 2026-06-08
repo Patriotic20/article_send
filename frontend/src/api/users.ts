@@ -47,6 +47,18 @@ export function useCreateUser() {
   });
 }
 
+export function useDeleteUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/users/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: userKeys.all });
+      toast.success(i18n.t("toasts.userDeleted"));
+    },
+    onError: (e) => toast.error(getErrorMessage(e)),
+  });
+}
+
 // Лёгкий список всех пользователей для селектора «текущий пользователь».
 export function useAllUsers() {
   return useQuery({

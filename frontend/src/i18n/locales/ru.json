@@ -39,17 +39,14 @@
     "stepIndicator": "Шаг {{n}} из {{total}}",
     "stepUniversity": "Выбор университета",
     "stepName": "Имя и фамилия",
-    "stepPhone": "Номер телефона",
     "stepAccount": "Аккаунт",
     "university": "Университет",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "phone": "Телефон",
     "otherUniversity": "Другое (ввести вручную)",
     "otherUniversityPlaceholder": "Введите название университета",
     "next": "Далее",
     "back": "Назад",
-    "phoneInvalid": "Введите корректный номер телефона",
     "emailInvalid": "Введите корректный email"
   },
   "users": {
@@ -66,7 +63,9 @@
     "empty": "Пользователи не найдены",
     "pageInfo": "Стр. {{page}} из {{totalPages}} · всего {{total}}",
     "createUser": "Создать пользователя",
-    "createTitle": "Новый пользователь"
+    "createTitle": "Новый пользователь",
+    "deleteTitle": "Удалить пользователя?",
+    "deleteDesc": "Пользователь «{{email}}» будет удалён безвозвратно."
   },
   "userDetail": {
     "back": "К списку",
@@ -83,7 +82,6 @@
     "profile": "Профиль",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "phone": "Телефон",
     "university": "Университет",
     "roles": "Роли",
     "assignedRoles": "Роли пользователя",
@@ -141,6 +139,16 @@
       "accept": "Принята",
       "rejected": "Отклонена"
     },
+    "tabs": {
+      "pending": "На рассмотрении",
+      "accept": "Принятые",
+      "rejected": "Отклонённые"
+    },
+    "emptyByStatus": {
+      "pending": "Нет статей на рассмотрении",
+      "accept": "Нет принятых статей",
+      "rejected": "Нет отклонённых статей"
+    },
     "review": {
       "accept": "Принять",
       "reject": "Отклонить",
@@ -161,7 +169,6 @@
     "title": "Профиль",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "phone": "Телефон",
     "university": "Университет",
     "noData": "—"
   },
@@ -184,6 +191,7 @@
     "articleDeleted": "Статья удалена",
     "articleReviewed": "Статус статьи обновлён",
     "fileUploaded": "Файл загружен",
-    "userCreated": "Пользователь создан"
+    "userCreated": "Пользователь создан",
+    "userDeleted": "Пользователь удалён"
   }
 }

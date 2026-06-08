@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.config import settings
 from app.core.db_helper import get_session
 from app.dependencies import CurrentUser, get_current_user, require_permission
+from app.models.mixins.article_enum import ArticleStatus
 from app.repositories.article import ArticleRepository
 from app.repositories.notification import NotificationRepository
 from app.schemas.article import (
@@ -79,13 +80,15 @@ async def upload_article_file(file: UploadFile = File(...)):
 @router.get("/", response_model=list[ArticleResponse])
 async def list_articles(
     scope: str = Query("all", pattern="^(mine|all)$"),
+    status: ArticleStatus | None = Query(None),
     current_user: CurrentUser = Depends(require_permission("article:read")),
     service: ArticleService = Depends(get_article_service),
 ):
     # По умолчанию админ (article:manage_all) видит все статьи, учитель — свои.
     # scope=mine — принудительно только свои (в т.ч. для админа).
+    # status (необязательно) — фильтр по вкладке: pending/accept/rejected.
     include_all = scope == "all" and current_user.has(_MANAGE_ALL)
-    return await service.get_all(current_user.id, include_all)
+    return await service.get_all(current_user.id, include_all, status)
 
 
 @router.post(

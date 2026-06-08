@@ -1,4 +1,5 @@
 from app.exceptions import ArticleNotFoundError, ForbiddenError
+from app.models.mixins.article_enum import ArticleStatus
 from app.repositories.article import ArticleRepository
 from app.repositories.notification import NotificationRepository
 from app.schemas.article import (
@@ -19,12 +20,15 @@ class ArticleService:
         self.notification_repository = notification_repository
 
     async def get_all(
-        self, user_id: int, manage_all: bool
+        self,
+        user_id: int,
+        manage_all: bool,
+        status: ArticleStatus | None = None,
     ) -> list[ArticleResponse]:
         # manage_all (admin) видит все; остальные — только свои.
         if manage_all:
-            return await self.article_repository.list()
-        return await self.article_repository.list_by_user(user_id)
+            return await self.article_repository.list(status)
+        return await self.article_repository.list_by_user(user_id, status)
 
     async def get_by_id(
         self, article_id: int, user_id: int, manage_all: bool

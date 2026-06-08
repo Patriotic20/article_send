@@ -39,17 +39,14 @@
     "stepIndicator": "Step {{n}} of {{total}}",
     "stepUniversity": "Choose university",
     "stepName": "First and last name",
-    "stepPhone": "Phone number",
     "stepAccount": "Account",
     "university": "University",
     "firstName": "First name",
     "lastName": "Last name",
-    "phone": "Phone",
     "otherUniversity": "Other (enter manually)",
     "otherUniversityPlaceholder": "Enter university name",
     "next": "Next",
     "back": "Back",
-    "phoneInvalid": "Enter a valid phone number",
     "emailInvalid": "Enter a valid email address"
   },
   "users": {
@@ -66,7 +63,9 @@
     "empty": "No users found",
     "pageInfo": "Page {{page}} of {{totalPages}} · total {{total}}",
     "createUser": "Create user",
-    "createTitle": "New user"
+    "createTitle": "New user",
+    "deleteTitle": "Delete user?",
+    "deleteDesc": "The user \"{{email}}\" will be deleted permanently."
   },
   "userDetail": {
     "back": "Back to list",
@@ -83,7 +82,6 @@
     "profile": "Profile",
     "firstName": "First name",
     "lastName": "Last name",
-    "phone": "Phone",
     "university": "University",
     "roles": "Roles",
     "assignedRoles": "User roles",
@@ -141,6 +139,16 @@
       "accept": "Accepted",
       "rejected": "Rejected"
     },
+    "tabs": {
+      "pending": "Pending",
+      "accept": "Accepted",
+      "rejected": "Rejected"
+    },
+    "emptyByStatus": {
+      "pending": "No articles pending review",
+      "accept": "No accepted articles",
+      "rejected": "No rejected articles"
+    },
     "review": {
       "accept": "Accept",
       "reject": "Reject",
@@ -161,7 +169,6 @@
     "title": "Profile",
     "firstName": "First name",
     "lastName": "Last name",
-    "phone": "Phone",
     "university": "University",
     "noData": "—"
   },
@@ -184,6 +191,7 @@
     "articleDeleted": "Article deleted",
     "articleReviewed": "Article status updated",
     "fileUploaded": "File uploaded",
-    "userCreated": "User created"
+    "userCreated": "User created",
+    "userDeleted": "User deleted"
   }
 }

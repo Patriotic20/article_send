@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight, Plus, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Search, Trash2 } from "lucide-react";
 
-import { useUsers } from "@/api/users";
+import { useDeleteUser, useUsers } from "@/api/users";
 import { useAuth } from "@/context/AuthContext";
 import { PageHeader } from "@/components/PageHeader";
 import { UserCreateDialog } from "./UserCreateDialog";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { QueryState } from "@/components/QueryState";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type { User } from "@/types";
 import {
   Table,
   TableBody,
@@ -31,7 +33,10 @@ export function UsersListPage() {
   const [emailInput, setEmailInput] = useState("");
   const [email, setEmail] = useState("");
   const [createOpen, setCreateOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<User | null>(null);
   const canCreate = hasPermission("user:create");
+  const canDelete = hasPermission("user:delete");
+  const deleteUser = useDeleteUser();
 
   const { data, isLoading, isError, error } = useUsers({
     page,
@@ -81,6 +86,7 @@ export function UsersListPage() {
               <TableHead>{t("users.email")}</TableHead>
               <TableHead className="w-32">{t("common.status")}</TableHead>
               <TableHead className="w-48">{t("users.createdAt")}</TableHead>
+              {canDelete && <TableHead className="w-16" />}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -102,6 +108,21 @@ export function UsersListPage() {
                 <TableCell className="text-muted-foreground">
                   {formatDateTime(u.created_at)}
                 </TableCell>
+                {canDelete && (
+                  <TableCell>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-muted-foreground hover:text-destructive"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setDeleteTarget(u);
+                      }}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
@@ -144,6 +165,20 @@ export function UsersListPage() {
       )}
 
       <UserCreateDialog open={createOpen} onOpenChange={setCreateOpen} />
+
+      <ConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+        title={t("users.deleteTitle")}
+        description={t("users.deleteDesc", { email: deleteTarget?.email })}
+        loading={deleteUser.isPending}
+        onConfirm={() => {
+          if (!deleteTarget) return;
+          deleteUser.mutate(deleteTarget.id, {
+            onSuccess: () => setDeleteTarget(null),
+          });
+        }}
+      />
     </div>
   );
 }

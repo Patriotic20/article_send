@@ -120,24 +120,22 @@ class UserRepository:
         user = await self._get_one(user_id)
         if user is None:
             return False
+        # У user_info нет FK-каскада на users — чистим профиль вручную,
+        # иначе остаётся «сирота» с уникальным user_id.
+        await self.session.execute(
+            delete(UserInfo).where(UserInfo.user_id == user_id)
+        )
         await self.session.delete(user)
         await self.session.flush()
         return True
 
     # --- расширенный профиль (user_info) ---
 
-    async def phone_number_exists(self, phone_number: str) -> bool:
-        result = await self.session.execute(
-            select(UserInfo.id).where(UserInfo.phone_number == phone_number)
-        )
-        return result.first() is not None
-
     async def create_info(
         self,
         user_id: int,
         first_name: str,
         last_name: str,
-        phone_number: str,
         university: str,
     ) -> None:
         # Без собственной транзакции — вызывающий сервис оборачивает в begin().
@@ -145,7 +143,6 @@ class UserRepository:
             user_id=user_id,
             first_name=first_name,
             last_name=last_name,
-            phone_number=phone_number,
             university=university,
         )
         self.session.add(info)
@@ -163,7 +160,6 @@ class UserRepository:
             user_id=info.user_id,
             first_name=info.first_name,
             last_name=info.last_name,
-            phone_number=info.phone_number,
             university=info.university,
             created_at=info.created_at,
             updated_at=info.updated_at,

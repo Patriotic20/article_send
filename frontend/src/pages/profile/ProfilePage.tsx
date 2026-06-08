@@ -14,7 +14,6 @@ export function ProfilePage() {
         { label: t("userDetail.email"), value: data.email },
         { label: t("profile.firstName"), value: data.first_name },
         { label: t("profile.lastName"), value: data.last_name },
-        { label: t("profile.phone"), value: data.phone_number },
         { label: t("profile.university"), value: data.university },
       ]
     : [];

@@ -24,10 +24,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatDateTime } from "@/lib/format";
-import type { Article } from "@/types";
+import { cn } from "@/lib/utils";
+import type { Article, ArticleStatus } from "@/types";
 import { ArticleFormDialog } from "./ArticleFormDialog";
 import { ArticleReviewDialog } from "./ArticleReviewDialog";
-import { STATUS_VARIANT, statusLabelKey } from "./articleStatus";
+import {
+  ARTICLE_STATUSES,
+  STATUS_VARIANT,
+  statusLabelKey,
+  tabLabelKey,
+} from "./articleStatus";
 
 type ReviewState = { article: Article; decision: "accept" | "rejected" };
 
@@ -44,7 +50,9 @@ function displayName(a: Article): string {
 export function ArticlesPage() {
   const { t } = useTranslation();
   const { hasPermission } = useAuth();
-  const { data, isLoading, isError, error } = useArticles();
+  // Активная вкладка статуса; по умолчанию — «На рассмотрении».
+  const [tab, setTab] = useState<ArticleStatus>("pending");
+  const { data, isLoading, isError, error } = useArticles(tab);
   const deleteArticle = useDeleteArticle();
 
   const [formOpen, setFormOpen] = useState(false);
@@ -79,6 +87,24 @@ export function ArticlesPage() {
           ) : undefined
         }
       />
+
+      <div className="mb-4 inline-flex rounded-md border bg-muted p-1">
+        {ARTICLE_STATUSES.map((s) => (
+          <button
+            key={s}
+            type="button"
+            onClick={() => setTab(s)}
+            className={cn(
+              "rounded-sm px-3 py-1.5 text-sm font-medium transition-colors",
+              tab === s
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            {t(tabLabelKey(s))}
+          </button>
+        ))}
+      </div>
 
       <div className="rounded-md border bg-background">
         <Table>
@@ -210,7 +236,7 @@ export function ArticlesPage() {
           isError={isError}
           error={error}
           isEmpty={!!data && data.length === 0}
-          emptyText={t("articles.empty")}
+          emptyText={t(`articles.emptyByStatus.${tab}`)}
         />
       </div>
 

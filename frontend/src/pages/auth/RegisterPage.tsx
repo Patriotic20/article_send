@@ -17,17 +17,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LanguageSelect } from "@/components/layout/LanguageSelect";
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 3;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PHONE_RE = /^\+?[1-9]\d{7,14}$/; // E.164: 8–15 цифр
 const isValidEmail = (v: string) => EMAIL_RE.test(v.trim());
-const isValidPhone = (v: string) => PHONE_RE.test(v.trim());
-// Оставляем только цифры и единственный ведущий «+».
-const sanitizePhone = (v: string) => {
-  const digits = v.replace(/[^\d]/g, "");
-  return (v.trimStart().startsWith("+") ? "+" : "") + digits;
-};
 
 export function RegisterPage() {
   const { t } = useTranslation();
@@ -40,7 +33,6 @@ export function RegisterPage() {
   const [university, setUniversity] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -49,13 +41,9 @@ export function RegisterPage() {
       ? university.trim().length > 0
       : step === 2
         ? firstName.trim().length > 0 && lastName.trim().length > 0
-        : step === 3
-          ? isValidPhone(phone)
-          : isValidEmail(email) && password.length >= 6;
+        : isValidEmail(email) && password.length >= 6;
 
-  const titleKey = ["", "stepUniversity", "stepName", "stepPhone", "stepAccount"][
-    step
-  ];
+  const titleKey = ["", "stepUniversity", "stepName", "stepAccount"][step];
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +59,6 @@ export function RegisterPage() {
         password,
         first_name: firstName.trim(),
         last_name: lastName.trim(),
-        phone_number: phone.trim(),
         university: university.trim(),
       });
       navigate("/", { replace: true });
@@ -137,27 +124,6 @@ export function RegisterPage() {
               )}
 
               {step === 3 && (
-                <div className="space-y-2">
-                  <Label htmlFor="phone">{t("auth.phone")}</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    inputMode="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(sanitizePhone(e.target.value))}
-                    placeholder="+998901234567"
-                    required
-                    autoFocus
-                  />
-                  {phone.length > 0 && !isValidPhone(phone) && (
-                    <p className="text-sm text-destructive">
-                      {t("auth.phoneInvalid")}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {step === 4 && (
                 <>
                   <div className="space-y-2">
                     <Label htmlFor="email">{t("auth.email")}</Label>

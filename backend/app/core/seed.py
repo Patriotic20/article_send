@@ -3,21 +3,16 @@
 - ``bootstrap`` — ВСЕГДА идемпотентно: заводит все разрешения из каталога,
   роли ``admin`` (со всеми правами) и ``teacher`` (с правами на статьи),
   и admin-пользователя из настроек.
-- ``seed_demo`` — только при «почти пустой» БД (кроме admin никого нет):
-  создаёт демо-преподавателей с профилями и парой статей.
 """
 
-from sqlalchemy import func, insert, select
+from sqlalchemy import insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
-from app.models.article import Article
 from app.models.associations import role_permissions, user_roles
-from app.models.mixins.article_enum import ArticleStatus
 from app.models.permission import Permission
 from app.models.role import Role
 from app.models.user import User
-from app.models.user_info import UserInfo
 from app.utils import hash_password
 
 # Полный каталог разрешений приложения.
@@ -39,25 +34,6 @@ PERMISSION_NAMES = [
 
 # Права роли teacher по умолчанию.
 TEACHER_PERMISSIONS = ["article:create", "article:read"]
-
-DEMO_USERS = [
-    {
-        "email": "teacher1@example.com",
-        "password": "teacher123",
-        "first_name": "Борис",
-        "last_name": "Преподавателев",
-        "phone_number": "+998902223344",
-        "university": "Westminster University Tashkent",
-    },
-    {
-        "email": "teacher2@example.com",
-        "password": "teacher123",
-        "first_name": "Вера",
-        "last_name": "Учителева",
-        "phone_number": "+998903334455",
-        "university": "INHA University Tashkent",
-    },
-]
 
 
 async def _ensure_role_permissions(
@@ -142,55 +118,27 @@ async def bootstrap(session: AsyncSession) -> None:
     print("bootstrap: права/роли/admin готовы.")
 
 
-async def seed_demo(session: AsyncSession) -> None:
-    async with session.begin():
-        total = await session.execute(select(func.count()).select_from(User))
-        if total.scalar_one() > 1:
-            print("seed_demo: данные уже есть — пропуск.")
-            return
+async def run() -> None:
+    """Однократное заполнение БД.
 
-        teacher = await session.execute(select(Role).where(Role.name == "teacher"))
-        teacher_role = teacher.scalar_one()
+    Вызывается из entrypoint контейнера ОДИН раз (после alembic upgrade),
+    а не из lifespan каждого воркера — иначе при пустой БД несколько
+    воркеров стартуют bootstrap параллельно и ловят гонку на уникальных
+    индексах (email/имя права).
+    """
+    import app.models  # noqa: F401 — регистрирует модели в Base.metadata
+    from app.core.db_helper import engine, session_maker
 
-        users: list[User] = []
-        for data in DEMO_USERS:
-            user = User(
-                email=data["email"],
-                hashed_password=hash_password(data["password"]),
-            )
-            users.append(user)
-        session.add_all(users)
-        await session.flush()
+    async with session_maker() as session:
+        await bootstrap(session)
+    await engine.dispose()
 
-        session.add_all(
-            UserInfo(
-                user_id=user.id,
-                first_name=data["first_name"],
-                last_name=data["last_name"],
-                phone_number=data["phone_number"],
-                university=data["university"],
-            )
-            for user, data in zip(users, DEMO_USERS)
-        )
 
-        await session.execute(
-            insert(user_roles),
-            [{"user_id": u.id, "role_id": teacher_role.id} for u in users],
-        )
+def main() -> None:
+    import asyncio
 
-        session.add_all(
-            [
-                Article(
-                    user_id=users[0].id,
-                    file_path="uploads/intro.pdf",
-                    status=ArticleStatus.accept,
-                ),
-                Article(
-                    user_id=users[1].id,
-                    file_path="uploads/draft.docx",
-                    status=ArticleStatus.pending,
-                ),
-            ]
-        )
+    asyncio.run(run())
 
-    print("seed_demo: демо-данные созданы.")
+
+if __name__ == "__main__":
+    main()

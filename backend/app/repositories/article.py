@@ -2,6 +2,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.article import Article
+from app.models.mixins.article_enum import ArticleStatus
 from app.schemas.article import (
     ArticleCreateRequest,
     ArticleResponse,
@@ -33,14 +34,22 @@ class ArticleRepository:
             return None
         return self._to_response(article)
 
-    async def list(self) -> list[ArticleResponse]:
-        result = await self.session.execute(select(Article).order_by(Article.id))
+    async def list(
+        self, status: ArticleStatus | None = None
+    ) -> list[ArticleResponse]:
+        stmt = select(Article)
+        if status is not None:
+            stmt = stmt.where(Article.status == status)
+        result = await self.session.execute(stmt.order_by(Article.id))
         return [self._to_response(a) for a in result.scalars().all()]
 
-    async def list_by_user(self, user_id: int) -> list[ArticleResponse]:
-        result = await self.session.execute(
-            select(Article).where(Article.user_id == user_id).order_by(Article.id)
-        )
+    async def list_by_user(
+        self, user_id: int, status: ArticleStatus | None = None
+    ) -> list[ArticleResponse]:
+        stmt = select(Article).where(Article.user_id == user_id)
+        if status is not None:
+            stmt = stmt.where(Article.status == status)
+        result = await self.session.execute(stmt.order_by(Article.id))
         return [self._to_response(a) for a in result.scalars().all()]
 
     async def get_owner_id(self, article_id: int) -> int | None:

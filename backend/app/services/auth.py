@@ -32,17 +32,14 @@ class AuthService:
         existing = await self.user_repository.get_model_by_email(data.email)
         if existing is not None:
             raise ConflictError("Email already registered")
-        if await self.user_repository.phone_number_exists(data.phone_number):
-            raise ConflictError("Phone already registered")
         user = await self.user_repository.create_with_role(
             data.email, data.password, DEFAULT_ROLE
         )
-        # Заодно создаём профиль (имя/фамилия/телефон/университет).
+        # Заодно создаём профиль (имя/фамилия/университет).
         await self.user_repository.create_info(
             user.id,
             data.first_name,
             data.last_name,
-            data.phone_number,
             data.university,
         )
         return self._tokens(user.id)
@@ -88,6 +85,5 @@ class AuthService:
             email=user.email,
             first_name=info.first_name if info else None,
             last_name=info.last_name if info else None,
-            phone_number=info.phone_number if info else None,
             university=info.university if info else None,
         )

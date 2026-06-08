@@ -8,20 +8,24 @@ import type {
   Article,
   ArticleCreate,
   ArticleReview,
+  ArticleStatus,
   ArticleUpdate,
   ArticleUploadResult,
 } from "@/types";
 
 export const articleKeys = {
   all: ["articles"] as const,
-  list: () => ["articles", "list"] as const,
+  list: (status?: ArticleStatus) => ["articles", "list", status ?? "all"] as const,
 };
 
-export function useArticles() {
+// status (необязательно) — фильтр по вкладке статусов на бэкенде.
+export function useArticles(status?: ArticleStatus) {
   return useQuery({
-    queryKey: articleKeys.list(),
+    queryKey: articleKeys.list(status),
     queryFn: async () => {
-      const { data } = await api.get<Article[]>("/articles/");
+      const { data } = await api.get<Article[]>("/articles/", {
+        params: status ? { status } : {},
+      });
       return data;
     },
   });

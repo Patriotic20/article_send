@@ -24,7 +24,6 @@ export interface UserInfo {
   user_id: number;
   first_name: string;
   last_name: string;
-  phone_number: string;
   university: string;
   created_at: string;
   updated_at: string;
@@ -91,7 +90,6 @@ export interface RegisterPayload {
   password: string;
   first_name: string;
   last_name: string;
-  phone_number: string;
   university: string;
 }
 
@@ -108,7 +106,6 @@ export interface MyProfile {
   email: string;
   first_name: string | null;
   last_name: string | null;
-  phone_number: string | null;
   university: string | null;
 }
 

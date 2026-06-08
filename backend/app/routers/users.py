@@ -2,7 +2,8 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db_helper import get_session
-from app.dependencies import require_permission
+from app.dependencies import CurrentUser, require_permission
+from app.exceptions import ConflictError
 from app.repositories.role import RoleRepository
 from app.repositories.user import UserRepository
 from app.schemas.role import RoleResponse
@@ -113,3 +114,18 @@ async def remove_role(
     service: UserService = Depends(get_user_service),
 ):
     await service.remove_role(user_id, role_id)
+
+
+@router.delete(
+    "/{user_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def delete_user(
+    user_id: int,
+    current_user: CurrentUser = Depends(require_permission("user:delete")),
+    service: UserService = Depends(get_user_service),
+):
+    # Нельзя удалить самого себя — иначе админ потеряет доступ.
+    if user_id == current_user.id:
+        raise ConflictError("Cannot delete yourself")
+    await service.delete_user(user_id)

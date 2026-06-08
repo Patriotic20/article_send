@@ -19,3 +19,8 @@ export const STATUS_VARIANT: Record<
 export function statusLabelKey(status: ArticleStatus): string {
   return `articles.status.${status}`;
 }
+
+// Ключ i18n для ярлыка вкладки статуса (порядок вкладок — ARTICLE_STATUSES).
+export function tabLabelKey(status: ArticleStatus): string {
+  return `articles.tabs.${status}`;
+}

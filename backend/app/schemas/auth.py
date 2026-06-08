@@ -6,7 +6,6 @@ class RegisterRequest(BaseModel):
     password: str
     first_name: str
     last_name: str
-    phone_number: str
     university: str
 
 
@@ -38,5 +37,4 @@ class MyProfileResponse(BaseModel):
     email: EmailStr
     first_name: str | None = None
     last_name: str | None = None
-    phone_number: str | None = None
     university: str | None = None

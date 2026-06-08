@@ -8,8 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 import app.models  # noqa: F401 — регистрирует все модели в Base.metadata
 from app.core.config import settings
-from app.core.db_helper import engine, session_maker
-from app.core.seed import bootstrap, seed_demo
+from app.core.db_helper import engine
 from app.exceptions import (
     AppException,
     ConflictError,
@@ -24,12 +23,9 @@ from app.routers import article, auth, notification, permission, role, users
 async def lifespan(_: FastAPI):
     # Каталог для загруженных файлов.
     os.makedirs(settings.upload_dir, exist_ok=True)
-    # Схему создаёт Alembic (alembic upgrade head в entrypoint контейнера),
-    # здесь только наполняем данными.
-    async with session_maker() as session:
-        # bootstrap всегда (права/роли/admin), демо — только при пустой БД.
-        await bootstrap(session)
-        await seed_demo(session)
+    # Схему создаёт Alembic, а данные (bootstrap + demo) — entrypoint контейнера
+    # ОДИН раз до старта воркеров (см. scripts/entrypoint.sh). Здесь — ничего,
+    # чтобы не гонять seed на каждый воркер.
     yield
     await engine.dispose()
 

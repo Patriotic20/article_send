@@ -39,17 +39,14 @@
     "stepIndicator": "{{n}}/{{total}}-qadam",
     "stepUniversity": "Universitetni tanlang",
     "stepName": "Ism va familiya",
-    "stepPhone": "Telefon raqami",
     "stepAccount": "Akkaunt",
     "university": "Universitet",
     "firstName": "Ism",
     "lastName": "Familiya",
-    "phone": "Telefon",
     "otherUniversity": "Boshqa (qoʻlda kiriting)",
     "otherUniversityPlaceholder": "Universitet nomini kiriting",
     "next": "Keyingi",
     "back": "Orqaga",
-    "phoneInvalid": "Telefon raqamini toʻgʻri kiriting (faqat raqamlar)",
     "emailInvalid": "Email manzilini toʻgʻri kiriting"
   },
   "users": {
@@ -66,7 +63,9 @@
     "empty": "Foydalanuvchilar topilmadi",
     "pageInfo": "{{page}}-sahifa / {{totalPages}} · jami {{total}}",
     "createUser": "Foydalanuvchi yaratish",
-    "createTitle": "Yangi foydalanuvchi"
+    "createTitle": "Yangi foydalanuvchi",
+    "deleteTitle": "Foydalanuvchi o'chirilsinmi?",
+    "deleteDesc": "\"{{email}}\" foydalanuvchisi butunlay o'chiriladi."
   },
   "userDetail": {
     "back": "Roʻyxatga qaytish",
@@ -83,7 +82,6 @@
     "profile": "Profil",
     "firstName": "Ism",
     "lastName": "Familiya",
-    "phone": "Telefon",
     "university": "Universitet",
     "roles": "Rollar",
     "assignedRoles": "Foydalanuvchi rollari",
@@ -141,6 +139,16 @@
       "accept": "Qabul qilingan",
       "rejected": "Rad etilgan"
     },
+    "tabs": {
+      "pending": "Koʻrib chiqilmoqda",
+      "accept": "Qabul qilinganlar",
+      "rejected": "Rad etilganlar"
+    },
+    "emptyByStatus": {
+      "pending": "Koʻrib chiqilayotgan maqolalar yoʻq",
+      "accept": "Qabul qilingan maqolalar yoʻq",
+      "rejected": "Rad etilgan maqolalar yoʻq"
+    },
     "review": {
       "accept": "Qabul qilish",
       "reject": "Rad etish",
@@ -161,7 +169,6 @@
     "title": "Profil",
     "firstName": "Ism",
     "lastName": "Familiya",
-    "phone": "Telefon",
     "university": "Universitet",
     "noData": "—"
   },
@@ -184,6 +191,7 @@
     "articleDeleted": "Maqola oʻchirildi",
     "articleReviewed": "Maqola holati yangilandi",
     "fileUploaded": "Fayl yuklandi",
-    "userCreated": "Foydalanuvchi yaratildi"
+    "userCreated": "Foydalanuvchi yaratildi",
+    "userDeleted": "Foydalanuvchi o'chirildi"
   }
 }

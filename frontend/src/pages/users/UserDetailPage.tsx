@@ -107,7 +107,6 @@ export function UserDetailPage() {
             <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
               <Field label={t("userDetail.firstName")} value={info.data.first_name} />
               <Field label={t("userDetail.lastName")} value={info.data.last_name} />
-              <Field label={t("userDetail.phone")} value={info.data.phone_number} />
               <Field label={t("userDetail.university")} value={info.data.university} />
             </dl>
           )}
