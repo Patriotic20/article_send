@@ -1,8 +1,11 @@
 """Инициализация БД при старте.
 
 - ``bootstrap`` — ВСЕГДА идемпотентно: заводит все разрешения из каталога,
-  роли ``admin`` (со всеми правами) и ``teacher`` (с правами на статьи),
+  роли ``admin`` / ``administration`` / ``user`` с базовыми правами
   и admin-пользователя из настроек.
+
+Права ролям только ДОБАВЛЯЮТСЯ: администратор может дополнить роль через
+интерфейс, и перезапуск контейнера не должен откатывать такие изменения.
 """
 
 from sqlalchemy import insert, select
@@ -32,8 +35,40 @@ PERMISSION_NAMES = [
     "article:manage_all",
 ]
 
-# Права роли teacher по умолчанию.
-TEACHER_PERMISSIONS = ["article:create", "article:read"]
+ADMIN_ROLE = "admin"
+ADMINISTRATION_ROLE = "administration"
+USER_ROLE = "user"
+
+# Все права на статьи: роль administration занимается только статьями, но
+# внутри них может всё — включая чужие (article:manage_all) и рецензирование.
+ARTICLE_PERMISSIONS = [
+    "article:create",
+    "article:read",
+    "article:update",
+    "article:delete",
+    "article:manage_all",
+]
+
+# Обычный пользователь: заводит статьи и видит только свои. Ограничение даёт
+# именно отсутствие article:manage_all — без него ArticleService отдаёт и
+# проверяет только записи самого пользователя.
+USER_PERMISSIONS = [
+    "article:create",
+    "article:read",
+]
+
+ROLE_PERMISSIONS: dict[str, list[str]] = {
+    ADMIN_ROLE: PERMISSION_NAMES,
+    ADMINISTRATION_ROLE: ARTICLE_PERMISSIONS,
+    USER_ROLE: USER_PERMISSIONS,
+}
+
+# Прежние имена ролей → актуальные. Переименовываем, а не создаём заново,
+# иначе уже выданные пользователям роли осиротеют, а рядом появится дубликат.
+LEGACY_ROLE_RENAMES = {
+    "teacher": USER_ROLE,
+    "adminstation": ADMINISTRATION_ROLE,
+}
 
 
 async def _ensure_role_permissions(
@@ -63,6 +98,21 @@ async def _get_or_create_role(session: AsyncSession, name: str) -> Role:
     return role
 
 
+async def _rename_legacy_roles(session: AsyncSession) -> None:
+    """Переименовать роли из прежних версий, сохранив их состав и права."""
+    for old_name, new_name in LEGACY_ROLE_RENAMES.items():
+        result = await session.execute(
+            select(Role).where(Role.name.in_([old_name, new_name]))
+        )
+        found = {role.name: role for role in result.scalars().all()}
+        # Если актуальная роль уже есть, старую не трогаем: слияние двух ролей
+        # с разным составом пользователей — не дело автоматического сида.
+        if old_name in found and new_name not in found:
+            found[old_name].name = new_name
+            await session.flush()
+            print(f"bootstrap: роль '{old_name}' переименована в '{new_name}'.")
+
+
 async def bootstrap(session: AsyncSession) -> None:
     async with session.begin():
         # 1. Разрешения — добавить недостающие.
@@ -76,17 +126,18 @@ async def bootstrap(session: AsyncSession) -> None:
             for p in new_perms:
                 perms[p.name] = p
 
-        # 2. Роли admin / teacher.
-        admin_role = await _get_or_create_role(session, "admin")
-        teacher_role = await _get_or_create_role(session, "teacher")
+        # 2. Переименования из прежних версий — до создания ролей, иначе
+        #    рядом со старой ролью появится пустая новая.
+        await _rename_legacy_roles(session)
 
-        # 3. Права ролям.
-        await _ensure_role_permissions(
-            session, admin_role.id, [perms[n].id for n in PERMISSION_NAMES]
-        )
-        await _ensure_role_permissions(
-            session, teacher_role.id, [perms[n].id for n in TEACHER_PERMISSIONS]
-        )
+        # 3. Роли и их базовые права.
+        roles: dict[str, Role] = {}
+        for role_name, permission_names in ROLE_PERMISSIONS.items():
+            role = await _get_or_create_role(session, role_name)
+            roles[role_name] = role
+            await _ensure_role_permissions(
+                session, role.id, [perms[n].id for n in permission_names]
+            )
 
         # 4. Admin-пользователь.
         result = await session.execute(
@@ -102,6 +153,7 @@ async def bootstrap(session: AsyncSession) -> None:
             await session.flush()
 
         # 5. Назначить admin-роль admin-пользователю (если ещё нет).
+        admin_role = roles[ADMIN_ROLE]
         link = await session.execute(
             select(user_roles.c.user_id).where(
                 user_roles.c.user_id == admin_user.id,

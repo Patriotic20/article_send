@@ -3,6 +3,7 @@ from app.core.security import (
     create_refresh_token,
     decode_token,
 )
+from app.core.seed import USER_ROLE
 from app.exceptions import ConflictError, UnauthorizedError, UserNotFoundError
 from app.repositories.user import UserRepository
 from app.schemas.auth import (
@@ -15,7 +16,8 @@ from app.schemas.auth import (
 from app.utils import verify_password
 
 # Роль, выдаваемая обычному пользователю при самостоятельной регистрации.
-DEFAULT_ROLE = "teacher"
+# Имя берём из seed, чтобы оно не разошлось с создаваемыми при старте ролями.
+DEFAULT_ROLE = USER_ROLE
 
 
 class AuthService:
