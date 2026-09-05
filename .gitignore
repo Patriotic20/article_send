@@ -69,4 +69,8 @@ logs/
 backend/.venv
 
 # ---------- Загруженные файлы (bind-mount на хост) ----------
-uploads/
+uploads/*
+# Сам каталог держим в репозитории: если его нет, Docker создаст точку
+# bind-mount от root, и процесс в контейнере (appuser, uid 1000) не сможет
+# писать — любая загрузка падает с PermissionError.
+!uploads/.gitkeep

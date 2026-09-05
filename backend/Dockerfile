@@ -36,9 +36,12 @@ RUN useradd --create-home --uid 1000 appuser
 # Готовое виртуальное окружение и код из стадии сборки.
 COPY --from=builder --chown=appuser:appuser /app /app
 
-# Каталог загрузок принадлежит appuser — именованный том унаследует владельца
-# этой директории при первой инициализации (иначе том создаётся root-owned
-# и воркеры под appuser не могут писать файлы статей).
+# Каталог загрузок принадлежит appuser. Внимание: это работает только для
+# ИМЕНОВАННОГО тома — он наследует владельца при первой инициализации.
+# В docker-compose.yml используется bind-mount (./uploads:/app/uploads), а он
+# ничего не наследует и подставляет хостовый каталог как есть. Поэтому ./uploads
+# держим в репозитории (uploads/.gitkeep): если его нет, Docker создаст точку
+# монтирования от root и appuser (uid 1000) не сможет писать файлы статей.
 RUN mkdir -p /app/uploads && chown appuser:appuser /app/uploads
 
 USER appuser
