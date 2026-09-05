@@ -33,7 +33,7 @@ A-запись `idz.nsumt.uz` → IP сервера. Проверить:
 dig +short idz.nsumt.uz
 ```
 
-Пока запись не разошлась, certbot выпустить сертификат не сможет.
+Без корректной A-записи домен просто не откроется.
 
 ## 2. Файрвол
 
@@ -60,7 +60,7 @@ FRONTEND_PORT=8081           # должен совпадать с upstream в к
 BACKEND_PORT=8100
 DB_PORT=5434
 
-CORS_ORIGINS=https://idz.nsumt.uz
+CORS_ORIGINS=http://idz.nsumt.uz    # после включения TLS — https://
 JWT_SECRET=<openssl rand -hex 32>
 POSTGRES_PASSWORD=<длинный пароль>
 DATABASE_URL=postgresql+asyncpg://article:<тот же пароль>@db:5432/article_send
@@ -118,101 +118,34 @@ sudo nginx -t && sudo systemctl reload nginx
 
 Проверка: `http://idz.nsumt.uz` уже должен показывать фронтенд (пока без TLS).
 
-## 6. HTTPS
+## 6. HTTPS (позже)
 
-Каталог для ACME-проверки должен существовать до перезапуска nginx:
+Сейчас сайт работает по HTTP. Это рабочий вариант для запуска и проверки, но
+временный: пароли при входе и JWT-токены передаются открытым текстом, и любой
+узел на пути между посетителем и сервером может их прочитать. До того как
+сервисом начнут пользоваться реально, TLS нужно включить.
+
+Когда дойдут руки — сертификат выпускается через certbot, а `map $client_scheme`
+в конфиге уже готов к работе за TLS:
 
 ```bash
-sudo mkdir -p /var/www/certbot
 sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d idz.nsumt.uz
 ```
 
-Certbot сам добавит блок на 443 и редирект с 80. Автопродление проверяется так:
-
-```bash
-sudo certbot renew --dry-run
-```
-
-### Если перед сервером стоит ещё один reverse proxy
-
-Проверить, приходит ли трафик напрямую или через чужой прокси:
-
-```bash
-# IP в A-записи и реальный IP сервера должны совпадать
-dig +short idz.nsumt.uz
-curl -s ifconfig.me
-```
-
-Не совпали — значит, между интернетом и вами есть промежуточный узел, и порядок
-меняется:
-
-1. **`certbot --nginx` работать не будет.** HTTP-01 требует, чтобы Let's Encrypt
-   достучался до 80-го порта именно этого сервера; запрос перехватит внешний
-   прокси. Варианты: выпускать сертификат на внешнем прокси (обычно правильный
-   выбор — TLS терминируется там же, где вход), либо использовать DNS-01
-   (`certbot -a dns-...`), которому 80-й порт вообще не нужен.
-2. **Не включать безусловный редирект на HTTPS в этом nginx.** Внешний прокси
-   часто ходит к бэкенду по http, отдавая браузеру https. Безусловный
-   `return 301 https://...` тогда зациклится: прокси придёт по http, получит
-   редирект на https, снова придёт по http. Именно поэтому в конфиге редирект не
-   прописан по умолчанию, а `X-Forwarded-Proto` берётся из `$client_scheme`, а
-   не из `$scheme`.
-3. **Раскомментировать `set_real_ip_from`** в конфиге и указать адрес прокси —
-   иначе в логах будет один и тот же IP.
-
-Если же A-запись указывает прямо на ваш сервер — ничего из этого не нужно,
-`certbot --nginx` отработает штатно.
-
-### Если TLS настраивается вручную
-
-Блок, который certbot сгенерировал бы, — для справки. Директивы
-`client_max_body_size`, `gzip`, `proxy_*` копируются из HTTP-блока.
-
-```nginx
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    http2 on;                 # nginx < 1.25.1: убрать строку,
-                              # вместо неё: `listen 443 ssl http2;`
-    server_name idz.nsumt.uz;
-
-    ssl_certificate     /etc/letsencrypt/live/idz.nsumt.uz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/idz.nsumt.uz/privkey.pem;
-    include             /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
-
-    client_max_body_size 20m;
-
-    location / {
-        proxy_pass http://article_send_frontend;
-        proxy_http_version 1.1;
-        proxy_set_header Connection "";
-        proxy_set_header Host              $host;
-        proxy_set_header X-Real-IP         $remote_addr;
-        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_read_timeout 120s;
-        proxy_request_buffering off;
-    }
-}
-
-server {
-    listen 80;
-    listen [::]:80;
-    server_name idz.nsumt.uz;
-    return 301 https://$host$request_uri;
-}
-```
+Certbot сам добавит блок на 443 и редирект с 80. Два момента: он копирует не
+все директивы, поэтому после выпуска надо проверить, что `client_max_body_size
+20m;` оказался и в новом блоке; и на nginx 1.22 (текущая версия на сервере)
+директива `http2 on;` не поддерживается — там пишется `listen 443 ssl http2;`.
 
 ## 7. Проверка после запуска
 
 ```bash
-curl -I https://idz.nsumt.uz               # 200, страница логина
-curl -s https://idz.nsumt.uz/api/health    # {"status":"ok"}
+curl -I http://idz.nsumt.uz               # 200, страница логина
+curl -s http://idz.nsumt.uz/api/health    # {"status":"ok"}
 ```
 
-В браузере: открыть `https://idz.nsumt.uz`, войти под админом, зайти на
+В браузере: открыть `http://idz.nsumt.uz`, войти под админом, зайти на
 внутренний маршрут (например `/articles`) и **обновить страницу F5** — должна
 открыться она же, а не 404. Затем загрузить статью на несколько мегабайт и
 скачать её обратно.
