@@ -2,50 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Палитра взята с idz.nsumt.uz (css/color-themes/default-theme.css, css/style.css):
+   #ffaa00 — фирменный янтарь, #000048 — тёмно-синий заголовков и секций,
+   #222222 — графит основного текста, #777777 — вторичный текст,
+   #f1f6ff — голубой тинт подложек. */
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 13%; /* #222222 */
+
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 13%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 226 70% 48%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 226 70% 48%;
+    --popover-foreground: 0 0% 13%;
+
+    /* Основной цвет — navy: контраст с белым 16:1, читаем в плотных таблицах.
+       Янтарь для этой роли не годится (2.1:1 — не проходит WCAG). */
+    --primary: 240 100% 14%; /* #000048 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 219 100% 97%; /* #f1f6ff */
+    --secondary-foreground: 240 100% 14%;
+
+    --muted: 219 60% 97%;
+    --muted-foreground: 0 0% 45%; /* #737373 — на пару процентов темнее #777777
+                                     с сайта, чтобы вторичный текст прошёл AA */
+
+    /* accent в shadcn — это фон hover-состояний, поэтому здесь мягкий тинт,
+       а фирменный янтарь вынесен в отдельный токен --brand. */
+    --accent: 219 100% 96%;
+    --accent-foreground: 240 100% 14%;
+
+    --brand: 40 100% 50%; /* #ffaa00 */
+    --brand-foreground: 0 0% 13%; /* #222 поверх янтаря — контраст 8:1 */
+
+    --success: 152 55% 34%;
+    --success-foreground: 0 0% 100%;
+    --warning: 40 100% 50%;
+    --warning-foreground: 0 0% 13%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 219 45% 91%;
+    --input: 219 45% 88%;
+    --ring: 40 100% 50%; /* янтарный focus-ring — единственная яркая роль акцента */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 226 70% 55%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 226 70% 60%;
+    --background: 240 60% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 50% 11%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 50% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    /* В тёмной теме navy сливается с фоном, поэтому основным становится янтарь
+       с графитовым текстом — контраст сохраняется. */
+    --primary: 40 100% 50%;
+    --primary-foreground: 0 0% 13%;
+
+    --secondary: 240 40% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 40% 16%;
+    --muted-foreground: 220 12% 68%;
+
+    --accent: 240 40% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --brand: 40 100% 50%;
+    --brand-foreground: 0 0% 13%;
+
+    --success: 152 50% 42%;
+    --success-foreground: 0 0% 10%;
+    --warning: 40 100% 50%;
+    --warning-foreground: 0 0% 13%;
+    --destructive: 0 65% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 35% 22%;
+    --input: 240 35% 24%;
+    --ring: 40 100% 50%;
   }
 }
 
@@ -55,5 +94,25 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  /* Заголовки — геометрический гротеск, как на сайте конференции. */
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  /* Фирменный приём сайта (.sec-title): вертикальная полоса слева,
+     над ней мелкий янтарный надзаголовок, под ним крупный navy-заголовок. */
+  .sec-title {
+    @apply relative pl-4;
+  }
+  .sec-title::before {
+    content: "";
+    @apply absolute left-0 top-1 bottom-1 w-0.5 bg-primary;
+  }
+  .sec-eyebrow {
+    @apply font-display text-xs font-semibold uppercase tracking-[0.18em] text-brand;
   }
 }

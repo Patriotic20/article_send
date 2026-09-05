@@ -48,7 +48,7 @@ export function RolesPage() {
         title={t("roles.title")}
         action={
           canManage ? (
-            <Button onClick={openCreate}>
+            <Button variant="brand" onClick={openCreate}>
               <Plus className="h-4 w-4" />
               {t("roles.new")}
             </Button>

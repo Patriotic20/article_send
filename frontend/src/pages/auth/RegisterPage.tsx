@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LanguageSelect } from "@/components/layout/LanguageSelect";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 
 const TOTAL_STEPS = 3;
 
@@ -70,12 +70,8 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/30 p-4">
-      <div className="w-full max-w-sm space-y-4">
-        <div className="flex justify-end">
-          <LanguageSelect />
-        </div>
-        <Card>
+    <AuthLayout>
+      <Card>
           <CardHeader>
             <CardTitle>{t("auth.registerTitle")}</CardTitle>
             <p className="text-sm text-muted-foreground">
@@ -170,6 +166,7 @@ export function RegisterPage() {
                 )}
                 <Button
                   type="submit"
+                  variant="brand"
                   className="flex-1"
                   disabled={!stepValid || loading}
                 >
@@ -191,9 +188,8 @@ export function RegisterPage() {
                 {t("auth.signIn")}
               </Link>
             </p>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+      </CardContent>
+      </Card>
+    </AuthLayout>
   );
 }

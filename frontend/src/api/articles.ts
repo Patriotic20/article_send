@@ -85,13 +85,20 @@ export function useDeleteArticle() {
   });
 }
 
-// Скачивание файла статьи через защищённый эндпоинт (с Bearer-токеном).
-// Простая ссылка <a href> не подойдёт — токен бы не ушёл, поэтому качаем blob.
-export async function downloadArticleFile(id: number, filename: string) {
+// Файл статьи как blob. Отдельная функция, потому что один и тот же байтовый
+// поток нужен и для скачивания, и для просмотра в окне предпросмотра.
+export async function fetchArticleFile(id: number): Promise<Blob> {
   const { data } = await api.get(`/articles/${id}/download`, {
     responseType: "blob",
   });
-  const url = URL.createObjectURL(data as Blob);
+  return data as Blob;
+}
+
+// Скачивание файла статьи через защищённый эндпоинт (с Bearer-токеном).
+// Простая ссылка <a href> не подойдёт — токен бы не ушёл, поэтому качаем blob.
+export async function downloadArticleFile(id: number, filename: string) {
+  const blob = await fetchArticleFile(id);
+  const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
   link.download = filename;

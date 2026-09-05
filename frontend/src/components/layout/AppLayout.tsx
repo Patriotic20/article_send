@@ -34,15 +34,20 @@ export function AppLayout() {
   const visibleNav = navItems.filter((item) => hasPermission(item.perm));
 
   return (
-    <div className="flex min-h-screen bg-muted/30">
-      <aside className="flex w-60 flex-col border-r bg-background">
-        <div className="flex h-14 items-center gap-2 border-b px-4 font-semibold">
+    <div className="flex min-h-screen bg-muted/40">
+      {/* Тёмно-синяя боковая панель — отсылка к тёмной шапке idz.nsumt.uz. */}
+      <aside className="flex w-60 flex-col bg-primary text-primary-foreground">
+        <div className="flex h-16 items-center gap-2.5 border-b border-white/10 px-4">
+          {/* Печать университета — тёмно-синяя, поэтому на navy-панели ей
+              нужна светлая подложка. */}
           <img
             src={logoUrl}
             alt={t("appName")}
-            className="h-8 w-8 shrink-0 object-contain"
+            className="h-9 w-9 shrink-0 rounded-full bg-white object-contain p-0.5"
           />
-          <span className="truncate">{t("appName")}</span>
+          <span className="truncate font-display text-base font-semibold tracking-wide">
+            {t("appName")}
+          </span>
         </div>
         <nav className="flex flex-col gap-1 p-3">
           {visibleNav.map(({ to, labelKey, icon: Icon }) => (
@@ -51,10 +56,13 @@ export function AppLayout() {
               to={to}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  // Активный пункт помечается янтарной полосой слева — так же,
+                  // как заголовки секций на сайте.
+                  "relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "before:absolute before:left-0 before:top-1.5 before:bottom-1.5 before:w-0.5 before:rounded-full before:transition-colors",
                   isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    ? "bg-white/10 text-brand before:bg-brand"
+                    : "text-white/70 before:bg-transparent hover:bg-white/5 hover:text-white"
                 )
               }
             >
@@ -66,7 +74,7 @@ export function AppLayout() {
       </aside>
 
       <div className="flex flex-1 flex-col">
-        <header className="flex h-14 items-center justify-end gap-4 border-b bg-background px-6">
+        <header className="flex h-16 items-center justify-end gap-4 border-b bg-background px-6">
           <LanguageSelect />
           <NotificationBell />
           {user && (

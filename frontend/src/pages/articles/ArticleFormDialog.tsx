@@ -30,6 +30,10 @@ import { ARTICLE_STATUSES, statusLabelKey } from "./articleStatus";
 const ALLOWED_EXT = [".pdf", ".doc", ".docx"];
 const MAX_SIZE = 10 * 1024 * 1024;
 
+// Человекочитаемые ограничения для подсказки в форме: "PDF, DOC, DOCX" и 10.
+const ALLOWED_LABEL = ALLOWED_EXT.map((e) => e.slice(1).toUpperCase()).join(", ");
+const MAX_SIZE_MB = MAX_SIZE / 1024 / 1024;
+
 function baseName(path: string): string {
   return path.split("/").pop() || path;
 }
@@ -126,7 +130,7 @@ export function ArticleFormDialog({
             <input
               ref={fileInputRef}
               type="file"
-              accept=".pdf,.doc,.docx"
+              accept={ALLOWED_EXT.join(",")}
               className="hidden"
               onChange={onFileChange}
             />
@@ -146,12 +150,18 @@ export function ArticleFormDialog({
                   ? t("articles.replaceButton")
                   : t("articles.uploadButton")}
               </Button>
+              <p className="text-xs text-muted-foreground">
+                {t("articles.fileHint", {
+                  types: ALLOWED_LABEL,
+                  size: MAX_SIZE_MB,
+                })}
+              </p>
               {filePath && (
                 <p
                   className="flex min-w-0 items-center gap-1 text-sm text-muted-foreground"
                   title={fileLabel}
                 >
-                  <FileCheck2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                  <FileCheck2 className="h-4 w-4 shrink-0 text-success" />
                   <span className="truncate">{fileLabel}</span>
                 </p>
               )}

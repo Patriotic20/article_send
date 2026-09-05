@@ -58,7 +58,7 @@ export function UsersListPage() {
         title={t("users.title")}
         action={
           canCreate ? (
-            <Button onClick={() => setCreateOpen(true)}>
+            <Button variant="brand" onClick={() => setCreateOpen(true)}>
               <Plus className="h-4 w-4" />
               {t("users.createUser")}
             </Button>

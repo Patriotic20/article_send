@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useReviewArticle } from "@/api/articles";
+import { DocumentPreview } from "@/components/DocumentPreview";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -31,6 +32,10 @@ export function ArticleReviewDialog({
   const [comment, setComment] = useState("");
   const review = useReviewArticle();
 
+  const fileName = article
+    ? article.original_name || article.file_path.split("/").pop() || ""
+    : "";
+
   useEffect(() => {
     if (open) setComment("");
   }, [open]);
@@ -55,19 +60,31 @@ export function ArticleReviewDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
+      <DialogContent className="flex h-[85vh] max-w-5xl flex-col gap-4">
+        <DialogHeader className="pr-8">
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
-        <form onSubmit={onSubmit} className="space-y-4">
-          <div className="space-y-2">
+        <form
+          onSubmit={onSubmit}
+          className="flex min-h-0 flex-1 flex-col gap-4 lg:flex-row"
+        >
+          <div className="min-h-0 flex-1">
+            {article && (
+              <DocumentPreview
+                key={article.id}
+                articleId={article.id}
+                fileName={fileName}
+              />
+            )}
+          </div>
+          <div className="flex w-full flex-col gap-2 lg:w-72">
             <Label>{t("articles.review.comment")}</Label>
             <Textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder={t("articles.review.commentPlaceholder")}
+              className="min-h-24 flex-1"
             />
-          </div>
           <DialogFooter>
             <Button
               type="button"
@@ -87,6 +104,7 @@ export function ArticleReviewDialog({
                 : t("articles.review.reject")}
             </Button>
           </DialogFooter>
+          </div>
         </form>
       </DialogContent>
     </Dialog>

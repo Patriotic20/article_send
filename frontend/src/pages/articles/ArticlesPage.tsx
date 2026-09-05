@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Check, Download, Pencil, Plus, Trash2, X } from "lucide-react";
+import { Check, Download, Eye, Pencil, Plus, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -27,6 +27,7 @@ import { formatDateTime } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { Article, ArticleStatus } from "@/types";
 import { ArticleFormDialog } from "./ArticleFormDialog";
+import { ArticlePreviewDialog } from "./ArticlePreviewDialog";
 import { ArticleReviewDialog } from "./ArticleReviewDialog";
 import {
   ARTICLE_STATUSES,
@@ -59,6 +60,7 @@ export function ArticlesPage() {
   const [editArticle, setEditArticle] = useState<Article | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Article | null>(null);
   const [reviewTarget, setReviewTarget] = useState<ReviewState | null>(null);
+  const [previewTarget, setPreviewTarget] = useState<Article | null>(null);
 
   const canCreate = hasPermission("article:create");
   const canUpdate = hasPermission("article:update");
@@ -80,7 +82,7 @@ export function ArticlesPage() {
         title={t("articles.title")}
         action={
           canCreate ? (
-            <Button onClick={openCreate}>
+            <Button variant="brand" onClick={openCreate}>
               <Plus className="h-4 w-4" />
               {t("articles.new")}
             </Button>
@@ -146,19 +148,30 @@ export function ArticlesPage() {
                   </>
                 )}
                 <TableCell className="font-medium">
-                  <button
-                    type="button"
-                    title={displayName(a)}
-                    onClick={() =>
-                      downloadArticleFile(a.id, displayName(a)).catch((e) =>
-                        toast.error(getErrorMessage(e))
-                      )
-                    }
-                    className="inline-flex max-w-[480px] items-center gap-1.5 text-primary underline-offset-4 hover:underline"
-                  >
-                    <Download className="h-4 w-4 shrink-0" />
-                    <span className="truncate">{displayName(a)}</span>
-                  </button>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      title={t("articles.preview.open")}
+                      onClick={() => setPreviewTarget(a)}
+                      className="inline-flex max-w-[440px] items-center gap-1.5 text-primary underline-offset-4 hover:underline"
+                    >
+                      <Eye className="h-4 w-4 shrink-0" />
+                      <span className="truncate">{displayName(a)}</span>
+                    </button>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="h-7 w-7 shrink-0 text-muted-foreground"
+                      title={t("articles.preview.download")}
+                      onClick={() =>
+                        downloadArticleFile(a.id, displayName(a)).catch((e) =>
+                          toast.error(getErrorMessage(e))
+                        )
+                      }
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
                 </TableCell>
                 <TableCell>
                   <Badge variant={STATUS_VARIANT[a.status]}>
@@ -178,7 +191,7 @@ export function ArticlesPage() {
                           <Button
                             size="icon"
                             variant="ghost"
-                            className="text-emerald-600 hover:text-emerald-600"
+                            className="text-success hover:text-success"
                             title={t("articles.review.accept")}
                             onClick={() =>
                               setReviewTarget({ article: a, decision: "accept" })
@@ -239,6 +252,13 @@ export function ArticlesPage() {
           emptyText={t(`articles.emptyByStatus.${tab}`)}
         />
       </div>
+
+      <ArticlePreviewDialog
+        open={!!previewTarget}
+        onOpenChange={(o) => !o && setPreviewTarget(null)}
+        article={previewTarget}
+        fileName={previewTarget ? displayName(previewTarget) : ""}
+      />
 
       <ArticleFormDialog
         open={formOpen}

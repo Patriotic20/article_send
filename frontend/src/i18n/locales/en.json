@@ -19,7 +19,8 @@
     "id": "ID",
     "status": "Status",
     "created": "Created",
-    "actions": "Actions"
+    "actions": "Actions",
+    "close": "Close"
   },
   "header": {
     "currentUser": "Current user:",
@@ -47,7 +48,8 @@
     "otherUniversityPlaceholder": "Enter university name",
     "next": "Next",
     "back": "Back",
-    "emailInvalid": "Enter a valid email address"
+    "emailInvalid": "Enter a valid email address",
+    "tagline": "Platform for submitting and reviewing academic articles"
   },
   "users": {
     "title": "Users",
@@ -156,6 +158,14 @@
       "commentPlaceholder": "Provide a reason…",
       "confirmAccept": "Accept article",
       "confirmReject": "Reject article"
+    },
+    "fileHint": "{{types}} · up to {{size}} MB",
+    "preview": {
+      "open": "Preview",
+      "download": "Download",
+      "loading": "Loading document…",
+      "empty": "The document is empty.",
+      "unsupported": "The .doc format cannot be shown in the browser — download the file or re-save it as .docx or .pdf."
     }
   },
   "notifications": {

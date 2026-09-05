@@ -19,7 +19,8 @@
     "id": "ID",
     "status": "Holat",
     "created": "Yaratilgan",
-    "actions": "Amallar"
+    "actions": "Amallar",
+    "close": "Yopish"
   },
   "header": {
     "currentUser": "Joriy foydalanuvchi:",
@@ -47,7 +48,8 @@
     "otherUniversityPlaceholder": "Universitet nomini kiriting",
     "next": "Keyingi",
     "back": "Orqaga",
-    "emailInvalid": "Email manzilini toʻgʻri kiriting"
+    "emailInvalid": "Email manzilini toʻgʻri kiriting",
+    "tagline": "Ilmiy maqolalarni qabul qilish va taqriz qilish platformasi"
   },
   "users": {
     "title": "Foydalanuvchilar",
@@ -156,6 +158,14 @@
       "commentPlaceholder": "Sababini yozing…",
       "confirmAccept": "Maqolani qabul qilish",
       "confirmReject": "Maqolani rad etish"
+    },
+    "fileHint": "{{types}} · eng koʻpi {{size}} MB",
+    "preview": {
+      "open": "Koʻrish",
+      "download": "Yuklab olish",
+      "loading": "Hujjat yuklanmoqda…",
+      "empty": "Hujjat boʻsh.",
+      "unsupported": ".doc formatini brauzerda koʻrsatib boʻlmaydi — faylni yuklab oling yoki uni .docx yoki .pdf sifatida qayta saqlang."
     }
   },
   "notifications": {

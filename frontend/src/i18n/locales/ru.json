@@ -19,7 +19,8 @@
     "id": "ID",
     "status": "Статус",
     "created": "Создан",
-    "actions": "Действия"
+    "actions": "Действия",
+    "close": "Закрыть"
   },
   "header": {
     "currentUser": "Текущий пользователь:",
@@ -47,7 +48,8 @@
     "otherUniversityPlaceholder": "Введите название университета",
     "next": "Далее",
     "back": "Назад",
-    "emailInvalid": "Введите корректный email"
+    "emailInvalid": "Введите корректный email",
+    "tagline": "Платформа приёма и рецензирования научных статей"
   },
   "users": {
     "title": "Пользователи",
@@ -156,6 +158,14 @@
       "commentPlaceholder": "Укажите причину…",
       "confirmAccept": "Принять статью",
       "confirmReject": "Отклонить статью"
+    },
+    "fileHint": "{{types}} · до {{size}} МБ",
+    "preview": {
+      "open": "Просмотр",
+      "download": "Скачать",
+      "loading": "Загрузка документа…",
+      "empty": "Документ пуст.",
+      "unsupported": "Формат .doc нельзя показать в браузере — скачайте файл или пересохраните его как .docx либо .pdf."
     }
   },
   "notifications": {

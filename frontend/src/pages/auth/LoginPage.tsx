@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LanguageSelect } from "@/components/layout/LanguageSelect";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 
 export function LoginPage() {
   const { t } = useTranslation();
@@ -39,12 +39,8 @@ export function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/30 p-4">
-      <div className="w-full max-w-sm space-y-4">
-        <div className="flex justify-end">
-          <LanguageSelect />
-        </div>
-        <Card>
+    <AuthLayout>
+      <Card>
           <CardHeader>
             <CardTitle>{t("auth.loginTitle")}</CardTitle>
           </CardHeader>
@@ -71,7 +67,7 @@ export function LoginPage() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" variant="brand" className="w-full" disabled={loading}>
                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                 {t("auth.signIn")}
               </Button>
@@ -82,9 +78,8 @@ export function LoginPage() {
                 {t("auth.signUp")}
               </Link>
             </p>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+      </CardContent>
+      </Card>
+    </AuthLayout>
   );
 }
