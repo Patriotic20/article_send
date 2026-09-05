@@ -8,7 +8,10 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-article}
       POSTGRES_DB: ${POSTGRES_DB:-article_send}
     ports:
-      - "${DB_PORT:-5433}:5432"
+      # BIND_ADDR — интерфейс, на котором публикуются порты. В деве пусто
+      # (0.0.0.0), на сервере BIND_ADDR=127.0.0.1: наружу смотрит только nginx,
+      # а БД и API недоступны в обход него.
+      - "${BIND_ADDR:-0.0.0.0}:${DB_PORT:-5433}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./backend/scripts/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
@@ -40,7 +43,7 @@ services:
       # внутри по подпапкам-годам: ./uploads/<год>/<uuid>.ext.
       - ./uploads:/app/uploads
     ports:
-      - "${BACKEND_PORT:-8000}:8000"
+      - "${BIND_ADDR:-0.0.0.0}:${BACKEND_PORT:-8000}:8000"
 
   frontend:
     build:
@@ -50,7 +53,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "${FRONTEND_PORT:-8080}:80"
+      - "${BIND_ADDR:-0.0.0.0}:${FRONTEND_PORT:-8080}:80"
 
 volumes:
   pgdata:
