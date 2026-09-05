@@ -82,16 +82,37 @@ curl -s http://127.0.0.1:8100/health   # {"status":"ok"}
 
 ## 5. nginx на хосте
 
+Сначала проверить, что и как установлено:
+
 ```bash
-sudo apt install nginx
-sudo cp deploy/nginx/idz.nsumt.uz.conf /etc/nginx/sites-available/idz.nsumt.uz
-sudo ln -s /etc/nginx/sites-available/idz.nsumt.uz /etc/nginx/sites-enabled/
+nginx -v
+ls /etc/nginx/
 ```
 
-Если на сервере остался дефолтный сайт, перехватывающий запросы, — отключить:
+**Вариант А — пакет Debian/Ubuntu** (в `/etc/nginx/` есть `sites-available`):
 
 ```bash
+sudo apt install nginx      # если nginx ещё не стоит
+sudo cp deploy/nginx/idz.nsumt.uz.conf /etc/nginx/sites-available/idz.nsumt.uz
+sudo ln -s /etc/nginx/sites-available/idz.nsumt.uz /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
+```
+
+**Вариант Б — сборка с nginx.org** (каталогов `sites-*` нет, есть только
+`conf.d`). Схема с симлинками — соглашение Debian, а не часть nginx; здесь
+конфиг кладётся напрямую, `conf.d/*.conf` подключается автоматически:
+
+```bash
+sudo cp deploy/nginx/idz.nsumt.uz.conf /etc/nginx/conf.d/idz.nsumt.uz.conf
+sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.disabled
+```
+
+Дефолтный сайт обязательно отключить: он объявлен как `default_server` и
+перехватит запросы раньше нашего блока.
+
+Затем в обоих вариантах:
+
+```bash
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
