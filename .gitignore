@@ -74,3 +74,7 @@ uploads/*
 # bind-mount от root, и процесс в контейнере (appuser, uid 1000) не сможет
 # писать — любая загрузка падает с PermissionError.
 !uploads/.gitkeep
+
+# Архивы с исходниками сайта — распакованная версия лежит в frontend/site
+*.rar
+*.zip
