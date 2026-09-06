@@ -15,6 +15,10 @@ export type Block =
   | { type: "paragraphs"; keys: string[] }
   /** Маркированный список: ключ указывает на массив строк. */
   | { type: "list"; key: string; headingKey?: string }
+  /** Маркированный список, собранный из отдельных ключей. */
+  | { type: "bullets"; keys: string[]; headingKey?: string }
+  /** Врезка о том, что материал ещё готовится. */
+  | { type: "pending" }
   /** Иллюстрация во всю ширину колонки. */
   | { type: "image"; src: string; captionKey?: string }
   /** Сетка изображений. */

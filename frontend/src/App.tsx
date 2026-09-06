@@ -11,6 +11,44 @@ import { SiteLayout } from "@/site/components/SiteLayout";
 const HomePage = lazy(() =>
   import("@/site/pages/HomePage").then((m) => ({ default: m.HomePage }))
 );
+const StaticPages = {
+  About: lazy(() =>
+    import("@/site/pages/StaticPage").then((m) => ({ default: m.AboutPage }))
+  ),
+  AboutSub: lazy(() =>
+    import("@/site/pages/StaticPage").then((m) => ({ default: m.AboutSubPage }))
+  ),
+  Region: lazy(() =>
+    import("@/site/pages/StaticPage").then((m) => ({ default: m.RegionPage }))
+  ),
+  Section: lazy(() =>
+    import("@/site/pages/StaticPage").then((m) => ({ default: m.SectionPage }))
+  ),
+  Partner: lazy(() =>
+    import("@/site/pages/StaticPage").then((m) => ({ default: m.PartnerPage }))
+  ),
+  Submission: lazy(() =>
+    import("@/site/pages/StaticPage").then((m) => ({
+      default: m.SubmissionPage,
+    }))
+  ),
+  Dates: lazy(() =>
+    import("@/site/pages/DatesPage").then((m) => ({ default: m.DatesPage }))
+  ),
+  Committee: lazy(() =>
+    import("@/site/pages/CommitteePage").then((m) => ({
+      default: m.CommitteePage,
+    }))
+  ),
+  Program: lazy(() =>
+    import("@/site/pages/ProgramPage").then((m) => ({ default: m.ProgramPage }))
+  ),
+  Contacts: lazy(() =>
+    import("@/site/pages/ContactsPage").then((m) => ({
+      default: m.ContactsPage,
+    }))
+  ),
+};
 
 // Страницы грузятся по требованию: в стартовый бандл попадает только каркас,
 // а формы (react-hook-form + zod) и таблицы приезжают вместе со своим экраном.
@@ -58,6 +96,16 @@ export default function App() {
         {/* Сайт конференции */}
         <Route element={<SiteLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<StaticPages.About />} />
+          <Route path="/about/:slug" element={<StaticPages.AboutSub />} />
+          <Route path="/region/:slug" element={<StaticPages.Region />} />
+          <Route path="/sections/:slug" element={<StaticPages.Section />} />
+          <Route path="/partners/:slug" element={<StaticPages.Partner />} />
+          <Route path="/submission" element={<StaticPages.Submission />} />
+          <Route path="/dates" element={<StaticPages.Dates />} />
+          <Route path="/committee" element={<StaticPages.Committee />} />
+          <Route path="/program" element={<StaticPages.Program />} />
+          <Route path="/contacts" element={<StaticPages.Contacts />} />
         </Route>
 
         {/* Кабинет подачи тезисов */}

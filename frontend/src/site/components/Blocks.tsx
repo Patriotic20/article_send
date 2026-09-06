@@ -24,12 +24,24 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
               </h2>
             );
 
-          case "text":
+          case "text": {
+            // В текстах старого сайта абзацы разделены переводами строки
+            // внутри одного ключа — разворачиваем их в отдельные абзацы,
+            // иначе страница читается сплошной простынёй.
+            const parts = t(block.key)
+              .split(/\n+/)
+              .map((part) => part.trim())
+              .filter(Boolean);
             return (
-              <p key={i} className="leading-relaxed text-foreground/90">
-                {t(block.key)}
-              </p>
+              <div key={i} className="flex flex-col gap-4">
+                {parts.map((part, j) => (
+                  <p key={j} className="leading-relaxed text-foreground/90">
+                    {part}
+                  </p>
+                ))}
+              </div>
             );
+          }
 
           case "paragraphs":
             return (
@@ -68,6 +80,38 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
               </div>
             );
           }
+
+          case "bullets":
+            return (
+              <div key={i}>
+                {block.headingKey && (
+                  <h3 className="mb-2 font-display text-lg font-semibold text-primary">
+                    {t(block.headingKey)}
+                  </h3>
+                )}
+                <ul className="flex flex-col gap-2">
+                  {block.keys.map((key) => (
+                    <li key={key} className="flex gap-3 leading-relaxed">
+                      <span
+                        aria-hidden="true"
+                        className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
+                      />
+                      <span className="text-foreground/90">{t(key)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+
+          case "pending":
+            return (
+              <p
+                key={i}
+                className="rounded-lg border border-dashed bg-secondary/50 p-5 text-sm text-muted-foreground"
+              >
+                {t("content_pending")}
+              </p>
+            );
 
           case "image":
             return (
