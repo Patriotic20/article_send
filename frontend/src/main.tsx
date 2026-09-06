@@ -13,7 +13,9 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      {/* Приложение смонтировано в /app/ — тот же префикс, что и base в
+          vite.config.ts. Внутри кода маршруты остаются без префикса. */}
+      <BrowserRouter basename="/app">
         <AuthProvider>
           <App />
         </AuthProvider>

@@ -16,11 +16,16 @@ RUN npm run build
 # ---------- Stage 2: отдача статики через nginx ----------
 FROM nginx:1.27-alpine AS runtime
 
-# Конфиг с SPA-fallback и проксированием /api на бэкенд.
+# Конфиг: статический сайт в корне, SPA на /app/, проксирование /api.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Собранные ассеты Vite.
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Сайт конференции — как есть, без сборки: он не проходит через Vite,
+# поэтому его вёрстка, стили и скрипты остаются байт-в-байт исходными.
+COPY site/ /usr/share/nginx/html/
+
+# Собранное приложение — в подпапку /app (совпадает с base в vite.config.ts
+# и basename роутера).
+COPY --from=builder /app/dist /usr/share/nginx/html/app
 
 EXPOSE 80
 

@@ -4,6 +4,10 @@ import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // SPA живёт на /app/, а в корне отдаётся статический сайт конференции
+  // (frontend/site). Без base ассеты запрашивались бы из корня и попадали
+  // бы на файлы сайта.
+  base: "/app/",
   plugins: [react()],
   resolve: {
     alias: {

@@ -21,7 +21,8 @@ VM  192.168.1.168:80             ← nginx хоста, deploy/nginx/idz.nsumt.uz
    │  proxy_pass 127.0.0.1:8080
    ▼
 контейнер frontend (nginx:alpine)
-   ├─ /       → статика Vite + SPA-fallback
+   ├─ /       → статический сайт конференции (frontend/site), 404 на неизвестное
+   ├─ /app/   → React SPA с SPA-fallback на /app/index.html
    └─ /api/   → proxy_pass backend:8000
                      │
                      ▼
