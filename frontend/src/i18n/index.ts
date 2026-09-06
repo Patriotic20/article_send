@@ -31,8 +31,14 @@ i18n
     supportedLngs: ["uz", "ru", "en"],
     interpolation: { escapeValue: false },
     detection: {
-      order: ["localStorage", "navigator"],
-      lookupLocalStorage: "article_send.lang",
+      // Только сохранённый выбор: посетители приходят с узбекского сайта
+      // конференции, и определение по языку браузера подсовывало им
+      // английский интерфейс. Без сохранённого выбора работает fallbackLng.
+      order: ["localStorage"],
+      // Ключ сменён намеренно: прежний детектор писал сюда язык браузера
+      // автоматически, и у части посетителей там осел "en". Со старым ключом
+      // они продолжили бы видеть английский, несмотря на fallbackLng.
+      lookupLocalStorage: "article_send.lang.v2",
       caches: ["localStorage"],
     },
   });

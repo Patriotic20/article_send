@@ -40,45 +40,59 @@ export function LoginPage() {
 
   return (
     <AuthLayout>
-      <Card>
-          <CardHeader>
-            <CardTitle>{t("auth.loginTitle")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={onSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">{t("auth.email")}</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  autoFocus
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">{t("auth.password")}</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <Button type="submit" variant="brand" className="w-full" disabled={loading}>
-                {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-                {t("auth.signIn")}
-              </Button>
-            </form>
-            <p className="mt-4 text-center text-sm text-muted-foreground">
-              {t("auth.noAccount")}{" "}
-              <Link to="/register" className="text-primary hover:underline">
-                {t("auth.signUp")}
-              </Link>
-            </p>
-      </CardContent>
+      <Card className="shadow-sm">
+        <CardHeader className="pb-4">
+          <CardTitle className="font-display text-2xl">
+            {t("auth.loginTitle")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={onSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <Label htmlFor="email">{t("auth.email")}</Label>
+              <Input
+                id="email"
+                type="email"
+                className="h-11"
+                placeholder={t("auth.emailPlaceholder")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoFocus
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">{t("auth.password")}</Label>
+              <Input
+                id="password"
+                type="password"
+                className="h-11"
+                placeholder={t("auth.passwordPlaceholder")}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <Button
+              type="submit"
+              variant="brand"
+              className="h-11 w-full text-base"
+              disabled={loading}
+            >
+              {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+              {t("auth.signIn")}
+            </Button>
+          </form>
+          <p className="mt-5 text-center text-sm text-muted-foreground">
+            {t("auth.noAccount")}{" "}
+            <Link
+              to="/register"
+              className="font-medium text-primary hover:underline"
+            >
+              {t("auth.signUp")}
+            </Link>
+          </p>
+        </CardContent>
       </Card>
     </AuthLayout>
   );

@@ -49,7 +49,15 @@
     "next": "Keyingi",
     "back": "Orqaga",
     "emailInvalid": "Email manzilini toʻgʻri kiriting",
-    "tagline": "Ilmiy maqolalarni qabul qilish va taqriz qilish platformasi"
+    "tagline": "Ilmiy maqolalarni qabul qilish va taqriz qilish platformasi",
+    "conferenceShort": "VII-xalqaro ilmiy-texnikaviy anjuman",
+    "conferenceTitle": "Zarafshon mintaqasini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar",
+    "conferenceDates": "2026-yil 25–26-sentabr",
+    "backToSite": "Anjuman sayti",
+    "emailPlaceholder": "sizning@email.uz",
+    "passwordPlaceholder": "Parolingiz",
+    "passwordHint": "Kamida 6 ta belgi",
+    "universityName": "Navoiy davlat konchilik va texnologiyalar universiteti"
   },
   "users": {
     "title": "Foydalanuvchilar",

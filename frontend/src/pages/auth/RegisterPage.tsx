@@ -71,21 +71,24 @@ export function RegisterPage() {
 
   return (
     <AuthLayout>
-      <Card>
-          <CardHeader>
-            <CardTitle>{t("auth.registerTitle")}</CardTitle>
+      <Card className="shadow-sm">
+          <CardHeader className="pb-4">
+            <CardTitle className="font-display text-2xl">
+              {t("auth.registerTitle")}
+            </CardTitle>
             <p className="text-sm text-muted-foreground">
               {t("auth.stepIndicator", { n: step, total: TOTAL_STEPS })} ·{" "}
               {t(`auth.${titleKey}`)}
             </p>
           </CardHeader>
           <CardContent>
-            <form onSubmit={onSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-5">
               {step === 1 && (
                 <div className="space-y-2">
                   <Label htmlFor="university">{t("auth.university")}</Label>
                   <Input
                     id="university"
+                    className="h-11"
                     value={university}
                     onChange={(e) => setUniversity(e.target.value)}
                     placeholder={t("auth.otherUniversityPlaceholder")}
@@ -101,6 +104,7 @@ export function RegisterPage() {
                     <Label htmlFor="firstName">{t("auth.firstName")}</Label>
                     <Input
                       id="firstName"
+                      className="h-11"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       required
@@ -111,6 +115,7 @@ export function RegisterPage() {
                     <Label htmlFor="lastName">{t("auth.lastName")}</Label>
                     <Input
                       id="lastName"
+                      className="h-11"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       required
@@ -125,7 +130,9 @@ export function RegisterPage() {
                     <Label htmlFor="email">{t("auth.email")}</Label>
                     <Input
                       id="email"
+                      className="h-11"
                       type="email"
+                      placeholder={t("auth.emailPlaceholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -141,7 +148,9 @@ export function RegisterPage() {
                     <Label htmlFor="password">{t("auth.password")}</Label>
                     <Input
                       id="password"
+                      className="h-11"
                       type="password"
+                      placeholder={t("auth.passwordHint")}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
@@ -156,7 +165,7 @@ export function RegisterPage() {
                   <Button
                     type="button"
                     variant="outline"
-                    className="flex-1"
+                    className="h-11 flex-1"
                     onClick={() => setStep(step - 1)}
                     disabled={loading}
                   >
@@ -167,7 +176,7 @@ export function RegisterPage() {
                 <Button
                   type="submit"
                   variant="brand"
-                  className="flex-1"
+                  className="h-11 flex-1 text-base"
                   disabled={!stepValid || loading}
                 >
                   {loading && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -182,9 +191,12 @@ export function RegisterPage() {
                 </Button>
               </div>
             </form>
-            <p className="mt-4 text-center text-sm text-muted-foreground">
+            <p className="mt-5 text-center text-sm text-muted-foreground">
               {t("auth.haveAccount")}{" "}
-              <Link to="/login" className="text-primary hover:underline">
+              <Link
+                to="/login"
+                className="font-medium text-primary hover:underline"
+              >
                 {t("auth.signIn")}
               </Link>
             </p>

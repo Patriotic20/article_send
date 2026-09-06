@@ -49,7 +49,15 @@
     "next": "Next",
     "back": "Back",
     "emailInvalid": "Enter a valid email address",
-    "tagline": "Platform for submitting and reviewing academic articles"
+    "tagline": "Platform for submitting and reviewing academic articles",
+    "conferenceShort": "VII International Scientific and Technical Conference",
+    "conferenceTitle": "Comprehensive innovative development of the Zarafshan region: achievements, challenges and prospects",
+    "conferenceDates": "25–26 September 2026",
+    "backToSite": "Conference website",
+    "emailPlaceholder": "your@email.uz",
+    "passwordPlaceholder": "Your password",
+    "passwordHint": "At least 6 characters",
+    "universityName": "Navoi State University of Mining and Technologies"
   },
   "users": {
     "title": "Users",
