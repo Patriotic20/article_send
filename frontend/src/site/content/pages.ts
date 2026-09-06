@@ -19,8 +19,9 @@ const PARTNER_PARENT = { labelKey: "nav_partners", to: "/partners/nkmk" };
 export const aboutPages: Record<string, PageContent> = {
   index: {
     titleKey: "conference_title",
+    shortTitleKey: "nav_general",
     ledeKey: "conference_subtitle",
-    cover: "/media/university.jpg",
+    cover: "/media/university.webp",
     blocks: [
       { type: "text", key: "paragraph_1" },
       { type: "text", key: "paragraph_2" },
@@ -37,11 +38,13 @@ export const aboutPages: Record<string, PageContent> = {
   },
   brochure: {
     titleKey: "conference_theme_main",
+    shortTitleKey: "nav_brochure",
     parent: ABOUT_PARENT,
     blocks: [{ type: "text", key: "conference_theme_text" }],
   },
   conferences: {
     titleKey: "konferensiya_haqida_main",
+    shortTitleKey: "nav_conferences",
     parent: ABOUT_PARENT,
     blocks: [
       { type: "text", key: "konferensiya_haqida" },
@@ -55,7 +58,7 @@ export const regionPages: Record<string, PageContent> = {
   zarafshon: {
     titleKey: "nav_zarafshon",
     parent: REGION_PARENT,
-    cover: "/media/regions/zarafshon.jpg",
+    cover: "/media/regions/zarafshon.webp",
     blocks: [
       { type: "text", key: "zarafshon_text_1" },
       { type: "text", key: "zarafshon_text_2" },
@@ -78,7 +81,7 @@ export const regionPages: Record<string, PageContent> = {
   samarqand: {
     titleKey: "nav_samarqand",
     parent: REGION_PARENT,
-    cover: "/media/regions/samarqand.jpg",
+    cover: "/media/regions/samarqand.webp",
     blocks: [
       { type: "heading", key: "samarkand_title_1" },
       { type: "text", key: "samarkand_text_1" },
@@ -94,7 +97,7 @@ export const regionPages: Record<string, PageContent> = {
   buxoro: {
     titleKey: "nav_buxoro",
     parent: REGION_PARENT,
-    cover: "/media/regions/buxoro.jpg",
+    cover: "/media/regions/buxoro.webp",
     blocks: [
       { type: "heading", key: "buxoro_title_1" },
       { type: "text", key: "buxoro_text_1" },
@@ -108,7 +111,7 @@ export const regionPages: Record<string, PageContent> = {
   navoiy: {
     titleKey: "nav_navoiy",
     parent: REGION_PARENT,
-    cover: "/media/regions/navoiy.jpg",
+    cover: "/media/regions/navoiy.webp",
     blocks: [
       { type: "heading", key: "navoiy_title_1" },
       { type: "text", key: "navoiy_text_1" },
@@ -143,6 +146,7 @@ export const regionPages: Record<string, PageContent> = {
 export const sectionPages: Record<string, PageContent> = {
   mining: {
     titleKey: "mineral",
+    shortTitleKey: "nav_mining",
     parent: SECTION_PARENT,
     blocks: [
       { type: "heading", key: "conference" },
@@ -154,11 +158,13 @@ export const sectionPages: Record<string, PageContent> = {
   },
   machinery: {
     titleKey: "machine_main",
+    shortTitleKey: "nav_machinery",
     parent: SECTION_PARENT,
     blocks: [{ type: "text", key: "machine" }],
   },
   chemistry: {
     titleKey: "chemical_main",
+    shortTitleKey: "nav_chemistry",
     parent: SECTION_PARENT,
     blocks: [{ type: "text", key: "chemical" }],
   },
@@ -189,6 +195,7 @@ export const partnerPages: Record<string, PageContent> = {
   },
   feiz: {
     titleKey: "eiiz_main",
+    shortTitleKey: "nav_feiz",
     parent: PARTNER_PARENT,
     blocks: [{ type: "text", key: "eiiz" }],
   },
@@ -203,6 +210,7 @@ export const partnerPages: Record<string, PageContent> = {
 
 export const submissionPage: PageContent = {
   titleKey: "tezis_main",
+  shortTitleKey: "nav_requirements",
   parent: { labelKey: "nav_authors", to: "/dates" },
   blocks: [{ type: "text", key: "tezis" }],
 };

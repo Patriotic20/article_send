@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, FileUp, Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -54,85 +54,104 @@ export function SiteHeader() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
-        <Link to="/" className="flex shrink-0 items-center gap-2.5">
-          <img
-            src={logoUrl}
-            alt={tApp("auth.universityName")}
-            className="h-10 w-10 shrink-0 object-contain"
-          />
-          <span className="hidden max-w-[11rem] font-display text-sm font-semibold leading-tight text-primary xl:block">
-            {tApp("auth.conferenceShort")}
-          </span>
-        </Link>
+    // Шторка вынесена из <header> намеренно: backdrop-blur создаёт
+    // containing block, и position: fixed внутри него схлопывается до высоты
+    // шапки вместо всего экрана.
+    <>
+      <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+        <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
+          <Link to="/" className="flex shrink-0 items-center gap-2.5">
+            <img
+              src={logoUrl}
+              alt={tApp("auth.universityName")}
+              className="h-10 w-10 shrink-0 object-contain"
+            />
+            <span className="hidden max-w-[11rem] font-display text-sm font-semibold leading-tight text-primary xl:block">
+              {tApp("auth.conferenceShort")}
+            </span>
+          </Link>
 
-        <NavigationMenu className="mx-auto hidden lg:flex">
-          <NavigationMenuList>
-            {siteNav.map((entry) =>
-              isGroup(entry) ? (
-                <NavigationMenuItem key={entry.labelKey}>
-                  <NavigationMenuTrigger className="whitespace-nowrap text-sm font-medium">
-                    {t(entry.labelKey)}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="w-[320px] p-2">
-                      {entry.items.map((item) => (
-                        <li key={item.to}>
-                          <NavigationMenuLink asChild>
-                            <NavLink
-                              to={item.to}
-                              className={({ isActive }) =>
-                                cn(
-                                  "block rounded-md px-3 py-2 text-sm leading-snug transition-colors hover:bg-accent hover:text-accent-foreground",
-                                  isActive && "bg-accent font-medium text-primary"
-                                )
-                              }
-                            >
-                              {t(item.labelKey)}
-                            </NavLink>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={entry.to}>
-                  <NavigationMenuLink asChild>
-                    <NavLink
-                      to={entry.to}
-                      end={entry.to === "/"}
-                      className={({ isActive }) =>
-                        cn(
-                          "inline-flex h-9 items-center whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                          isActive && "text-primary"
-                        )
-                      }
-                    >
+          <NavigationMenu className="mx-auto hidden lg:flex">
+            <NavigationMenuList>
+              {siteNav.map((entry) =>
+                isGroup(entry) ? (
+                  <NavigationMenuItem key={entry.labelKey}>
+                    <NavigationMenuTrigger className="whitespace-nowrap text-sm font-medium">
                       {t(entry.labelKey)}
-                    </NavLink>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              )
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="w-[320px] p-2">
+                        {entry.items.map((item) => (
+                          <li key={item.to}>
+                            <NavigationMenuLink asChild>
+                              <NavLink
+                                to={item.to}
+                                className={({ isActive }) =>
+                                  cn(
+                                    "block rounded-md px-3 py-2 text-sm leading-snug transition-colors hover:bg-accent hover:text-accent-foreground",
+                                    isActive && "bg-accent font-medium text-primary"
+                                  )
+                                }
+                              >
+                                {t(item.labelKey)}
+                              </NavLink>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                ) : (
+                  <NavigationMenuItem key={entry.to}>
+                    <NavigationMenuLink asChild>
+                      <NavLink
+                        to={entry.to}
+                        end={entry.to === "/"}
+                        className={({ isActive }) =>
+                          cn(
+                            "inline-flex h-9 items-center whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                            isActive && "text-primary"
+                          )
+                        }
+                      >
+                        {t(entry.labelKey)}
+                      </NavLink>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                )
+              )}
+            </NavigationMenuList>
+          </NavigationMenu>
 
-        <div className="ml-auto flex items-center gap-2 lg:ml-0">
-          <div className="hidden sm:block">{submitButton}</div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            aria-label={tApp("header.menu")}
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
+          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            <div className="hidden sm:block">{submitButton}</div>
+            {/* На самых узких экранах подпись не помещается, но подача тезиса —
+                главное действие сайта, поэтому кнопка остаётся, только иконкой. */}
+            <Button
+              asChild
+              variant="brand"
+              size="icon"
+              className="sm:hidden"
+              aria-label={tApp("site.submitCta")}
+            >
+              <Link to="/app/login">
+                <FileUp className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              aria-label={tApp("header.menu")}
+              aria-expanded={open}
+              onClick={() => setOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
-      </div>
+
+      </header>
 
       {/* Мобильная шторка. Меню длинное (6 разделов, 20 ссылок), поэтому
           разделы показываются раскрытыми списками, а не аккордеоном: так
@@ -209,6 +228,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

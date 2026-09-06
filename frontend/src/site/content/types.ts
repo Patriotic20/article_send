@@ -29,6 +29,8 @@ export type Block =
 export interface PageContent {
   /** Заголовок страницы (ключ в пространстве "site"). */
   titleKey: string;
+  /** Короткая подпись для хлебных крошек, если официальное название длинное. */
+  shortTitleKey?: string;
   /** Короткое описание под заголовком. */
   ledeKey?: string;
   /** Иллюстрация в шапке страницы. */

@@ -26,10 +26,10 @@ const facts = [
 ];
 
 const regionTiles = [
-  { to: "/region/zarafshon", labelKey: "nav_zarafshon", image: "/media/regions/zarafshon.jpg" },
-  { to: "/region/samarqand", labelKey: "nav_samarqand", image: "/media/regions/samarqand.jpg" },
-  { to: "/region/buxoro", labelKey: "nav_buxoro", image: "/media/regions/buxoro.jpg" },
-  { to: "/region/navoiy", labelKey: "nav_navoiy", image: "/media/regions/navoiy.jpg" },
+  { to: "/region/zarafshon", labelKey: "nav_zarafshon", image: "/media/regions/zarafshon.webp" },
+  { to: "/region/samarqand", labelKey: "nav_samarqand", image: "/media/regions/samarqand.webp" },
+  { to: "/region/buxoro", labelKey: "nav_buxoro", image: "/media/regions/buxoro.webp" },
+  { to: "/region/navoiy", labelKey: "nav_navoiy", image: "/media/regions/navoiy.webp" },
 ];
 
 export function HomePage() {

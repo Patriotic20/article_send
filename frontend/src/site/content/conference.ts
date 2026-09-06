@@ -67,11 +67,11 @@ export const secretariat = [1, 2, 3, 4].map((n) => ({
 /** Организаторы и партнёры: логотипы лежат в public/media/partners. */
 export const partners = [
   { id: "ndktu", logo: "/media/partners/ndktu.png", nameKey: "sponsor_ndktu" },
-  { id: "nkmk", logo: "/media/partners/nkmk.jpg", nameKey: "sponsor_ngmk" },
+  { id: "nkmk", logo: "/media/partners/nkmk.webp", nameKey: "sponsor_ngmk" },
   { id: "academy", logo: "/media/partners/akademiya.png", nameKey: "sponsor_academy" },
   { id: "edu", logo: "/media/partners/oliy-talim.png", nameKey: "sponsor_edu" },
-  { id: "mingeo", logo: "/media/partners/tog-kon.png", nameKey: "sponsor_mingeo" },
-  { id: "uran", logo: "/media/partners/uran.jpg", nameKey: "sponsor_uran" },
+  { id: "mingeo", logo: "/media/partners/tog-kon.webp", nameKey: "sponsor_mingeo" },
+  { id: "uran", logo: "/media/partners/uran.webp", nameKey: "sponsor_uran" },
 ];
 
 /**

@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
       <img
-        src="/media/hero.jpg"
+        src="/media/hero.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover opacity-40"

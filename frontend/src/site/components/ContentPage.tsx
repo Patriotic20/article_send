@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 import type { PageContent } from "@/site/content/types";
 import { Blocks } from "./Blocks";
+import { PageMeta } from "./PageMeta";
 
 /**
  * Шаблон текстовой страницы: хлебные крошки, заголовок, обложка и блоки.
@@ -16,6 +17,10 @@ export function ContentPage({ page }: { page: PageContent }) {
 
   return (
     <article className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+      <PageMeta
+        title={t(page.shortTitleKey ?? page.titleKey)}
+        description={page.ledeKey ? t(page.ledeKey) : undefined}
+      />
       <nav aria-label="breadcrumb" className="mb-6">
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
           <li>
@@ -35,7 +40,7 @@ export function ContentPage({ page }: { page: PageContent }) {
           )}
           <ChevronRight aria-hidden="true" className="h-3.5 w-3.5" />
           <li aria-current="page" className="text-foreground">
-            {t(page.titleKey)}
+            {t(page.shortTitleKey ?? page.titleKey)}
           </li>
         </ol>
       </nav>

@@ -1,13 +1,26 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { RouteFallback } from "@/components/RouteFallback";
 import { SiteLayout } from "@/site/components/SiteLayout";
 
 // Сайт конференции живёт в корне, личный кабинет — под /app. Один бандл,
 // две зоны маршрутизации: пути не пересекаются, поэтому изменения на сайте
 // не могут задеть работу кабинета.
+// Провайдеры кабинета тоже подгружаются по требованию: при статическом
+// импорте TanStack Query и axios попадали в стартовый чанк, хотя на
+// страницах сайта не используются.
+const CabinetProviders = lazy(() =>
+  import("@/components/CabinetProviders").then((m) => ({
+    default: m.CabinetProviders,
+  }))
+);
+const ProtectedRoute = lazy(() =>
+  import("@/components/ProtectedRoute").then((m) => ({
+    default: m.ProtectedRoute,
+  }))
+);
+
 const HomePage = lazy(() =>
   import("@/site/pages/HomePage").then((m) => ({ default: m.HomePage }))
 );
@@ -109,18 +122,20 @@ export default function App() {
         </Route>
 
         {/* Кабинет подачи тезисов */}
-        <Route path="/app/login" element={<LoginPage />} />
-        <Route path="/app/register" element={<RegisterPage />} />
+        <Route element={<CabinetProviders />}>
+          <Route path="/app/login" element={<LoginPage />} />
+          <Route path="/app/register" element={<RegisterPage />} />
 
-        <Route path="/app" element={<ProtectedRoute />}>
-          <Route index element={<Navigate to="/app/articles" replace />} />
-          <Route path="users" element={<UsersListPage />} />
-          <Route path="users/:id" element={<UserDetailPage />} />
-          <Route path="roles" element={<RolesPage />} />
-          <Route path="permissions" element={<PermissionsPage />} />
-          <Route path="articles" element={<ArticlesPage />} />
-          <Route path="profile" element={<ProfilePage />} />
-          <Route path="*" element={<Navigate to="/app/articles" replace />} />
+          <Route path="/app" element={<ProtectedRoute />}>
+            <Route index element={<Navigate to="/app/articles" replace />} />
+            <Route path="users" element={<UsersListPage />} />
+            <Route path="users/:id" element={<UserDetailPage />} />
+            <Route path="roles" element={<RolesPage />} />
+            <Route path="permissions" element={<PermissionsPage />} />
+            <Route path="articles" element={<ArticlesPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="*" element={<Navigate to="/app/articles" replace />} />
+          </Route>
         </Route>
 
         {/* Пока сайт состоит из одной страницы, всё остальное ведёт на неё.

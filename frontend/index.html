@@ -5,9 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Шрифты (Inter — текст, Jost — заголовки) подключаются из бандла,
          см. src/main.tsx: внешних запросов к CDN на первом экране нет. -->
-    <!-- Заголовок по умолчанию — для сайта в корне. Отдельные заголовки
-         страниц появятся на этапе 7 вместе с остальными метаданными. -->
+    <!-- Заголовок по умолчанию: заголовки отдельных страниц проставляет
+         компонент PageMeta после монтирования роутера. -->
     <title>Zarafshon anjumani — VII xalqaro ilmiy-texnikaviy anjuman</title>
+    <meta
+      name="description"
+      content="Zarafshon mintaqasini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar. VII xalqaro ilmiy-texnikaviy anjuman, 2026-yil 25–26-sentabr, Navoiy davlat konchilik va texnologiyalar universiteti."
+    />
+    <meta name="theme-color" content="#000048" />
+    <link rel="icon" href="/media/favicon.png" />
+    <link rel="apple-touch-icon" href="/media/favicon.png" />
+
+    <!-- Карточка для ссылок в Telegram и соцсетях: без неё ссылка на
+         конференцию выглядела безлико. -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Zarafshon anjumani — VII xalqaro ilmiy-texnikaviy anjuman"
+    />
+    <meta
+      property="og:description"
+      content="2026-yil 25–26-sentabr, Navoiy. Tezis topshirish muddati — 10-sentabr."
+    />
+    <meta property="og:image" content="/media/hero.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <div id="root"></div>

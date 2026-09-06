@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 
+import { PageMeta } from "./PageMeta";
+
 /**
  * Каркас страницы со своей вёрсткой (даты, оргкомитет, контакты):
  * те же хлебные крошки и заголовок, что у текстовых страниц, но содержимое
@@ -26,6 +28,7 @@ export function PageShell({
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+      <PageMeta title={currentLabel ?? title} description={lede} />
       <nav aria-label="breadcrumb" className="mb-6">
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
           <li>

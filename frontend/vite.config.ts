@@ -26,15 +26,19 @@ export default defineConfig(({ mode }) => {
         output: {
           // Вендорные чанки отделены от кода приложения: они меняются редко,
           // поэтому после выката новой версии остаются в кеше браузера.
-          manualChunks: {
-            react: ["react", "react-dom", "react-router-dom"],
-            query: ["@tanstack/react-query", "axios"],
-            i18n: [
-              "i18next",
-              "react-i18next",
-              "i18next-browser-languagedetector",
-            ],
-            forms: ["react-hook-form", "@hookform/resolvers", "zod"],
+          // Сопоставляем по пути файла, а не по имени пакета: под именем
+          // "react" не подпадает react/cjs/react-jsx-runtime, и он утягивал
+          // за собой чанк с TanStack Query на страницы сайта, где запросов
+          // нет вовсе.
+          manualChunks(id: string) {
+            if (!id.includes("node_modules")) return;
+            if (/node_modules\/(react|react-dom|scheduler|react-router|react-router-dom)\//.test(id))
+              return "react";
+            if (/node_modules\/(@tanstack|axios)\//.test(id)) return "query";
+            if (/node_modules\/(i18next|react-i18next|i18next-browser-languagedetector)\//.test(id))
+              return "i18n";
+            if (/node_modules\/(react-hook-form|@hookform|zod)\//.test(id))
+              return "forms";
           },
         },
       },
