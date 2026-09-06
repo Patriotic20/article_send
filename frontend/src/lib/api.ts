@@ -56,8 +56,8 @@ api.interceptors.response.use(
         return api(original);
       } catch {
         clearTokens();
-        if (window.location.pathname !== "/login") {
-          window.location.href = "/login";
+        if (window.location.pathname !== "/app/login") {
+          window.location.href = "/app/login";
         }
       }
     }

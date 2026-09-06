@@ -102,6 +102,18 @@
   }
 }
 
+@layer utilities {
+  /* Горизонтальная прокрутка без видимой полосы — для строки вкладок,
+     где полоса съедала бы высоту и выглядела чужеродно. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer components {
   /* Фирменный приём сайта (.sec-title): вертикальная полоса слева,
      над ней мелкий янтарный надзаголовок, под ним крупный navy-заголовок. */

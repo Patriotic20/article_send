@@ -15,8 +15,10 @@ export function PageHeader({
   eyebrow?: string;
   action?: ReactNode;
 }) {
+  // На телефоне кнопка действия уходит под заголовок: рядом они сжимали бы
+  // друг друга.
   return (
-    <div className="mb-6 flex items-start justify-between gap-4">
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
       <div className="sec-title">
         {eyebrow && <div className="sec-eyebrow mb-1">{eyebrow}</div>}
         <h1 className="text-2xl font-bold text-primary">{title}</h1>

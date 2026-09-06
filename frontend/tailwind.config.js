@@ -59,8 +59,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
-        display: ["Jost", "Inter", "system-ui", "sans-serif"],
+        sans: ["Inter Variable", "Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        display: ["Jost Variable", "Jost", "Inter Variable", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

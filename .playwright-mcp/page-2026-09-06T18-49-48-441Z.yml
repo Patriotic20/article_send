@@ -1,0 +1,329 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner [ref=f4e3]:
+    - generic [ref=f4e5]:
+      - list [ref=f4e9]:
+        - listitem [ref=f4e10]:
+          - link [ref=f4e11] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/cimetsoc/
+        - listitem [ref=f4e18]:
+          - link [ref=f4e19] [cursor=pointer]:
+            - /url: https://twitter.com/CIMetSoc
+        - listitem [ref=f4e23]:
+          - link "Youtube" [ref=f4e24] [cursor=pointer]:
+            - /url: https://www.youtube.com/user/MetSoc1
+            - generic [aria-hidden] [ref=f4e26]: 
+        - listitem [ref=f4e27]:
+          - link "Facebook" [ref=f4e28] [cursor=pointer]:
+            - /url: https://www.facebook.com/CIMetSoc/
+            - generic [aria-hidden] [ref=f4e30]: 
+      - paragraph [ref=f4e34]:
+        - text: August 17-20, 2026 |
+        - link "metsoc@cim.org" [ref=f4e36] [cursor=pointer]:
+          - /url: mailto:metsoc@cim.org
+    - generic [ref=f4e38]:
+      - link [ref=f4e42] [cursor=pointer]:
+        - /url: https://com.metsoc.org
+      - generic [ref=f4e43]:
+        - navigation "Menu" [ref=f4e46]:
+          - text:  
+          - generic "Menu Toggle" [ref=f4e47]:
+            - list [ref=f4e48]:
+              - listitem [ref=f4e49]:
+                - generic [ref=f4e50] [cursor=pointer]:
+                  - generic [ref=f4e51]: About
+                  - button "Open About" [ref=f4e53]:
+                    - text: 
+                    - generic [ref=f4e54]:
+                      - generic [aria-hidden] [ref=f4e55]: 
+                      - generic [ref=f4e56]: Open About
+                - generic:  
+              - listitem [ref=f4e57]:
+                - generic [ref=f4e58] [cursor=pointer]:
+                  - generic [ref=f4e59]: Program
+                  - button "Open Program" [ref=f4e61]:
+                    - text: 
+                    - generic [ref=f4e62]:
+                      - generic [aria-hidden] [ref=f4e63]: 
+                      - generic [ref=f4e64]: Open Program
+              - listitem [ref=f4e65]:
+                - generic [ref=f4e66] [cursor=pointer]:
+                  - generic [ref=f4e67]: Attend
+                  - button "Open Attend" [ref=f4e69]:
+                    - text: 
+                    - generic [ref=f4e70]:
+                      - generic [aria-hidden] [ref=f4e71]: 
+                      - generic [ref=f4e72]: Open Attend
+              - listitem [ref=f4e73]:
+                - link "Exhibitors" [ref=f4e75] [cursor=pointer]:
+                  - /url: https://com.metsoc.org/exhibits-lounge-2026/
+              - listitem [ref=f4e77]:
+                - link "Sponsors" [ref=f4e79] [cursor=pointer]:
+                  - /url: https://com.metsoc.org/sponsorship-2026/
+        - link "Register" [ref=f4e84] [cursor=pointer]:
+          - /url: https://com.metsoc.org/registration/attendee-registration/
+  - main [ref=f4e87]:
+    - generic [ref=f4e89]:
+      - generic [ref=f4e90]:
+        - generic [ref=f4e92]:
+          - group "1 / 4"
+          - group "2 / 4"
+          - group "3 / 4"
+          - group "4 / 4"
+          - group "1 / 4"
+          - group "2 / 4" [ref=f4e93]
+          - group "3 / 4"
+          - group "4 / 4"
+          - group "1 / 4"
+          - group "2 / 4"
+          - group "3 / 4"
+          - group "4 / 4"
+        - generic [ref=f4e95]:
+          - generic [ref=f4e96]:
+            - paragraph [ref=f4e99]:
+              - text: The 65
+              - superscript [ref=f4e100]: th
+              - text: Conference of Metallurgy and Materials
+            - paragraph [ref=f4e103]: The leading global event for extractive metallurgy and materials science.
+          - heading "August 17-20, 2026 Calgary TELUS Convention Centre, Calgary, Alberta" [level=2] [ref=f4e107]
+      - generic [ref=f4e109]:
+        - heading "Proudly sponsored by" [level=2] [ref=f4e113]
+        - generic [ref=f4e114]:
+          - link [ref=f4e118] [cursor=pointer]:
+            - /url: https://www.hatch.com/
+          - link [ref=f4e122] [cursor=pointer]:
+            - /url: https://www.sgs.com/en
+          - link [ref=f4e126] [cursor=pointer]:
+            - /url: https://www.agnicoeagle.com/English/home/default.aspx
+          - link [ref=f4e130] [cursor=pointer]:
+            - /url: https://www.teck.com/
+          - link [ref=f4e134] [cursor=pointer]:
+            - /url: https://www.kpm.ca/
+      - region "Slides" [ref=f4e142]:
+        - generic [ref=f4e143]:
+          - group "1 / 3" [ref=f4e144]:
+            - img "COM Wednesday Plenary (3)" [ref=f4e145]
+            - link "COM meets LightMAT 2025 View photos" [ref=f4e146] [cursor=pointer]:
+              - /url: https://com.metsoc.org/2025-summary/
+              - generic [ref=f4e147]:
+                - generic [ref=f4e148]: COM meets LightMAT 2025
+                - generic [ref=f4e149]: View photos
+          - group "2 / 3" [ref=f4e150]:
+            - img "PXL_20240821_115001716" [ref=f4e151]
+            - link "COM 2024 View photos" [ref=f4e152] [cursor=pointer]:
+              - /url: https://com.metsoc.org/2024-summary/
+              - generic [ref=f4e153]:
+                - generic [ref=f4e154]: COM 2024
+                - generic [ref=f4e155]: View photos
+          - group "3 / 3" [ref=f4e156]:
+            - img "MetSoc" [ref=f4e157]
+            - link "MetSoc of CIM View MetSoc events" [ref=f4e158] [cursor=pointer]:
+              - /url: https://metsoc.org/calendar-of-events/
+              - generic [ref=f4e159]:
+                - generic [ref=f4e160]: MetSoc of CIM
+                - generic [ref=f4e161]: View MetSoc events
+          - group "1 / 3" [ref=f4e162]:
+            - img "COM Wednesday Plenary (3)" [ref=f4e163]
+            - link "COM meets LightMAT 2025 View photos" [ref=f4e164] [cursor=pointer]:
+              - /url: https://com.metsoc.org/2025-summary/
+              - generic [ref=f4e165]:
+                - generic [ref=f4e166]: COM meets LightMAT 2025
+                - generic [ref=f4e167]: View photos
+          - group "2 / 3" [ref=f4e168]:
+            - img "PXL_20240821_115001716" [ref=f4e169]
+            - link "COM 2024 View photos" [ref=f4e170] [cursor=pointer]:
+              - /url: https://com.metsoc.org/2024-summary/
+              - generic [ref=f4e171]:
+                - generic [ref=f4e172]: COM 2024
+                - generic [ref=f4e173]: View photos
+          - group "3 / 3" [ref=f4e174]:
+            - img "MetSoc" [ref=f4e175]
+            - link "MetSoc of CIM View MetSoc events" [ref=f4e176] [cursor=pointer]:
+              - /url: https://metsoc.org/calendar-of-events/
+              - generic [ref=f4e177]:
+                - generic [ref=f4e178]: MetSoc of CIM
+                - generic [ref=f4e179]: View MetSoc events
+          - group "1 / 3" [ref=f4e180]:
+            - img "COM Wednesday Plenary (3)" [ref=f4e181]
+            - link "COM meets LightMAT 2025 View photos" [ref=f4e182] [cursor=pointer]:
+              - /url: https://com.metsoc.org/2025-summary/
+              - generic [ref=f4e183]:
+                - generic [ref=f4e184]: COM meets LightMAT 2025
+                - generic [ref=f4e185]: View photos
+          - group "2 / 3" [ref=f4e186]:
+            - img "PXL_20240821_115001716" [ref=f4e187]
+            - link "COM 2024 View photos" [ref=f4e188] [cursor=pointer]:
+              - /url: https://com.metsoc.org/2024-summary/
+              - generic [ref=f4e189]:
+                - generic [ref=f4e190]: COM 2024
+                - generic [ref=f4e191]: View photos
+          - group "3 / 3" [ref=f4e192]:
+            - img "MetSoc" [ref=f4e193]
+            - link "MetSoc of CIM View MetSoc events" [ref=f4e194] [cursor=pointer]:
+              - /url: https://metsoc.org/calendar-of-events/
+              - generic [ref=f4e195]:
+                - generic [ref=f4e196]: MetSoc of CIM
+                - generic [ref=f4e197]: View MetSoc events
+        - button "Previous slide" [ref=f4e198] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f4e199]: 
+        - button "Next slide" [ref=f4e200] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f4e201]: 
+        - generic [ref=f4e202]:
+          - button "Go to slide 1" [ref=f4e203] [cursor=pointer]
+          - button "Go to slide 2" [ref=f4e204] [cursor=pointer]
+          - button "Go to slide 3" [ref=f4e205] [cursor=pointer]
+      - generic [ref=f4e207]:
+        - generic [ref=f4e209]:
+          - link "Earn 18 Professional Development Hours" [ref=f4e214] [cursor=pointer]:
+            - /url: "#"
+          - paragraph [ref=f4e219]: COM 2026 is the leading global event for extractive metallurgy and materials science. Our symposia deliver world-class technical content, connecting industry innovators, researchers, and decision-makers.
+        - generic [ref=f4e220]:
+          - link "Hydrometallurgy" [ref=f4e224] [cursor=pointer]:
+            - /url: https://com.metsoc.org/symposia-2026/#1
+          - link "Pyrometallurgy" [ref=f4e230] [cursor=pointer]:
+            - /url: https://com.metsoc.org/symposia-2026/#3
+          - link "Sustainability" [ref=f4e236] [cursor=pointer]:
+            - /url: https://com.metsoc.org/symposia-2026/#4
+          - link "LightMetals" [ref=f4e242] [cursor=pointer]:
+            - /url: https://com.metsoc.org/symposia-2026/#5
+          - link "Materials" [ref=f4e248] [cursor=pointer]:
+            - /url: https://com.metsoc.org/symposia-2026/#6
+      - generic [ref=f4e264]:
+        - paragraph [ref=f4e265]: The Dedicated Team
+        - paragraph [ref=f4e266]: Behind the Event
+      - generic [ref=f4e268]:
+        - generic [ref=f4e275]:
+          - heading "Lukas Bichler" [level=2] [ref=f4e278]
+          - heading "Conference Chair" [level=2] [ref=f4e281]
+          - heading "Professor, UBC" [level=2] [ref=f4e284]
+        - generic [ref=f4e292]:
+          - heading "Niels Verbaan" [level=2] [ref=f4e295]
+          - heading "Conference Co-Chair and Secretary" [level=2] [ref=f4e298]
+          - heading "Verbaan Consulting Inc." [level=2] [ref=f4e301]
+        - generic [ref=f4e309]:
+          - heading "Sidney Omelon" [level=2] [ref=f4e312]
+          - heading "Student Activities Chair" [level=2] [ref=f4e315]
+          - heading "McGill University" [level=2] [ref=f4e318]
+        - generic [ref=f4e326]:
+          - heading "Abdallah Elsayed" [level=2] [ref=f4e329]
+          - heading "Symposium Chair" [level=2] [ref=f4e332]
+          - heading "University of Guelph" [level=2] [ref=f4e335]
+        - generic [ref=f4e342]:
+          - heading "Ahmed Tiamiyu" [level=2] [ref=f4e345]
+          - heading "Symposium Chair" [level=2] [ref=f4e348]
+          - heading "University of Calgary" [level=2] [ref=f4e351]
+        - generic [ref=f4e359]:
+          - heading "Brad Hewitt" [level=2] [ref=f4e362]
+          - heading "Symposium Chair" [level=2] [ref=f4e365]
+          - heading "Hatch" [level=2] [ref=f4e368]
+        - generic [ref=f4e376]:
+          - heading "Britt MacKinnon" [level=2] [ref=f4e379]
+          - heading "Symposium Chair" [level=2] [ref=f4e382]
+          - heading "Hatch" [level=2] [ref=f4e385]
+        - generic [ref=f4e392]:
+          - heading "Jafar Safarian" [level=2] [ref=f4e395]
+          - heading "Symposium Chair" [level=2] [ref=f4e398]
+          - heading "NTNU" [level=2] [ref=f4e401]
+        - generic [ref=f4e408]:
+          - heading "Joseph Kish" [level=2] [ref=f4e411]
+          - heading "Symposium Chair" [level=2] [ref=f4e414]
+          - heading "McMaster University" [level=2] [ref=f4e417]
+        - generic [ref=f4e424]:
+          - heading "Laurie Reemeyer" [level=2] [ref=f4e427]
+          - heading "Symposium Chair" [level=2] [ref=f4e430]
+          - heading "Resourceful Pathways" [level=2] [ref=f4e433]
+        - generic [ref=f4e441]:
+          - heading "Leili Tafaghodi" [level=2] [ref=f4e444]
+          - heading "Symposium Chair" [level=2] [ref=f4e447]
+          - heading "McMaster University" [level=2] [ref=f4e450]
+        - generic [ref=f4e457]:
+          - heading "Mansoor Barati" [level=2] [ref=f4e460]
+          - heading "Symposium Chair" [level=2] [ref=f4e463]
+          - heading "University of Toronto" [level=2] [ref=f4e466]
+        - generic [ref=f4e474]:
+          - heading "Mike Johnson" [level=2] [ref=f4e477]
+          - heading "Symposium Chair" [level=2] [ref=f4e480]
+          - heading "SGS" [level=2] [ref=f4e483]
+        - generic [ref=f4e491]:
+          - heading "Mohsen Mohammadi" [level=2] [ref=f4e494]
+          - heading "Symposium Chair" [level=2] [ref=f4e497]
+          - heading "University of New Brunswick" [level=2] [ref=f4e500]
+        - generic [ref=f4e507]:
+          - heading "Mousa Javidani" [level=2] [ref=f4e510]
+          - heading "Symposium Chair" [level=2] [ref=f4e513]
+          - heading "UQAC" [level=2] [ref=f4e516]
+        - generic [ref=f4e518]:
+          - img "Samaneh Shahgaldi," [ref=f4e523]
+          - generic [ref=f4e525]:
+            - heading "Samaneh Shahgaldi" [level=2] [ref=f4e528]
+            - heading "Symposium Chair" [level=2] [ref=f4e531]
+            - heading "Université du Québec à Trois-Rivières" [level=2] [ref=f4e534]
+        - generic [ref=f4e541]:
+          - heading "Suraj Persaud" [level=2] [ref=f4e544]
+          - heading "Symposium Chair" [level=2] [ref=f4e547]
+          - heading "Queen's University" [level=2] [ref=f4e550]
+        - generic [ref=f4e557]:
+          - heading "Sima Ahmad Alidokht" [level=2] [ref=f4e560]
+          - heading "Symposium Chair" [level=2] [ref=f4e563]
+          - heading "MUN" [level=2] [ref=f4e566]
+        - generic [ref=f4e574]:
+          - heading "Xiaolei Wang" [level=2] [ref=f4e577]
+          - heading "Symposium Chair" [level=2] [ref=f4e580]
+          - heading "University of Alberta" [level=2] [ref=f4e583]
+        - generic [ref=f4e590]:
+          - heading "Sheida Sarafan" [level=2] [ref=f4e593]
+          - heading "Symposium Chair" [level=2] [ref=f4e596]
+          - heading "National Research Council Canada" [level=2] [ref=f4e599]
+        - generic [ref=f4e607]:
+          - heading "Bosco Yu" [level=2] [ref=f4e610]
+          - heading "Symposium Chair" [level=2] [ref=f4e613]
+          - heading "University of Victoria" [level=2] [ref=f4e616]
+      - text:       
+  - contentinfo [ref=f4e617]:
+    - generic [ref=f4e619]:
+      - generic [ref=f4e620]:
+        - heading "© 2026 Conference of Metallurgy and Materials | MetSoc" [level=2] [ref=f4e627]
+        - generic [ref=f4e628]:
+          - heading [level=2] [ref=f4e631]:
+            - link "Sitemap" [ref=f4e632] [cursor=pointer]:
+              - /url: https://com.metsoc.org/sitemap_index.xml
+          - paragraph [ref=f4e635]:
+            - text: Designed by
+            - link "Azuro Digital" [ref=f4e636] [cursor=pointer]:
+              - /url: https://www.azurodigital.com/
+      - generic [ref=f4e637]:
+        - heading "Sign up for our newsletter" [level=2] [ref=f4e640]
+        - link "subscribe here" [ref=f4e644] [cursor=pointer]:
+          - /url: https://cim.us5.list-manage.com/subscribe?u=b285e549286d86af513895ece&id=db42e919b6
+        - list [ref=f4e649]:
+          - listitem [ref=f4e650]:
+            - link "metsoc@cim.org" [ref=f4e651] [cursor=pointer]:
+              - /url: mailto:metsoc@cim.org
+              - generic [aria-hidden] [ref=f4e653]: 
+        - list [ref=f4e657]:
+          - listitem [ref=f4e658]:
+            - link [ref=f4e659] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/cimetsoc/
+          - listitem [ref=f4e666]:
+            - link "Youtube" [ref=f4e667] [cursor=pointer]:
+              - /url: https://www.youtube.com/c/MetallurgyandMaterialsSocietyofCIM
+              - generic [aria-hidden] [ref=f4e669]: 
+          - listitem [ref=f4e670]:
+            - link [ref=f4e671] [cursor=pointer]:
+              - /url: https://x.com/CIMetSoc
+          - listitem [ref=f4e675]:
+            - link "Facebook" [ref=f4e676] [cursor=pointer]:
+              - /url: https://www.facebook.com/CIMetSoc/
+              - generic [aria-hidden] [ref=f4e678]: 
+          - listitem [ref=f4e679]:
+            - link "Instagram" [ref=f4e680] [cursor=pointer]:
+              - /url: https://www.instagram.com/metsoccim/
+              - generic [aria-hidden] [ref=f4e682]: 
+      - generic [ref=f4e683]:
+        - heading "Proudly presented by" [level=2] [ref=f4e686]
+        - link [ref=f4e689] [cursor=pointer]:
+          - /url: http://metsoc.org
+        - link [ref=f4e692] [cursor=pointer]:
+          - /url: https://www.cim.org/
+  - generic [ref=f4e693]: desktop

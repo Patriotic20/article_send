@@ -71,6 +71,102 @@ export function ArticlesPage() {
   // Служебные колонки (ID, User ID, дата) — только для админа.
   const isAdmin = hasPermission("article:manage_all");
 
+  // Кнопки-действия и ссылка на файл одинаковы в таблице и в карточках —
+  // держим их в одном месте, чтобы права проверялись ровно один раз.
+  const fileLink = (a: Article) => (
+    <button
+      type="button"
+      title={t("articles.preview.open")}
+      onClick={() => setPreviewTarget(a)}
+      className="inline-flex min-w-0 max-w-full items-center gap-1.5 text-primary underline-offset-4 hover:underline md:max-w-[440px]"
+    >
+      <Eye className="h-4 w-4 shrink-0" />
+      <span className="truncate">{displayName(a)}</span>
+    </button>
+  );
+
+  const downloadButton = (a: Article) => (
+    <Button
+      size="icon"
+      variant="ghost"
+      className="h-7 w-7 shrink-0 text-muted-foreground"
+      title={t("articles.preview.download")}
+      aria-label={t("articles.preview.download")}
+      onClick={() =>
+        downloadArticleFile(a.id, displayName(a)).catch((e) =>
+          toast.error(getErrorMessage(e))
+        )
+      }
+    >
+      <Download className="h-3.5 w-3.5" />
+    </Button>
+  );
+
+  const rowActions = (a: Article) => (
+    <>
+      {canReview && a.status === "pending" && (
+        <>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="text-success hover:text-success"
+            title={t("articles.review.accept")}
+            aria-label={t("articles.review.accept")}
+            onClick={() => setReviewTarget({ article: a, decision: "accept" })}
+          >
+            <Check className="h-4 w-4" />
+          </Button>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="text-destructive hover:text-destructive"
+            title={t("articles.review.reject")}
+            aria-label={t("articles.review.reject")}
+            onClick={() => setReviewTarget({ article: a, decision: "rejected" })}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </>
+      )}
+      {canUpdate && (
+        <Button
+          size="icon"
+          variant="ghost"
+          title={t("common.edit")}
+          aria-label={t("common.edit")}
+          onClick={() => {
+            setEditArticle(a);
+            setFormOpen(true);
+          }}
+        >
+          <Pencil className="h-4 w-4" />
+        </Button>
+      )}
+      {canDelete && (
+        <Button
+          size="icon"
+          variant="ghost"
+          className="text-destructive hover:text-destructive"
+          title={t("common.delete")}
+          aria-label={t("common.delete")}
+          onClick={() => setDeleteTarget(a)}
+        >
+          <Trash2 className="h-4 w-4" />
+        </Button>
+      )}
+    </>
+  );
+
+  const queryState = (
+    <QueryState
+      isLoading={isLoading}
+      isError={isError}
+      error={error}
+      isEmpty={!!data && data.length === 0}
+      emptyText={t(`articles.emptyByStatus.${tab}`)}
+    />
+  );
+
   const openCreate = () => {
     setEditArticle(null);
     setFormOpen(true);
@@ -90,25 +186,32 @@ export function ArticlesPage() {
         }
       />
 
-      <div className="mb-4 inline-flex rounded-md border bg-muted p-1">
-        {ARTICLE_STATUSES.map((s) => (
-          <button
-            key={s}
-            type="button"
-            onClick={() => setTab(s)}
-            className={cn(
-              "rounded-sm px-3 py-1.5 text-sm font-medium transition-colors",
-              tab === s
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            {t(tabLabelKey(s))}
-          </button>
-        ))}
+      {/* Вкладок четыре, на узком экране они не помещаются — даём полосе
+          горизонтальную прокрутку вместо переноса. */}
+      <div className="no-scrollbar -mx-4 mb-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+        <div className="inline-flex rounded-md border bg-muted p-1">
+          {ARTICLE_STATUSES.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => setTab(s)}
+              aria-pressed={tab === s}
+              className={cn(
+                "whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-colors",
+                tab === s
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {t(tabLabelKey(s))}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="rounded-md border bg-background">
+      {/* Таблица со служебными колонками читается только на широком экране;
+          ниже md те же статьи показываются карточками. */}
+      <div className="hidden rounded-md border bg-background md:block">
         <Table>
           <TableHeader>
             <TableRow>
@@ -149,28 +252,8 @@ export function ArticlesPage() {
                 )}
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      title={t("articles.preview.open")}
-                      onClick={() => setPreviewTarget(a)}
-                      className="inline-flex max-w-[440px] items-center gap-1.5 text-primary underline-offset-4 hover:underline"
-                    >
-                      <Eye className="h-4 w-4 shrink-0" />
-                      <span className="truncate">{displayName(a)}</span>
-                    </button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="h-7 w-7 shrink-0 text-muted-foreground"
-                      title={t("articles.preview.download")}
-                      onClick={() =>
-                        downloadArticleFile(a.id, displayName(a)).catch((e) =>
-                          toast.error(getErrorMessage(e))
-                        )
-                      }
-                    >
-                      <Download className="h-3.5 w-3.5" />
-                    </Button>
+                    {fileLink(a)}
+                    {downloadButton(a)}
                   </div>
                 </TableCell>
                 <TableCell>
@@ -185,73 +268,43 @@ export function ArticlesPage() {
                 )}
                 {showActions && (
                   <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      {canReview && a.status === "pending" && (
-                        <>
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="text-success hover:text-success"
-                            title={t("articles.review.accept")}
-                            onClick={() =>
-                              setReviewTarget({ article: a, decision: "accept" })
-                            }
-                          >
-                            <Check className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="text-destructive hover:text-destructive"
-                            title={t("articles.review.reject")}
-                            onClick={() =>
-                              setReviewTarget({
-                                article: a,
-                                decision: "rejected",
-                              })
-                            }
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
-                        </>
-                      )}
-                      {canUpdate && (
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          onClick={() => {
-                            setEditArticle(a);
-                            setFormOpen(true);
-                          }}
-                        >
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                      )}
-                      {canDelete && (
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="text-destructive hover:text-destructive"
-                          onClick={() => setDeleteTarget(a)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      )}
-                    </div>
+                    <div className="flex justify-end gap-2">{rowActions(a)}</div>
                   </TableCell>
                 )}
               </TableRow>
             ))}
           </TableBody>
         </Table>
-        <QueryState
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-          isEmpty={!!data && data.length === 0}
-          emptyText={t(`articles.emptyByStatus.${tab}`)}
-        />
+        {queryState}
       </div>
+
+      <ul className="space-y-2 md:hidden">
+        {data?.map((a) => (
+          <li key={a.id} className="rounded-md border bg-background p-3">
+            <div className="flex items-start gap-1">
+              <div className="min-w-0 flex-1 font-medium">{fileLink(a)}</div>
+              {downloadButton(a)}
+            </div>
+            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+              <Badge variant={STATUS_VARIANT[a.status]}>
+                {t(statusLabelKey(a.status))}
+              </Badge>
+              {isAdmin && (
+                <>
+                  <span className="font-mono">#{a.id}</span>
+                  <span>{formatDateTime(a.created_at)}</span>
+                </>
+              )}
+            </div>
+            {showActions && (
+              <div className="mt-2 flex justify-end gap-1 border-t pt-2">
+                {rowActions(a)}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div className="md:hidden">{queryState}</div>
 
       <ArticlePreviewDialog
         open={!!previewTarget}

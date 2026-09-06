@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight, Plus, Search, Trash2 } from "lucide-react";
 
@@ -52,6 +52,16 @@ export function UsersListPage() {
 
   const totalPages = data?.total_pages ?? 1;
 
+  const queryState = (
+    <QueryState
+      isLoading={isLoading}
+      isError={isError}
+      error={error}
+      isEmpty={!!data && data.users.length === 0}
+      emptyText={t("users.empty")}
+    />
+  );
+
   return (
     <div>
       <PageHeader
@@ -78,7 +88,9 @@ export function UsersListPage() {
         </Button>
       </form>
 
-      <div className="rounded-md border bg-background">
+      {/* Ширины колонок ниже md не помещаются, поэтому на телефоне таблица
+          заменяется списком карточек с теми же данными. */}
+      <div className="hidden rounded-md border bg-background md:block">
         <Table>
           <TableHeader>
             <TableRow>
@@ -94,7 +106,7 @@ export function UsersListPage() {
               <TableRow
                 key={u.id}
                 className="cursor-pointer"
-                onClick={() => navigate(`/users/${u.id}`)}
+                onClick={() => navigate(`/app/users/${u.id}`)}
               >
                 <TableCell className="font-mono text-muted-foreground">
                   {u.id}
@@ -127,17 +139,51 @@ export function UsersListPage() {
             ))}
           </TableBody>
         </Table>
-        <QueryState
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-          isEmpty={!!data && data.users.length === 0}
-          emptyText={t("users.empty")}
-        />
+        {queryState}
       </div>
 
+      <ul className="space-y-2 md:hidden">
+        {data?.users.map((u) => (
+          <li
+            key={u.id}
+            className="flex items-start gap-2 rounded-md border bg-background p-3"
+          >
+            <div className="min-w-0 flex-1">
+              {/* Ссылка, а не onClick на карточке: так работает клавиатура,
+                  средняя кнопка мыши и «открыть в новой вкладке». */}
+              <Link
+                to={`/app/users/${u.id}`}
+                className="block truncate font-medium text-primary underline-offset-4 hover:underline"
+              >
+                {u.email}
+              </Link>
+              <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+                <span className="font-mono">#{u.id}</span>
+                <span>{formatDateTime(u.created_at)}</span>
+              </div>
+            </div>
+            <Badge variant={u.is_online ? "success" : "secondary"}>
+              {u.is_online ? t("users.online") : t("users.offline")}
+            </Badge>
+            {canDelete && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="-mr-1 shrink-0 text-muted-foreground hover:text-destructive"
+                onClick={() => setDeleteTarget(u)}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            )}
+          </li>
+        ))}
+      </ul>
+      {/* Тот же элемент состояния для мобильного списка: видимым оказывается
+          ровно один из двух. */}
+      <div className="md:hidden">{queryState}</div>
+
       {data && data.users.length > 0 && (
-        <div className="mt-4 flex items-center justify-end gap-3 text-sm">
+        <div className="mt-4 flex flex-wrap items-center justify-end gap-3 text-sm">
           <span className="text-muted-foreground">
             {t("users.pageInfo", {
               page,

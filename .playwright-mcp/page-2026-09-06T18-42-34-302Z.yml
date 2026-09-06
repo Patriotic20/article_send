@@ -1,0 +1,300 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e4]:
+      - generic [ref=e8]:
+        - generic [ref=e9]: "Zarafshon viloyatini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar"
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "" [ref=e12] [cursor=pointer]:
+              - /url: https://www.facebook.com/navoiydavlat.konchilikinstituti.1
+          - listitem [ref=e14]:
+            - link "" [ref=e15] [cursor=pointer]:
+              - /url: https://t.me/ndktu_rasmiy
+          - listitem [ref=e17]:
+            - link "" [ref=e18] [cursor=pointer]:
+              - /url: https://www.youtube.com/@navdktu4642
+          - listitem [ref=e20]:
+            - link "" [ref=e21] [cursor=pointer]:
+              - /url: https://www.instagram.com/ndktu_official/
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: 
+            - list [ref=e31]:
+              - listitem [ref=e32]: Aloqa uchun +9989 (79)-223-47-16
+          - generic [ref=e33]:
+            - generic [ref=e34]: 
+            - list [ref=e36]:
+              - listitem [ref=e37]: Email sharofovich@mail.ru
+          - link "Bog‘lanish" [ref=e39] [cursor=pointer]:
+            - /url: contact.html
+          - link "Kirish" [ref=e41] [cursor=pointer]:
+            - /url: /app/login
+          - generic [ref=e43] [cursor=pointer]:
+            - text: O‘zbek
+            - generic [ref=e44]: 
+        - navigation [ref=e46]:
+          - list [ref=e48]:
+            - listitem [ref=e49]:
+              - link "Bosh sahifa" [ref=e50] [cursor=pointer]:
+                - /url: index.html
+            - listitem [ref=e51]:
+              - link " Asosiy" [ref=e52] [cursor=pointer]:
+                - /url: "#"
+              - text: 
+            - listitem [ref=e53]:
+              - link " ANJUMAN HAQIDA" [ref=e54] [cursor=pointer]:
+                - /url: about.html
+              - text: 
+            - listitem [ref=e55]:
+              - link " ISHLAB CHIQARISH VA QISHLOQ XO'JALIGI" [ref=e56] [cursor=pointer]:
+                - /url: "#"
+              - text: 
+            - listitem [ref=e57]:
+              - link "TASHKILIY QO'MITA" [ref=e58] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e59]:
+              - link "QABUL QILINGAN TEZISLAR" [ref=e60] [cursor=pointer]:
+                - /url: tezis.html
+    - generic [ref=e61]:
+      - generic [ref=e64]:
+        - generic [ref=e65]: "Zarafshon mintaqasini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar VII-XALQARO ilmiy-texnikaviy anjumani"
+        - generic [ref=e66]: 2026-yil 25-26-sentabr kunlari
+      - generic [ref=e67]: ZARAFSHON
+    - generic [ref=e68]:
+      - heading "TEZISLARNI TOPSHIRISH MUDDATI TUGADI" [level=2] [ref=e71]
+      - heading "ASOSIY TEMATIK YO'NALISHLAR" [level=2] [ref=e75]
+    - generic [ref=e84]:
+      - heading "KONFERENSIYADA SIZNI NIMALAR KUTMOQDA?" [level=2] [ref=e85]
+      - generic [ref=e86]: Konferensiya o‘z sohasining tan olingan yetakchilari bo‘lgan asosiy ma’ruzachilar ishtirokidagi yalpi majlislardan hamda asosiy tematik yo‘nalishlar bo‘yicha chuqur va maqsadli muhokamalarga mo‘ljallangan parallel seksiya yig‘ilishlaridan iborat bo‘ladi.
+      - link "Batafsil" [ref=e87] [cursor=pointer]:
+        - /url: conference.html
+    - generic [ref=e90]:
+      - heading "Konferensiyada online ishtirok etish" [level=2] [ref=e92]
+      - link "Ishtirok etish" [ref=e94] [cursor=pointer]:
+        - /url: contact.html
+    - generic [ref=e97]:
+      - generic [ref=e99]:
+        - heading "Anjuman kotibiyati" [level=2] [ref=e102]
+        - generic [ref=e103]: Ilmiy, tashkiliy masalalar bo‘yicha aloqalar
+      - generic [ref=e106]:
+        - generic [ref=e108]:
+          - generic [ref=e111]:
+            - list [ref=e113]:
+              - listitem [ref=e114]: "Tel: +9989 (79)-223-47-16"
+            - generic [ref=e115]:
+              - heading "Alikulov Shuxrat Sharofovich" [level=3] [ref=e116]
+              - generic [ref=e117]: NDKTU Xalqaro hamkorlik bo'yicha prorektor
+          - generic [ref=e120]:
+            - list [ref=e122]:
+              - listitem [ref=e123]: "Tel: +998 (79)-223-47-29"
+            - generic [ref=e124]:
+              - heading "Navruz Xurramov Ibraimovich" [level=3] [ref=e125]
+              - generic [ref=e126]: NDKTU Ilmiy-tadqiqot va innovatsiya bo'limi boshlig'i
+          - generic [ref=e129]:
+            - list [ref=e131]:
+              - listitem [ref=e132]: "Tel: +998 (90)-167-65-03"
+            - generic [ref=e133]:
+              - heading "Xayrullo Xamidov Ismoilvich" [level=3] [ref=e134]
+              - generic [ref=e135]: NDKTU "Metallurgiya" kafedrasi professori
+          - generic [ref=e138]:
+            - list [ref=e140]:
+              - listitem [ref=e141]: "Tel: +998 (79)-223-55-44"
+            - generic [ref=e142]:
+              - heading "Nurmurodov Tulkin Isamurodovih" [level=3] [ref=e143]
+              - generic [ref=e144]: NDKTU Ilmiy ishlar va innovatsiyalar bo'yicha prorektor
+          - generic [ref=e147]:
+            - list [ref=e149]:
+              - listitem [ref=e150]: "Tel: +9989 (79)-223-47-16"
+            - generic [ref=e151]:
+              - heading "Alikulov Shuxrat Sharofovich" [level=3] [ref=e152]
+              - generic [ref=e153]: NDKTU Xalqaro hamkorlik bo'yicha prorektor
+          - generic [ref=e156]:
+            - list [ref=e158]:
+              - listitem [ref=e159]: "Tel: +998 (79)-223-47-29"
+            - generic [ref=e160]:
+              - heading "Navruz Xurramov Ibraimovich" [level=3] [ref=e161]
+              - generic [ref=e162]: NDKTU Ilmiy-tadqiqot va innovatsiya bo'limi boshlig'i
+          - generic [ref=e165]:
+            - list [ref=e167]:
+              - listitem [ref=e168]: "Tel: +998 (90)-167-65-03"
+            - generic [ref=e169]:
+              - heading "Xayrullo Xamidov Ismoilvich" [level=3] [ref=e170]
+              - generic [ref=e171]: NDKTU "Metallurgiya" kafedrasi professori
+          - generic [ref=e174]:
+            - list [ref=e176]:
+              - listitem [ref=e177]: "Tel: +998 (79)-223-55-44"
+            - generic [ref=e178]:
+              - heading "Nurmurodov Tulkin Isamurodovih" [level=3] [ref=e179]
+              - generic [ref=e180]: NDKTU Ilmiy ishlar va innovatsiyalar bo'yicha prorektor
+          - generic [ref=e183]:
+            - list [ref=e185]:
+              - listitem [ref=e186]: "Tel: +9989 (79)-223-47-16"
+            - generic [ref=e187]:
+              - heading "Alikulov Shuxrat Sharofovich" [level=3] [ref=e188]
+              - generic [ref=e189]: NDKTU Xalqaro hamkorlik bo'yicha prorektor
+          - generic [ref=e192]:
+            - list [ref=e194]:
+              - listitem [ref=e195]: "Tel: +998 (79)-223-47-29"
+            - generic [ref=e196]:
+              - heading "Navruz Xurramov Ibraimovich" [level=3] [ref=e197]
+              - generic [ref=e198]: NDKTU Ilmiy-tadqiqot va innovatsiya bo'limi boshlig'i
+        - generic [ref=e199]:
+          - generic [ref=e200] [cursor=pointer]: 
+          - generic [ref=e202] [cursor=pointer]: 
+    - generic [ref=e206]:
+      - generic [ref=e208]:
+        - heading "Manzil" [level=2] [ref=e211]
+        - generic [ref=e216]:
+          - link "Навоийский Государственный Горно-Технологический университет" [ref=e217] [cursor=pointer]:
+            - /url: https://yandex.uz/maps/org/11117581507/?utm_medium=mapframe&utm_source=maps
+          - link "ВУЗ в Навои" [ref=e218] [cursor=pointer]:
+            - /url: https://yandex.uz/maps/21947/navoi/category/university/184106140/?utm_medium=mapframe&utm_source=maps
+          - iframe [ref=e219]
+      - generic [ref=e223]:
+        - generic [ref=e224]:
+          - button "Previous month" [ref=e225] [cursor=pointer]: <
+          - generic [ref=e226]:
+            - generic [ref=e227]: Yanvar 2026
+            - generic [ref=e228]: Tanlov kalendari
+          - button "Next month" [ref=e229] [cursor=pointer]: ">"
+        - generic [ref=e230]:
+          - generic [ref=e231]:
+            - generic [ref=e232]: Du
+            - generic [ref=e233]: Se
+            - generic [ref=e234]: Ch
+            - generic [ref=e235]: Pa
+            - generic [ref=e236]: Ju
+            - generic [ref=e237]: Sh
+            - generic [ref=e238]: Ya
+          - generic [ref=e239]:
+            - generic [ref=e240] [cursor=pointer]: "31"
+            - generic [ref=e241] [cursor=pointer]: "1"
+            - generic [ref=e242] [cursor=pointer]: "2"
+            - generic [ref=e243] [cursor=pointer]: "3"
+            - generic [ref=e244] [cursor=pointer]: "4"
+            - generic [ref=e245] [cursor=pointer]: "5"
+            - generic [ref=e246] [cursor=pointer]: "6"
+            - generic [ref=e247] [cursor=pointer]: "7"
+            - generic [ref=e248] [cursor=pointer]: "8"
+            - generic [ref=e249] [cursor=pointer]: "9"
+            - generic [ref=e250] [cursor=pointer]: "10"
+            - generic [ref=e251] [cursor=pointer]: "11"
+            - generic [ref=e252] [cursor=pointer]: "12"
+            - generic [ref=e253] [cursor=pointer]: "13"
+            - generic [ref=e254] [cursor=pointer]: "14"
+            - generic [ref=e255] [cursor=pointer]: "15"
+            - generic [ref=e256] [cursor=pointer]: "16"
+            - generic [ref=e257] [cursor=pointer]: "17"
+            - generic [ref=e258] [cursor=pointer]: "18"
+            - generic [ref=e259] [cursor=pointer]: "19"
+            - generic [ref=e260] [cursor=pointer]: "20"
+            - generic [ref=e261] [cursor=pointer]: "21"
+            - generic [ref=e262] [cursor=pointer]: "22"
+            - generic [ref=e263] [cursor=pointer]: "23"
+            - generic [ref=e264] [cursor=pointer]: "24"
+            - generic [ref=e265] [cursor=pointer]: "25"
+            - generic [ref=e266] [cursor=pointer]: "26"
+            - generic [ref=e267] [cursor=pointer]: "27"
+            - generic [ref=e268] [cursor=pointer]: "28"
+            - generic [ref=e269] [cursor=pointer]: "29"
+            - generic [ref=e270] [cursor=pointer]: "30"
+            - generic [ref=e271] [cursor=pointer]: "1"
+            - generic [ref=e272] [cursor=pointer]: "2"
+            - generic [ref=e273] [cursor=pointer]: "3"
+            - generic [ref=e274] [cursor=pointer]: "4"
+            - generic [ref=e275] [cursor=pointer]: "5"
+            - generic [ref=e276] [cursor=pointer]: "6"
+            - generic [ref=e277] [cursor=pointer]: "7"
+            - generic [ref=e278] [cursor=pointer]: "8"
+            - generic [ref=e279] [cursor=pointer]: "9"
+            - generic [ref=e280] [cursor=pointer]: "10"
+            - generic [ref=e281] [cursor=pointer]: "11"
+        - generic [ref=e282]:
+          - generic [ref=e283]: "Bugun: —"
+          - button "Bugun" [ref=e285] [cursor=pointer]
+    - generic [ref=e287]:
+      - heading "Konferensiya tashkilotchilari" [level=2] [ref=e290]
+      - list [ref=e292]:
+        - generic [ref=e294]:
+          - listitem [ref=e296]:
+            - figure "Tog‘-kon sanoati va geologiya vazirligi" [ref=e297]:
+              - link [ref=e298] [cursor=pointer]:
+                - /url: https://gov.uz/en/mingeo
+          - listitem [ref=e301]:
+            - figure "O‘zbekiston Respublikasi fanlar akademiyasi" [ref=e302]:
+              - link [ref=e303] [cursor=pointer]:
+                - /url: https://academy.uz/en
+          - listitem [ref=e306]:
+            - figure "“Navoiy kon-metallurgiya kombinati” AJ" [ref=e307]:
+              - link [ref=e308] [cursor=pointer]:
+                - /url: https://www.ngmk.uz/en/
+          - listitem [ref=e311]:
+            - figure "“Navoiyuran” Davlat korxonasi" [ref=e312]:
+              - link [ref=e313] [cursor=pointer]:
+                - /url: https://navoiyuran.uz/uz/
+          - listitem [ref=e316]:
+            - figure "Navoiy davlat konchilik va texnologiyalar universiteti" [ref=e317]:
+              - link [ref=e318] [cursor=pointer]:
+                - /url: https://nsumt.uz/
+          - listitem [ref=e321]:
+            - figure "Oliy ta’lim, fan va innovatsiyalar vazirligi" [ref=e322]:
+              - link [ref=e323] [cursor=pointer]:
+                - /url: https://gov.uz/en/edu
+          - listitem [ref=e326]:
+            - figure "Tog‘-kon sanoati va geologiya vazirligi" [ref=e327]:
+              - link [ref=e328] [cursor=pointer]:
+                - /url: https://gov.uz/en/mingeo
+          - listitem [ref=e331]:
+            - figure "O‘zbekiston Respublikasi fanlar akademiyasi" [ref=e332]:
+              - link [ref=e333] [cursor=pointer]:
+                - /url: https://academy.uz/en
+          - listitem [ref=e336]:
+            - figure "“Navoiy kon-metallurgiya kombinati” AJ" [ref=e337]:
+              - link [ref=e338] [cursor=pointer]:
+                - /url: https://www.ngmk.uz/en/
+          - listitem [ref=e341]:
+            - figure "“Navoiyuran” Davlat korxonasi" [ref=e342]:
+              - link [ref=e343] [cursor=pointer]:
+                - /url: https://navoiyuran.uz/uz/
+          - listitem [ref=e346]:
+            - figure "Navoiy davlat konchilik va texnologiyalar universiteti" [ref=e347]:
+              - link [ref=e348] [cursor=pointer]:
+                - /url: https://nsumt.uz/
+          - listitem [ref=e351]:
+            - figure "Oliy ta’lim, fan va innovatsiyalar vazirligi" [ref=e352]:
+              - link [ref=e353] [cursor=pointer]:
+                - /url: https://gov.uz/en/edu
+          - listitem [ref=e356]:
+            - figure "Tog‘-kon sanoati va geologiya vazirligi" [ref=e357]:
+              - link [ref=e358] [cursor=pointer]:
+                - /url: https://gov.uz/en/mingeo
+          - listitem [ref=e361]:
+            - figure "O‘zbekiston Respublikasi fanlar akademiyasi" [ref=e362]:
+              - link [ref=e363] [cursor=pointer]:
+                - /url: https://academy.uz/en
+          - listitem [ref=e366]:
+            - figure "“Navoiy kon-metallurgiya kombinati” AJ" [ref=e367]:
+              - link [ref=e368] [cursor=pointer]:
+                - /url: https://www.ngmk.uz/en/
+          - listitem [ref=e371]:
+            - figure "“Navoiyuran” Davlat korxonasi" [ref=e372]:
+              - link [ref=e373] [cursor=pointer]:
+                - /url: https://navoiyuran.uz/uz/
+        - text:  
+    - contentinfo [ref=e375]:
+      - generic [ref=e378]:
+        - generic [ref=e380]:
+          - link [ref=e382] [cursor=pointer]:
+            - /url: index.html
+          - list [ref=e383]:
+            - listitem [ref=e384]: Navoiy, Istiqlol MFY, G‘alaba shox koʻchasi, 76
+            - listitem [ref=e385]: t.nurmurodov@gmail.com
+        - generic [ref=e387]:
+          - heading "Muddatlar" [level=2] [ref=e388]
+          - list [ref=e391]:
+            - listitem [ref=e392]: "Maqolani topshirish oxirgi muddati: 2026 yil 10 sentabr"
+            - listitem [ref=e393]: "Qabul qilish/rad etish haqida xabarnoma: 2026 yil 15 sentabr"
+            - listitem [ref=e394]: "Anjumanning yakuniy dasturi: 2026 yil 18 sentabr"
+            - listitem [ref=e395]: "Anjuman sanasi: 2026 yil 25-26 sentabr"
+  - text: 

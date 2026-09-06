@@ -7,15 +7,20 @@ import App from "./App";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/context/AuthContext";
 import { queryClient } from "@/lib/queryClient";
+// Шрифты отдаём со своего домена: запрос к fonts.googleapis.com блокировал
+// первый рендер и зависел от внешней сети. Пакеты variable-версий, поэтому
+// весь диапазон насыщенностей — один файл на подмножество символов.
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jost";
 import "@/i18n";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* Приложение смонтировано в /app/ — тот же префикс, что и base в
-          vite.config.ts. Внутри кода маршруты остаются без префикса. */}
-      <BrowserRouter basename="/app">
+      {/* Сайт занимает корень, кабинет — /app; префиксы заданы прямо в
+          маршрутах App.tsx, поэтому basename здесь не нужен. */}
+      <BrowserRouter>
         <AuthProvider>
           <App />
         </AuthProvider>

@@ -61,7 +61,7 @@ export function RegisterPage() {
         last_name: lastName.trim(),
         university: university.trim(),
       });
-      navigate("/", { replace: true });
+      navigate("/app", { replace: true });
     } catch (err) {
       toast.error(getErrorMessage(err));
     } finally {
@@ -194,7 +194,7 @@ export function RegisterPage() {
             <p className="mt-5 text-center text-sm text-muted-foreground">
               {t("auth.haveAccount")}{" "}
               <Link
-                to="/login"
+                to="/app/login"
                 className="font-medium text-primary hover:underline"
               >
                 {t("auth.signIn")}

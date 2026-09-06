@@ -23,9 +23,10 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # поэтому его вёрстка, стили и скрипты остаются байт-в-байт исходными.
 COPY site/ /usr/share/nginx/html/
 
-# Собранное приложение — в подпапку /app (совпадает с base в vite.config.ts
-# и basename роутера).
-COPY --from=builder /app/dist /usr/share/nginx/html/app
+# Собранный бандл кладём в корень: он отдаёт и сайт конференции, и кабинет
+# на /app/. Копируется после site/, поэтому его index.html заменяет старую
+# главную страницу шаблона, а прочие .html старого сайта остаются на месте.
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 

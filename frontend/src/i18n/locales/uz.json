@@ -4,7 +4,8 @@
     "users": "Foydalanuvchilar",
     "roles": "Rollar",
     "permissions": "Ruxsatlar",
-    "articles": "Maqolalar"
+    "articles": "Maqolalar",
+    "backToSite": "Anjuman sayti"
   },
   "common": {
     "cancel": "Bekor qilish",
@@ -20,13 +21,18 @@
     "status": "Holat",
     "created": "Yaratilgan",
     "actions": "Amallar",
-    "close": "Yopish"
+    "close": "Yopish",
+    "edit": "Tahrirlash"
   },
   "header": {
     "currentUser": "Joriy foydalanuvchi:",
     "selectUser": "Foydalanuvchini tanlang",
     "loadError": "Yuklab boʻlmadi",
-    "logout": "Chiqish"
+    "logout": "Chiqish",
+    "menu": "Menyu",
+    "profile": "Profil",
+    "closeMenu": "Menyuni yopish",
+    "language": "Til"
   },
   "auth": {
     "loginTitle": "Kirish",
@@ -211,5 +217,12 @@
     "fileUploaded": "Fayl yuklandi",
     "userCreated": "Foydalanuvchi yaratildi",
     "userDeleted": "Foydalanuvchi o'chirildi"
+  },
+  "site": {
+    "submitCta": "Tezis topshirish",
+    "stub": {
+      "label": "8 bosqichdan 1-si",
+      "text": "Yangi saytning asosi qoʻyildi: sayt ildiz manzilni egalladi, shaxsiy kabinet /app/ manzilida qoldi. Sarlavha, futer va bosh sahifa bloklari texnik topshiriqqa muvofiq 2- va 3-bosqichlarda paydo boʻladi."
+    }
   }
 }

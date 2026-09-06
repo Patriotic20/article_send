@@ -1,0 +1,36 @@
+- generic [ref=f2e2]:
+  - generic [ref=f2e3]:
+    - complementary [ref=f2e4]:
+      - generic [ref=f2e5]:
+        - img "Navoiy davlat konchilik va texnologiyalar universiteti" [ref=f2e6]
+        - generic [ref=f2e7]: Navoiy davlat konchilik va texnologiyalar universiteti
+      - generic [ref=f2e8]:
+        - paragraph [ref=f2e10]: VII-xalqaro ilmiy-texnikaviy anjuman
+        - paragraph [ref=f2e11]: "Zarafshon mintaqasini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar"
+        - paragraph [ref=f2e12]: 2026-yil 25–26-sentabr
+        - paragraph [ref=f2e13]: Ilmiy maqolalarni qabul qilish va taqriz qilish platformasi
+      - link "Anjuman sayti" [ref=f2e14] [cursor=pointer]:
+        - /url: /
+    - main [ref=f2e17]:
+      - combobox "Til" [ref=f2e24]:
+        - option "Oʻzbek" [selected]
+        - option "Русский"
+        - option "English"
+      - generic [ref=f2e27]:
+        - generic [ref=f2e28]: Kirish
+        - generic [ref=f2e30]:
+          - generic [ref=f2e31]:
+            - generic [ref=f2e32]:
+              - text: Email
+              - textbox "Email" [active] [ref=f2e33]:
+                - /placeholder: sizning@email.uz
+            - generic [ref=f2e34]:
+              - text: Parol
+              - textbox "Parol" [ref=f2e35]:
+                - /placeholder: Parolingiz
+            - button "Kirish" [ref=f2e36] [cursor=pointer]
+          - paragraph [ref=f2e37]:
+            - text: Akkaunt yoʻqmi?
+            - link "Roʻyxatdan oʻtish" [ref=f2e38] [cursor=pointer]:
+              - /url: /app/register
+  - region "Notifications alt+T"

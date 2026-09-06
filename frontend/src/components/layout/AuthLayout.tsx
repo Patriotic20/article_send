@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 import { LanguageSelect } from "./LanguageSelect";
@@ -47,15 +48,14 @@ export function AuthLayout({ children }: { children: ReactNode }) {
           </p>
         </div>
 
-        {/* Ссылка ведёт за пределы SPA (сайт лежит в корне, приложение — в
-            /app/), поэтому обычный <a>, а не роутерный Link. */}
-        <a
-          href="/"
+        {/* Сайт живёт в том же бандле, что и кабинет, — переход роутером. */}
+        <Link
+          to="/"
           className="inline-flex w-fit items-center gap-2 text-sm text-primary-foreground/70 transition-colors hover:text-brand"
         >
           <ArrowLeft className="h-4 w-4" />
           {t("auth.backToSite")}
-        </a>
+        </Link>
       </aside>
 
       <main className="flex flex-1 flex-col bg-muted/40 p-4 lg:p-8">

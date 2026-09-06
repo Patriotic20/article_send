@@ -30,7 +30,7 @@ export function LoginPage() {
     setLoading(true);
     try {
       await login(email.trim(), password);
-      navigate("/", { replace: true });
+      navigate("/app", { replace: true });
     } catch (err) {
       toast.error(getErrorMessage(err));
     } finally {
@@ -86,7 +86,7 @@ export function LoginPage() {
           <p className="mt-5 text-center text-sm text-muted-foreground">
             {t("auth.noAccount")}{" "}
             <Link
-              to="/register"
+              to="/app/register"
               className="font-medium text-primary hover:underline"
             >
               {t("auth.signUp")}

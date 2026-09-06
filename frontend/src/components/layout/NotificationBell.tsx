@@ -58,8 +58,10 @@ export function NotificationBell() {
         )}
       </Button>
 
+      {/* Панель уведомлений: на узком экране фиксированные 320px вылезали бы
+          за край, поэтому ширина ограничена шириной окна. */}
       {open && (
-        <div className="absolute right-0 z-50 mt-2 w-80 overflow-hidden rounded-md border bg-popover shadow-lg">
+        <div className="absolute right-0 z-50 mt-2 w-[calc(100vw-2rem)] max-w-[20rem] overflow-hidden rounded-md border bg-popover shadow-lg sm:w-80">
           <div className="border-b px-4 py-2 text-sm font-semibold">
             {t("notifications.title")}
           </div>

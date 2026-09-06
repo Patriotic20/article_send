@@ -4,7 +4,8 @@
     "users": "Users",
     "roles": "Roles",
     "permissions": "Permissions",
-    "articles": "Articles"
+    "articles": "Articles",
+    "backToSite": "Conference website"
   },
   "common": {
     "cancel": "Cancel",
@@ -20,13 +21,18 @@
     "status": "Status",
     "created": "Created",
     "actions": "Actions",
-    "close": "Close"
+    "close": "Close",
+    "edit": "Edit"
   },
   "header": {
     "currentUser": "Current user:",
     "selectUser": "Select a user",
     "loadError": "Failed to load",
-    "logout": "Log out"
+    "logout": "Log out",
+    "menu": "Menu",
+    "profile": "Profile",
+    "closeMenu": "Close menu",
+    "language": "Language"
   },
   "auth": {
     "loginTitle": "Sign in",
@@ -211,5 +217,12 @@
     "fileUploaded": "File uploaded",
     "userCreated": "User created",
     "userDeleted": "User deleted"
+  },
+  "site": {
+    "submitCta": "Submit an abstract",
+    "stub": {
+      "label": "Stage 1 of 8",
+      "text": "The new site skeleton is in place: the site now owns the root path and the submission cabinet stays at /app/. The header, footer and home page blocks arrive in stages 2 and 3 of the specification."
+    }
   }
 }

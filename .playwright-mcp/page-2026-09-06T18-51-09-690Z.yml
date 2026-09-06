@@ -1,0 +1,901 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - banner [ref=f7e4]:
+        - generic [ref=f7e5]:
+          - link [ref=f7e6] [cursor=pointer]:
+            - /url: /
+            - img "21st logo" [ref=f7e7]
+          - generic [ref=f7e13]:
+            - button "Log in" [ref=f7e14] [cursor=pointer]
+            - button "Sign up" [ref=f7e15] [cursor=pointer]
+          - navigation [ref=f7e16]:
+            - link "Components" [ref=f7e17] [cursor=pointer]:
+              - /url: /community/components
+            - link "Templates" [ref=f7e18] [cursor=pointer]:
+              - /url: /community/templates
+            - link "Themes" [ref=f7e19] [cursor=pointer]:
+              - /url: /community/themes
+            - link "Pricing" [ref=f7e20] [cursor=pointer]:
+              - /url: /pricing
+      - generic [ref=f7e22]:
+        - heading [level=1] [ref=f7e23]:
+          - text: The
+          - emphasis [ref=f7e24]:
+            - generic [ref=f7e25]: living
+          - text: libraryof interfaces
+        - paragraph [ref=f7e26]: 12,000+ crafted React components, templates, and shadcn themes. Built by real design engineers.
+      - generic [ref=f7e30]:
+        - generic [ref=f7e32]:
+          - generic [ref=f7e33]:
+            - heading "2,000+ Marketing blocks:" [level=4] [ref=f7e34]:
+              - text: 2,000+
+              - generic [ref=f7e35]: "Marketing blocks:"
+            - generic [ref=f7e36]:
+              - link "Animated heroes" [ref=f7e37] [cursor=pointer]:
+                - /url: /community/components/s/animated-hero
+              - link "Hero sections" [ref=f7e39] [cursor=pointer]:
+                - /url: /community/components/s/hero
+              - link "Shaders" [ref=f7e41] [cursor=pointer]:
+                - /url: /community/components/s/shader
+              - link "Liquid & metal" [ref=f7e43] [cursor=pointer]:
+                - /url: /community/components/s/shader
+              - link "Backgrounds" [ref=f7e45] [cursor=pointer]:
+                - /url: /community/components/s/background
+              - link "Gradients" [ref=f7e47] [cursor=pointer]:
+                - /url: /community/components/s/gradient
+              - link "Footers" [ref=f7e49] [cursor=pointer]:
+                - /url: /community/components/s/footer
+          - generic [ref=f7e52]:
+            - listitem [ref=f7e56]:
+              - generic [ref=f7e57]:
+                - link "Gradient Bar hero section" [ref=f7e58] [cursor=pointer]:
+                  - /url: /@waleedkibhen/components/gradient-bar-hero-section
+                  - img "Gradient Bar hero section" [ref=f7e59]
+                - generic [ref=f7e60]:
+                  - link [ref=f7e61] [cursor=pointer]:
+                    - /url: /@waleedkibhen
+                    - img "vvisedev Crafts" [ref=f7e63]
+                  - heading "Gradient Bar hero section" [level=3] [ref=f7e64]
+                  - button "Save to bookmarks" [ref=f7e65] [cursor=pointer]:
+                    - generic [ref=f7e69]: "261"
+            - listitem [ref=f7e73]:
+              - generic [ref=f7e74]:
+                - link "Hero Section 5" [ref=f7e75] [cursor=pointer]:
+                  - /url: /@meschacirung/components/hero-section-5
+                - generic [ref=f7e76]:
+                  - link [ref=f7e77] [cursor=pointer]:
+                    - /url: /@meschacirung
+                    - img "Méschac Irung" [ref=f7e79]
+                  - heading "Hero Section 5" [level=3] [ref=f7e80]
+                  - button "Save to bookmarks" [ref=f7e81] [cursor=pointer]
+            - listitem [ref=f7e88]:
+              - generic [ref=f7e89]:
+                - link "Vercel Hero" [ref=f7e90] [cursor=pointer]:
+                  - /url: /@designali-in/components/vercel-hero
+                  - img "Vercel Hero" [ref=f7e91]
+                - generic [ref=f7e92]:
+                  - link [ref=f7e93] [cursor=pointer]:
+                    - /url: /@designali-in
+                    - img "Ali Imam" [ref=f7e95]
+                  - heading "Vercel Hero" [level=3] [ref=f7e96]
+                  - button "Save to bookmarks" [ref=f7e97] [cursor=pointer]:
+                    - generic [ref=f7e101]: "118"
+            - listitem [ref=f7e105]:
+              - generic [ref=f7e106]:
+                - link "Waitlist Hero" [ref=f7e107] [cursor=pointer]:
+                  - /url: /@minhxthanh/components/waitlist-hero
+                  - img "Waitlist Hero" [ref=f7e108]
+                - generic [ref=f7e109]:
+                  - link [ref=f7e110] [cursor=pointer]:
+                    - /url: /@minhxthanh
+                    - img "Le Thanh" [ref=f7e112]
+                  - heading "Waitlist Hero" [level=3] [ref=f7e113]
+                  - button "Save to bookmarks" [ref=f7e114] [cursor=pointer]:
+                    - generic [ref=f7e118]: 1.3k
+            - listitem [ref=f7e122]:
+              - generic [ref=f7e123]:
+                - link "Liquid Metal Hero" [ref=f7e124] [cursor=pointer]:
+                  - /url: /@chowlol202/components/liquid-metal-hero
+                  - img "Liquid Metal Hero" [ref=f7e125]
+                - generic [ref=f7e126]:
+                  - link [ref=f7e127] [cursor=pointer]:
+                    - /url: /@chowlol202
+                    - img "Caio Bonato" [ref=f7e129]
+                  - heading "Liquid Metal Hero" [level=3] [ref=f7e130]
+                  - button "Save to bookmarks" [ref=f7e131] [cursor=pointer]:
+                    - generic [ref=f7e135]: "761"
+            - listitem [ref=f7e139]:
+              - generic [ref=f7e140]:
+                - link "Hover Preview" [ref=f7e141] [cursor=pointer]:
+                  - /url: /@minhxthanh/components/hover-preview
+                  - img "Hover Preview" [ref=f7e142]
+                - generic [ref=f7e143]:
+                  - link [ref=f7e144] [cursor=pointer]:
+                    - /url: /@minhxthanh
+                    - img "Le Thanh" [ref=f7e146]
+                  - heading "Hover Preview" [level=3] [ref=f7e147]
+                  - button "Save to bookmarks" [ref=f7e148] [cursor=pointer]:
+                    - generic [ref=f7e152]: "363"
+            - listitem [ref=f7e156]:
+              - generic [ref=f7e157]:
+                - link "Hero ASCII one" [ref=f7e158] [cursor=pointer]:
+                  - /url: /@larsen66/components/hero-ascii-one
+                  - img "Hero ASCII one" [ref=f7e159]
+                - generic [ref=f7e160]:
+                  - link [ref=f7e161] [cursor=pointer]:
+                    - /url: /@larsen66
+                    - img "21st Indexer" [ref=f7e163]
+                  - heading "Hero ASCII one" [level=3] [ref=f7e164]
+                  - button "Save to bookmarks" [ref=f7e165] [cursor=pointer]:
+                    - generic [ref=f7e169]: "967"
+            - listitem [ref=f7e173]:
+              - generic [ref=f7e174]:
+                - link "Vapour Text Effect" [ref=f7e175] [cursor=pointer]:
+                  - /url: /@jatin-yadav05/components/vapour-text-effect
+                  - img "Vapour Text Effect" [ref=f7e176]
+                - generic [ref=f7e177]:
+                  - link [ref=f7e178] [cursor=pointer]:
+                    - /url: /@jatin-yadav05
+                    - img "Jatin Yadav" [ref=f7e180]
+                  - heading "Vapour Text Effect" [level=3] [ref=f7e181]
+                  - button "Save to bookmarks" [ref=f7e182] [cursor=pointer]:
+                    - generic [ref=f7e186]: 1.6k
+            - listitem [ref=f7e190]:
+              - generic [ref=f7e191]:
+                - link "Hover Footer" [ref=f7e192] [cursor=pointer]:
+                  - /url: /@mdafsarx/components/hover-footer
+                  - img "Hover Footer" [ref=f7e193]
+                - generic [ref=f7e194]:
+                  - link [ref=f7e195] [cursor=pointer]:
+                    - /url: /@mdafsarx
+                    - img "Md afsar mahmud" [ref=f7e197]
+                  - heading "Hover Footer" [level=3] [ref=f7e198]
+                  - button "Save to bookmarks" [ref=f7e199] [cursor=pointer]:
+                    - generic [ref=f7e203]: "744"
+            - listitem [ref=f7e207]:
+              - generic [ref=f7e208]:
+                - link "Animated Gradient Background" [ref=f7e209] [cursor=pointer]:
+                  - /url: /@hammamikhairi/components/animated-gradient-background
+                  - img "Animated Gradient Background" [ref=f7e210]
+                - generic [ref=f7e211]:
+                  - link [ref=f7e212] [cursor=pointer]:
+                    - /url: /@hammamikhairi
+                    - img "0xkhairi Khairi" [ref=f7e214]
+                  - heading "Animated Gradient Background" [level=3] [ref=f7e215]
+                  - button "Save to bookmarks" [ref=f7e216] [cursor=pointer]:
+                    - generic [ref=f7e220]: 1.4k
+            - listitem [ref=f7e224]:
+              - generic [ref=f7e225]:
+                - link "Wave Background" [ref=f7e226] [cursor=pointer]:
+                  - /url: /@xubohuah/components/wave-background
+                  - img "Wave Background" [ref=f7e227]
+                - generic [ref=f7e228]:
+                  - link [ref=f7e229] [cursor=pointer]:
+                    - /url: /@xubohuah
+                    - img "捌玖" [ref=f7e231]
+                  - heading "Wave Background" [level=3] [ref=f7e232]
+                  - button "Save to bookmarks" [ref=f7e233] [cursor=pointer]
+        - generic [ref=f7e238]:
+          - generic [ref=f7e239]:
+            - heading "2,100+ UI components:" [level=4] [ref=f7e240]:
+              - text: 2,100+
+              - generic [ref=f7e241]: "UI components:"
+            - generic [ref=f7e242]:
+              - link "Buttons" [ref=f7e243] [cursor=pointer]:
+                - /url: /community/components/s/button
+              - link "AI chats" [ref=f7e245] [cursor=pointer]:
+                - /url: /community/components/s/ai-chat
+              - link "Cards & grids" [ref=f7e247] [cursor=pointer]:
+                - /url: /community/components/s/card
+              - link "Galleries & 3D" [ref=f7e249] [cursor=pointer]:
+                - /url: /community/components/s/carousel
+              - link "Navigation" [ref=f7e251] [cursor=pointer]:
+                - /url: /community/components/s/navigation-menu
+              - link "Sign ins & widgets" [ref=f7e253] [cursor=pointer]:
+                - /url: /community/components/s/sign-in
+              - link "Sections" [ref=f7e255] [cursor=pointer]:
+                - /url: /community/components/s/hero
+          - generic [ref=f7e258]:
+            - listitem [ref=f7e262]:
+              - generic [ref=f7e263]:
+                - link "Hover Button" [ref=f7e264] [cursor=pointer]:
+                  - /url: /@serafimcloud/components/hover-button
+                  - img "Hover Button" [ref=f7e265]
+                - generic [ref=f7e266]:
+                  - link [ref=f7e267] [cursor=pointer]:
+                    - /url: /@serafimcloud
+                    - img "Serafim" [ref=f7e269]
+                  - heading "Hover Button" [level=3] [ref=f7e270]
+                  - button "Save to bookmarks" [ref=f7e271] [cursor=pointer]:
+                    - generic [ref=f7e275]: "386"
+            - listitem [ref=f7e279]:
+              - generic [ref=f7e280]:
+                - link "Button Colorful with Hover Effect" [ref=f7e281] [cursor=pointer]:
+                  - /url: /@kokonutd/components/button-colorful
+                  - img "Button Colorful with Hover Effect" [ref=f7e282]
+                - generic [ref=f7e283]:
+                  - link [ref=f7e284] [cursor=pointer]:
+                    - /url: /@kokonutd
+                    - img "Kokonut Baffier" [ref=f7e286]
+                  - heading "Button Colorful with Hover Effect" [level=3] [ref=f7e287]
+                  - button "Save to bookmarks" [ref=f7e288] [cursor=pointer]:
+                    - generic [ref=f7e292]: "564"
+            - listitem [ref=f7e296]:
+              - generic [ref=f7e297]:
+                - link "Gradient Button" [ref=f7e298] [cursor=pointer]:
+                  - /url: /@serafimcloud/components/gradient-button
+                  - img "Gradient Button" [ref=f7e299]
+                - generic [ref=f7e300]:
+                  - link [ref=f7e301] [cursor=pointer]:
+                    - /url: /@serafimcloud
+                    - img "Serafim" [ref=f7e303]
+                  - heading "Gradient Button" [level=3] [ref=f7e304]
+                  - button "Save to bookmarks" [ref=f7e305] [cursor=pointer]:
+                    - generic [ref=f7e309]: 1.2k
+            - listitem [ref=f7e313]:
+              - generic [ref=f7e314]:
+                - link "Background Boxes" [ref=f7e315] [cursor=pointer]:
+                  - /url: /@manuarora700/components/background-boxes
+                  - img "Background Boxes" [ref=f7e316]
+                - generic [ref=f7e317]:
+                  - link [ref=f7e318] [cursor=pointer]:
+                    - /url: /@manuarora700
+                    - img "Manu Arora" [ref=f7e320]
+                  - heading "Background Boxes" [level=3] [ref=f7e321]
+                  - button "Save to bookmarks" [ref=f7e322] [cursor=pointer]:
+                    - generic [ref=f7e326]: "969"
+            - listitem [ref=f7e330]:
+              - generic [ref=f7e331]:
+                - link "Background Beams" [ref=f7e332] [cursor=pointer]:
+                  - /url: /@manuarora700/components/background-beams
+                  - img "Background Beams" [ref=f7e333]
+                - generic [ref=f7e334]:
+                  - link [ref=f7e335] [cursor=pointer]:
+                    - /url: /@manuarora700
+                    - img "Manu Arora" [ref=f7e337]
+                  - heading "Background Beams" [level=3] [ref=f7e338]
+                  - button "Save to bookmarks" [ref=f7e339] [cursor=pointer]:
+                    - generic [ref=f7e343]: "648"
+            - listitem [ref=f7e347]:
+              - generic [ref=f7e348]:
+                - link "Not Found Page" [ref=f7e349] [cursor=pointer]:
+                  - /url: /@sshahaider/components/not-found-page-1
+                  - img "Not Found Page" [ref=f7e350]
+                - generic [ref=f7e351]:
+                  - link [ref=f7e352] [cursor=pointer]:
+                    - /url: /@sshahaider
+                    - img "Shaban Haider" [ref=f7e354]
+                  - heading "Not Found Page" [level=3] [ref=f7e355]
+                  - button "Save to bookmarks" [ref=f7e356] [cursor=pointer]:
+                    - generic [ref=f7e360]: "122"
+            - listitem [ref=f7e364]:
+              - generic [ref=f7e365]:
+                - link "Footer Section" [ref=f7e366] [cursor=pointer]:
+                  - /url: /@sshahaider/components/footer-section
+                  - img "Footer Section" [ref=f7e367]
+                - generic [ref=f7e368]:
+                  - link [ref=f7e369] [cursor=pointer]:
+                    - /url: /@sshahaider
+                    - img "Shaban Haider" [ref=f7e371]
+                  - heading "Footer Section" [level=3] [ref=f7e372]
+                  - button "Save to bookmarks" [ref=f7e373] [cursor=pointer]:
+                    - generic [ref=f7e377]: 1.3k
+            - listitem [ref=f7e381]:
+              - generic [ref=f7e382]:
+                - link "Horizon Hero Section" [ref=f7e383] [cursor=pointer]:
+                  - /url: /@lovesickfromthe6ix/components/horizon-hero-section
+                  - img "Horizon Hero Section" [ref=f7e384]
+                - generic [ref=f7e385]:
+                  - link [ref=f7e386] [cursor=pointer]:
+                    - /url: /@lovesickfromthe6ix
+                    - img "scott clayton" [ref=f7e388]
+                  - heading "Horizon Hero Section" [level=3] [ref=f7e389]
+                  - button "Save to bookmarks" [ref=f7e390] [cursor=pointer]:
+                    - generic [ref=f7e394]: 2.8k
+            - listitem [ref=f7e398]:
+              - generic [ref=f7e399]:
+                - link "Agent Plan" [ref=f7e400] [cursor=pointer]:
+                  - /url: /@isaiahbjork/components/agent-plan
+                  - img "Agent Plan" [ref=f7e401]
+                - generic [ref=f7e402]:
+                  - link [ref=f7e403] [cursor=pointer]:
+                    - /url: /@isaiahbjork
+                    - img "Isaiah" [ref=f7e405]
+                  - heading "Agent Plan" [level=3] [ref=f7e406]
+                  - button "Save to bookmarks" [ref=f7e407] [cursor=pointer]
+            - listitem [ref=f7e414]:
+              - generic [ref=f7e415]:
+                - link "Calendar" [ref=f7e416] [cursor=pointer]:
+                  - /url: /@designali-in/components/calendar
+                  - img "Calendar" [ref=f7e417]
+                - generic [ref=f7e418]:
+                  - link [ref=f7e419] [cursor=pointer]:
+                    - /url: /@designali-in
+                    - img "Ali Imam" [ref=f7e421]
+                  - heading "Calendar" [level=3] [ref=f7e422]
+                  - button "Save to bookmarks" [ref=f7e423] [cursor=pointer]
+            - listitem [ref=f7e430]:
+              - generic [ref=f7e431]:
+                - link "Sign In Flow" [ref=f7e432] [cursor=pointer]:
+                  - /url: /@aghasisahakyan1/components/sign-in-flow-1
+                  - img "Sign In Flow" [ref=f7e433]
+                - generic [ref=f7e434]:
+                  - link [ref=f7e435] [cursor=pointer]:
+                    - /url: /@aghasisahakyan1
+                    - img "Erik" [ref=f7e437]
+                  - heading "Sign In Flow" [level=3] [ref=f7e438]
+                  - button "Save to bookmarks" [ref=f7e439] [cursor=pointer]:
+                    - generic [ref=f7e443]: 2.2k
+            - listitem [ref=f7e447]:
+              - generic [ref=f7e448]:
+                - link "Sign In" [ref=f7e449] [cursor=pointer]:
+                  - /url: /@easemize/components/sign-in
+                  - img "Sign In" [ref=f7e450]
+                - generic [ref=f7e451]:
+                  - link [ref=f7e452] [cursor=pointer]:
+                    - /url: /@easemize
+                    - img "EaseMize UI" [ref=f7e454]
+                  - heading "Sign In" [level=3] [ref=f7e455]
+                  - button "Save to bookmarks" [ref=f7e456] [cursor=pointer]:
+                    - generic [ref=f7e460]: 2.0k
+      - generic [ref=f7e464]:
+        - heading "Used by 3,511,886 builders . From indie makers to the world's largest product teams" [level=2] [ref=f7e465]:
+          - text: Used by 3,511,886
+          - emphasis [ref=f7e466]:
+            - generic [ref=f7e467]: builders
+          - text: . From indie makers to the world's largest product teams
+        - generic [ref=f7e468]:
+          - generic [ref=f7e469]:
+            - heading [level=3]
+            - generic [ref=f7e470]:
+              - generic [ref=f7e471]:
+                - img "Google logo" [ref=f7e472]
+                - generic [ref=f7e473]: Google
+              - generic [ref=f7e474]:
+                - img "Meta logo" [ref=f7e475]
+                - generic [ref=f7e476]: Meta
+              - generic [ref=f7e477]:
+                - img "NVIDIA logo" [ref=f7e478]
+                - generic [ref=f7e479]: NVIDIA
+              - generic [ref=f7e480]:
+                - img "ByteDance logo" [ref=f7e481]
+                - generic [ref=f7e482]: ByteDance
+              - generic [ref=f7e483]:
+                - img "Shopify logo" [ref=f7e484]
+                - generic [ref=f7e485]: Shopify
+              - generic [ref=f7e486]:
+                - img "PayPal logo" [ref=f7e487]
+                - generic [ref=f7e488]: PayPal
+          - generic [ref=f7e489]:
+            - heading "Startups:" [level=3] [ref=f7e490]
+            - generic [ref=f7e491]:
+              - generic [ref=f7e492]:
+                - img "Vercel logo" [ref=f7e493]
+                - generic [ref=f7e494]: Vercel
+              - generic [ref=f7e495]:
+                - img "Lovable logo" [ref=f7e496]
+                - generic [ref=f7e497]: Lovable
+              - generic [ref=f7e498]:
+                - img "Webflow logo" [ref=f7e499]
+                - generic [ref=f7e500]: Webflow
+              - generic [ref=f7e501]:
+                - img "Razorpay logo" [ref=f7e502]
+                - generic [ref=f7e503]: Razorpay
+              - generic [ref=f7e504]:
+                - img "Mistral AI logo" [ref=f7e505]
+                - generic [ref=f7e506]: Mistral AI
+              - generic [ref=f7e507]:
+                - img "Nubank logo" [ref=f7e508]
+                - generic [ref=f7e509]: Nubank
+              - generic [ref=f7e510]:
+                - img "Atlassian logo" [ref=f7e511]
+                - generic [ref=f7e512]: Atlassian
+      - generic [ref=f7e514]:
+        - generic [ref=f7e516]:
+          - generic [ref=f7e517]:
+            - heading "Copy the prompt. Paste it anywhere" [level=2] [ref=f7e518]:
+              - text: Copy the prompt. Paste it
+              - emphasis [ref=f7e519]:
+                - generic [ref=f7e520]: anywhere
+            - paragraph [ref=f7e521]: Every component ships as a prompt. One copy — and it builds itself in whatever tool you live in.
+          - generic [ref=f7e522]:
+            - generic [ref=f7e523]:
+              - generic [ref=f7e525]:
+                - generic [ref=f7e526]: $ claude
+                - generic [ref=f7e527]: ✓ components/ui/animated-hero.tsx
+                - generic [ref=f7e528]: ✓ +148 lines — adapted to your theme
+                - generic [ref=f7e529]:
+                  - generic [ref=f7e530]: ❯
+                  - generic [ref=f7e531]: "[Pasted text #1 +88 lines]"
+              - generic [ref=f7e533]:
+                - generic [ref=f7e534]: Claude Code
+                - paragraph [ref=f7e537]: Paste it in the terminal — the source lands in your repo.
+            - generic [ref=f7e538]:
+              - generic [ref=f7e541]:
+                - generic [ref=f7e542]:
+                  - generic [ref=f7e543]: Add the Animated Hero from 21st
+                  - generic [ref=f7e544]: acme/website · main
+                - generic [ref=f7e547]:
+                  - generic [ref=f7e548]:
+                    - generic [ref=f7e549]: animated-hero.tsx
+                    - generic [ref=f7e550]: +148 −12
+                  - generic [ref=f7e551]:
+                    - generic [ref=f7e552]: "+ export function AnimatedHero() {"
+                    - generic [ref=f7e553]: + return <section className="hero">…
+                    - generic [ref=f7e554]: <main>
+                    - generic [ref=f7e555]: − <OldHero />
+                    - generic [ref=f7e556]: + <AnimatedHero />
+                - generic [ref=f7e557]:
+                  - generic [ref=f7e558]: Ready to review
+                  - generic [ref=f7e560]: Create PR
+              - generic [ref=f7e561]:
+                - generic [ref=f7e562]: Codex
+                - paragraph [ref=f7e565]: Same prompt as a task — Codex ships it with a diff.
+            - generic [ref=f7e566]:
+              - generic [ref=f7e569]:
+                - generic [ref=f7e570]: Worked for 14s
+                - generic [ref=f7e573]:
+                  - generic [ref=f7e574]:
+                    - generic [ref=f7e575]: ✓
+                    - text: Created src/components/AnimatedHero.tsx
+                  - generic [ref=f7e576]:
+                    - generic [ref=f7e577]: ✓
+                    - text: Edited src/pages/Index.tsx
+                - generic [ref=f7e578]: Preview updated
+              - generic [ref=f7e582]:
+                - generic [ref=f7e583]: Lovable
+                - paragraph [ref=f7e586]: Paste it in chat — the exact UI appears in your project.
+        - generic [ref=f7e589]:
+          - generic [ref=f7e590]:
+            - generic [ref=f7e592]:
+              - generic [ref=f7e593]:
+                - button "code" [ref=f7e595] [cursor=pointer]
+                - button "preview" [ref=f7e596] [cursor=pointer]
+              - generic [ref=f7e597]:
+                - generic [ref=f7e598]:
+                  - img "21st" [ref=f7e599]
+                  - text: shimmer-button.tsx
+                - generic [ref=f7e601]:
+                  - generic [ref=f7e602]:
+                    - generic [ref=f7e603]: "1"
+                    - generic [ref=f7e604]:
+                      - text: import
+                      - generic [ref=f7e605]: "{"
+                      - text: cn
+                      - generic [ref=f7e606]: "}"
+                      - text: from "@/lib/utils"
+                  - generic [ref=f7e607]: "2"
+                  - generic [ref=f7e610]:
+                    - generic [ref=f7e611]: "3"
+                    - generic [ref=f7e612]:
+                      - text: export function ShimmerButton
+                      - generic [ref=f7e613]: "() {"
+                  - generic [ref=f7e614]:
+                    - generic [ref=f7e615]: "4"
+                    - generic [ref=f7e616]: return (
+                  - generic [ref=f7e617]:
+                    - generic [ref=f7e618]: "5"
+                    - generic [ref=f7e619]: "<button className={cn("
+                  - generic [ref=f7e620]:
+                    - generic [ref=f7e621]: "6"
+                    - generic [ref=f7e622]: "\"relative rounded-full bg-neutral-950\","
+                  - generic [ref=f7e623]:
+                    - generic [ref=f7e624]: "7"
+                    - generic [ref=f7e625]: "\"px-7 py-3 text-sm font-medium text-white\","
+                  - generic [ref=f7e626]:
+                    - generic [ref=f7e627]: "8"
+                    - generic [ref=f7e628]: "\"transition-transform hover:scale-105\","
+                  - generic [ref=f7e629]:
+                    - generic [ref=f7e630]: "9"
+                    - generic [ref=f7e631]: ")}>"
+                  - generic [ref=f7e633]:
+                    - generic [ref=f7e634]: "10"
+                    - generic [ref=f7e635]: <span className="shimmer-ring" aria-hidden />
+                  - generic [ref=f7e636]:
+                    - generic [ref=f7e637]: "11"
+                    - generic [ref=f7e638]: Get started →
+                  - generic [ref=f7e640]:
+                    - generic [ref=f7e641]: "12"
+                    - generic [ref=f7e642]: </button>
+                  - generic [ref=f7e643]:
+                    - generic [ref=f7e644]: "13"
+                    - generic [ref=f7e645]: )
+                  - generic [ref=f7e646]:
+                    - generic [ref=f7e647]: "14"
+                    - generic [ref=f7e648]: "}"
+              - generic [ref=f7e649]:
+                - generic [ref=f7e650]: Shimmer Button
+                - button "Get started →" [ref=f7e655] [cursor=pointer]
+            - generic [ref=f7e659]:
+              - generic [ref=f7e660]: Real code, ready to ship
+              - paragraph [ref=f7e661]: React + Tailwind, shadcn/ui conventions — every component is source that lands in your repo, yours to edit.
+          - generic [ref=f7e662]:
+            - generic [ref=f7e666]:
+              - generic [ref=f7e667]:
+                - generic [ref=f7e670]:
+                  - generic [ref=f7e671]: 25,431
+                  - generic [ref=f7e672]: installs this week
+                - generic [ref=f7e673]: "455"
+                - generic [ref=f7e678]:
+                  - generic [ref=f7e679]: Saved to bookmarks
+                  - generic [ref=f7e686]:
+                    - generic [ref=f7e688]: Landing v2
+                    - generic [ref=f7e689]: "12"
+                  - generic [ref=f7e690]:
+                    - generic [ref=f7e692]: Inspiration
+                    - generic [ref=f7e693]: "34"
+                  - generic [ref=f7e694]: Create list
+              - generic [ref=f7e699]:
+                - img "Ravi Katiyar" [ref=f7e700]
+                - generic [ref=f7e701]:
+                  - heading "Number Ticker" [level=2] [ref=f7e702]
+                  - generic [ref=f7e703]:
+                    - generic [ref=f7e704]: 12.4k
+                    - generic [ref=f7e708]: "455"
+            - generic [ref=f7e711]:
+              - generic [ref=f7e712]: Save it for later
+              - paragraph [ref=f7e713]: Bookmark any component into your lists — personal or team-shared — and pull it back up in one click.
+      - generic [ref=f7e717]:
+        - heading "Built by real design engineers . Every component has an author. Indexed, searchable, one prompt away" [level=2] [ref=f7e718]:
+          - text: Built by real design
+          - emphasis [ref=f7e719]:
+            - generic [ref=f7e720]: engineers
+          - text: . Every component has an author. Indexed, searchable, one prompt away
+        - generic [ref=f7e721]:
+          - link "Aceternity UI Aceternity UI 87 components" [ref=f7e722] [cursor=pointer]:
+            - /url: /community/manuarora700/library/aceternity-ui
+            - img "Aceternity UI" [ref=f7e723]
+            - generic [ref=f7e724]:
+              - generic [ref=f7e725]: Aceternity UI
+              - generic [ref=f7e726]: 87 components
+          - link "Magic UI Magic UI 62 components" [ref=f7e727] [cursor=pointer]:
+            - /url: /community/dillionverma/library/magic-ui
+            - img "Magic UI" [ref=f7e728]
+            - generic [ref=f7e729]:
+              - generic [ref=f7e730]: Magic UI
+              - generic [ref=f7e731]: 62 components
+          - link "shadcn/ui shadcn/ui 87 components" [ref=f7e732] [cursor=pointer]:
+            - /url: /community/shadcn/library/shadcn-ui
+            - img "shadcn/ui" [ref=f7e733]
+            - generic [ref=f7e734]:
+              - generic [ref=f7e735]: shadcn/ui
+              - generic [ref=f7e736]: 87 components
+          - link "Origin UI Origin UI 44 components" [ref=f7e737] [cursor=pointer]:
+            - /url: /community/originui/library/origin-ui
+            - img "Origin UI" [ref=f7e738]
+            - generic [ref=f7e739]:
+              - generic [ref=f7e740]: Origin UI
+              - generic [ref=f7e741]: 44 components
+          - link "Geist Geist 87 components" [ref=f7e742] [cursor=pointer]:
+            - /url: /community/shugar/library/geist
+            - img "Geist" [ref=f7e743]
+            - generic [ref=f7e744]:
+              - generic [ref=f7e745]: Geist
+              - generic [ref=f7e746]: 87 components
+          - link "Base UI Base UI 29 components" [ref=f7e747] [cursor=pointer]:
+            - /url: https://base-ui.21st.dev
+            - img "Base UI" [ref=f7e748]
+            - generic [ref=f7e749]:
+              - generic [ref=f7e750]: Base UI
+              - generic [ref=f7e751]: 29 components
+          - link "Kokonut UI Kokonut UI 49 components" [ref=f7e752] [cursor=pointer]:
+            - /url: /community/kokonutd/library/kokonut-ui
+            - img "Kokonut UI" [ref=f7e753]
+            - generic [ref=f7e754]:
+              - generic [ref=f7e755]: Kokonut UI
+              - generic [ref=f7e756]: 49 components
+          - link "8bitcn 8bitcn 106 components" [ref=f7e757] [cursor=pointer]:
+            - /url: /community/theorcdev/library/8bitcn
+            - img "8bitcn" [ref=f7e758]
+            - generic [ref=f7e759]:
+              - generic [ref=f7e760]: 8bitcn
+              - generic [ref=f7e761]: 106 components
+          - link "Kibo UI Kibo UI 26 components" [ref=f7e762] [cursor=pointer]:
+            - /url: /community/haydenbleasel/library/kibo-ui
+            - img "Kibo UI" [ref=f7e763]
+            - generic [ref=f7e764]:
+              - generic [ref=f7e765]: Kibo UI
+              - generic [ref=f7e766]: 26 components
+          - link "visx visx 36 components" [ref=f7e767] [cursor=pointer]:
+            - /url: https://visx.21st.dev
+            - img "visx" [ref=f7e768]
+            - generic [ref=f7e769]:
+              - generic [ref=f7e770]: visx
+              - generic [ref=f7e771]: 36 components
+          - link "ReUI ReUI 95 components" [ref=f7e772] [cursor=pointer]:
+            - /url: /community/sean0205/library/reui
+            - img "ReUI" [ref=f7e773]
+            - generic [ref=f7e774]:
+              - generic [ref=f7e775]: ReUI
+              - generic [ref=f7e776]: 95 components
+          - link "HextaUI HextaUI 113 components" [ref=f7e777] [cursor=pointer]:
+            - /url: /community/preetsuthar17/library/hextaui
+            - img "HextaUI" [ref=f7e778]
+            - generic [ref=f7e779]:
+              - generic [ref=f7e780]: HextaUI
+              - generic [ref=f7e781]: 113 components
+          - link "Tailark Tailark 42 components" [ref=f7e782] [cursor=pointer]:
+            - /url: /community/meschacirung/library/tailark
+            - img "Tailark" [ref=f7e783]
+            - generic [ref=f7e784]:
+              - generic [ref=f7e785]: Tailark
+              - generic [ref=f7e786]: 42 components
+          - link "Shadcnblocks.com Shadcnblocks.com 39 components" [ref=f7e787] [cursor=pointer]:
+            - /url: /community/shadcnblockscom/library/shadcnblocks-com
+            - img "Shadcnblocks.com" [ref=f7e788]
+            - generic [ref=f7e789]:
+              - generic [ref=f7e790]: Shadcnblocks.com
+              - generic [ref=f7e791]: 39 components
+          - link "Ruixen UI Ruixen UI 390 components" [ref=f7e792] [cursor=pointer]:
+            - /url: /community/ruixenui/library/ruixen-ui
+            - img "Ruixen UI" [ref=f7e793]
+            - generic [ref=f7e794]:
+              - generic [ref=f7e795]: Ruixen UI
+              - generic [ref=f7e796]: 390 components
+          - link "Efferd Efferd 100 components" [ref=f7e797] [cursor=pointer]:
+            - /url: /community/efferd/library/efferd
+            - img "Efferd" [ref=f7e798]
+            - generic [ref=f7e799]:
+              - generic [ref=f7e800]: Efferd
+              - generic [ref=f7e801]: 100 components
+          - link "UI TripleD UI TripleD 89 components" [ref=f7e802] [cursor=pointer]:
+            - /url: /community/moumensoliman/library/ui-tripled
+            - img "UI TripleD" [ref=f7e803]
+            - generic [ref=f7e804]:
+              - generic [ref=f7e805]: UI TripleD
+              - generic [ref=f7e806]: 89 components
+          - link "UI Layouts UI Layouts 72 components" [ref=f7e807] [cursor=pointer]:
+            - /url: /community/ui-layouts/library/ui-layouts
+            - img "UI Layouts" [ref=f7e808]
+            - generic [ref=f7e809]:
+              - generic [ref=f7e810]: UI Layouts
+              - generic [ref=f7e811]: 72 components
+          - link "Shailendra Shailendra 51 components" [ref=f7e812] [cursor=pointer]:
+            - /url: /community/shailendrakumar19999/library/shailendra
+            - img "Shailendra" [ref=f7e813]
+            - generic [ref=f7e814]:
+              - generic [ref=f7e815]: Shailendra
+              - generic [ref=f7e816]: 51 components
+          - link "Jolly UI Jolly UI 51 components" [ref=f7e817] [cursor=pointer]:
+            - /url: /community/jolbol1/library/jolly-ui
+            - img "Jolly UI" [ref=f7e818]
+            - generic [ref=f7e819]:
+              - generic [ref=f7e820]: Jolly UI
+              - generic [ref=f7e821]: 51 components
+          - link "uimix uimix 49 components" [ref=f7e822] [cursor=pointer]:
+            - /url: /community/lyanchouss/library/uimix
+            - img "uimix" [ref=f7e823]
+            - generic [ref=f7e824]:
+              - generic [ref=f7e825]: uimix
+              - generic [ref=f7e826]: 49 components
+          - link "ShadcnSpace ShadcnSpace 45 components" [ref=f7e827] [cursor=pointer]:
+            - /url: /community/shadcnspace/library/shadcnspace
+            - img "ShadcnSpace" [ref=f7e828]
+            - generic [ref=f7e829]:
+              - generic [ref=f7e830]: ShadcnSpace
+              - generic [ref=f7e831]: 45 components
+          - link "shadway shadway 45 components" [ref=f7e832] [cursor=pointer]:
+            - /url: /community/shadway/library/shadway
+            - img "shadway" [ref=f7e833]
+            - generic [ref=f7e834]:
+              - generic [ref=f7e835]: shadway
+              - generic [ref=f7e836]: 45 components
+          - link "REAVIZ REAVIZ 41 components" [ref=f7e837] [cursor=pointer]:
+            - /url: /community/reaviz/library/reaviz
+            - img "REAVIZ" [ref=f7e838]
+            - generic [ref=f7e839]:
+              - generic [ref=f7e840]: REAVIZ
+              - generic [ref=f7e841]: 41 components
+          - link "reuno-ui reuno-ui 37 components" [ref=f7e842] [cursor=pointer]:
+            - /url: /community/reuno-ui/library/reuno-ui
+            - img "reuno-ui" [ref=f7e843]
+            - generic [ref=f7e844]:
+              - generic [ref=f7e845]: reuno-ui
+              - generic [ref=f7e846]: 37 components
+          - link "Motion Primitives Motion Primitives 34 components" [ref=f7e847] [cursor=pointer]:
+            - /url: /community/ibelick/library/motion-primitives
+            - img "Motion Primitives" [ref=f7e848]
+            - generic [ref=f7e849]:
+              - generic [ref=f7e850]: Motion Primitives
+              - generic [ref=f7e851]: 34 components
+          - link "Systaliko UI Systaliko UI 33 components" [ref=f7e852] [cursor=pointer]:
+            - /url: /community/youcefbnm/library/systaliko-ui
+            - img "Systaliko UI" [ref=f7e853]
+            - generic [ref=f7e854]:
+              - generic [ref=f7e855]: Systaliko UI
+              - generic [ref=f7e856]: 33 components
+          - link "lndev-ui lndev-ui 30 components" [ref=f7e857] [cursor=pointer]:
+            - /url: /community/ln-dev7/library/lndev-ui
+            - img "lndev-ui" [ref=f7e858]
+            - generic [ref=f7e859]:
+              - generic [ref=f7e860]: lndev-ui
+              - generic [ref=f7e861]: 30 components
+          - link "Fancy Components Fancy Components 30 components" [ref=f7e862] [cursor=pointer]:
+            - /url: /community/danielpetho/library/fancy-components
+            - img "Fancy Components" [ref=f7e863]
+            - generic [ref=f7e864]:
+              - generic [ref=f7e865]: Fancy Components
+              - generic [ref=f7e866]: 30 components
+          - link "coss coss 28 components" [ref=f7e867] [cursor=pointer]:
+            - /url: /community/coss.com/library/coss
+            - img "coss" [ref=f7e868]
+            - generic [ref=f7e869]:
+              - generic [ref=f7e870]: coss
+              - generic [ref=f7e871]: 28 components
+          - link "Cnippet Cnippet 26 components" [ref=f7e872] [cursor=pointer]:
+            - /url: /community/cnippet_dev/library/cnippet
+            - img "Cnippet" [ref=f7e873]
+            - generic [ref=f7e874]:
+              - generic [ref=f7e875]: Cnippet
+              - generic [ref=f7e876]: 26 components
+          - link "PrebuiltUI PrebuiltUI 25 components" [ref=f7e877] [cursor=pointer]:
+            - /url: /community/prebuiltui/library/prebuiltui
+            - img "PrebuiltUI" [ref=f7e878]
+            - generic [ref=f7e879]:
+              - generic [ref=f7e880]: PrebuiltUI
+              - generic [ref=f7e881]: 25 components
+          - link "Circle Circle 25 components" [ref=f7e882] [cursor=pointer]:
+            - /url: /community/ln-dev7/library/circle
+            - img "Circle" [ref=f7e883]
+            - generic [ref=f7e884]:
+              - generic [ref=f7e885]: Circle
+              - generic [ref=f7e886]: 25 components
+          - link "Spell Spell 24 components" [ref=f7e887] [cursor=pointer]:
+            - /url: /community/tom_ui/library/spell
+            - img "Spell" [ref=f7e888]
+            - generic [ref=f7e889]:
+              - generic [ref=f7e890]: Spell
+              - generic [ref=f7e891]: 24 components
+          - link "Layouts Layouts 24 components" [ref=f7e892] [cursor=pointer]:
+            - /url: /community/0xUrvish/library/layouts
+            - img "Layouts" [ref=f7e893]
+            - generic [ref=f7e894]:
+              - generic [ref=f7e895]: Layouts
+              - generic [ref=f7e896]: 24 components
+          - link "Interfaces DS Interfaces DS 23 components" [ref=f7e897] [cursor=pointer]:
+            - /url: /community/jshguo/library/interfaces-ds
+            - img "Interfaces DS" [ref=f7e898]
+            - generic [ref=f7e899]:
+              - generic [ref=f7e900]: Interfaces DS
+              - generic [ref=f7e901]: 23 components
+        - paragraph [ref=f7e903]:
+          - generic [ref=f7e904]: …and
+          - generic [ref=f7e905]: 700+
+          - generic [ref=f7e906]: design
+          - generic [ref=f7e907]: engineers
+          - generic [ref=f7e908]: shipping
+          - generic [ref=f7e909]: shaders,
+          - generic [ref=f7e910]:
+            - generic [ref=f7e911]: interactions
+            - text: ","
+          - generic [ref=f7e913]: and
+          - generic [ref=f7e914]:
+            - generic [ref=f7e915]:
+              - generic [ref=f7e916]: a
+              - generic [ref=f7e917]: "n"
+              - generic [ref=f7e918]: i
+              - generic [ref=f7e919]: m
+              - generic [ref=f7e920]: a
+              - generic [ref=f7e921]: t
+              - generic [ref=f7e922]: e
+              - generic [ref=f7e923]: d
+              - generic [ref=f7e925]: h
+              - generic [ref=f7e926]: e
+              - generic [ref=f7e927]: r
+              - generic [ref=f7e928]: o
+              - generic [ref=f7e929]: e
+              - generic [ref=f7e930]: s
+            - text: .
+      - generic [ref=f7e933]:
+        - heading "Built by humans Ready for agents" [level=2] [ref=f7e934]:
+          - text: Built by
+          - emphasis [ref=f7e935]:
+            - generic [ref=f7e936]: humans
+          - text: Ready for agents
+        - generic [ref=f7e937]:
+          - link "Browse components" [ref=f7e938] [cursor=pointer]:
+            - /url: /community/components
+          - button "Join for free" [ref=f7e939] [cursor=pointer]
+      - generic [ref=f7e943]:
+        - generic [ref=f7e944]:
+          - heading "Questions, answered" [level=2] [ref=f7e945]:
+            - text: Questions,
+            - emphasis [ref=f7e946]:
+              - generic [ref=f7e947]: answered
+          - paragraph [ref=f7e948]: Everything you need to know about the registry, installing components, and publishing your own.
+        - generic [ref=f7e949]:
+          - group [ref=f7e950]:
+            - generic "01 What is 21st?" [ref=f7e951] [cursor=pointer]:
+              - generic [ref=f7e952]: "01"
+              - generic [ref=f7e953]: What is 21st?
+              - generic [aria-hidden] [ref=f7e954]: +
+          - group [ref=f7e955]:
+            - generic "02 Is 21st free?" [ref=f7e956] [cursor=pointer]:
+              - generic [ref=f7e957]: "02"
+              - generic [ref=f7e958]: Is 21st free?
+              - generic [aria-hidden] [ref=f7e959]: +
+          - group [ref=f7e960]:
+            - generic "03 How is this different from a React component library?" [ref=f7e961] [cursor=pointer]:
+              - generic [ref=f7e962]: "03"
+              - generic [ref=f7e963]: How is this different from a React component library?
+              - generic [aria-hidden] [ref=f7e964]: +
+          - group [ref=f7e965]:
+            - generic "04 How do I install a component?" [ref=f7e966] [cursor=pointer]:
+              - generic [ref=f7e967]: "04"
+              - generic [ref=f7e968]: How do I install a component?
+              - generic [aria-hidden] [ref=f7e969]: +
+          - group [ref=f7e970]:
+            - generic "05 Do components work with shadcn/ui?" [ref=f7e971] [cursor=pointer]:
+              - generic [ref=f7e972]: "05"
+              - generic [ref=f7e973]: Do components work with shadcn/ui?
+              - generic [aria-hidden] [ref=f7e974]: +
+          - group [ref=f7e975]:
+            - generic "06 Can I publish my own components?" [ref=f7e976] [cursor=pointer]:
+              - generic [ref=f7e977]: "06"
+              - generic [ref=f7e978]: Can I publish my own components?
+              - generic [aria-hidden] [ref=f7e979]: +
+          - group [ref=f7e980]:
+            - generic "07 What are React templates on 21st?" [ref=f7e981] [cursor=pointer]:
+              - generic [ref=f7e982]: "07"
+              - generic [ref=f7e983]: What are React templates on 21st?
+              - generic [aria-hidden] [ref=f7e984]: +
+      - contentinfo [ref=f7e986]:
+        - generic [ref=f7e987]:
+          - generic [ref=f7e988]:
+            - link [ref=f7e990] [cursor=pointer]:
+              - /url: /
+              - img "21st" [ref=f7e991]
+              - text: Built with 21st
+            - generic [ref=f7e993]:
+              - generic [ref=f7e994]:
+                - heading "Product" [level=3] [ref=f7e995]
+                - list [ref=f7e996]:
+                  - listitem [ref=f7e997]:
+                    - link "Components" [ref=f7e998] [cursor=pointer]:
+                      - /url: /community/components
+                  - listitem [ref=f7e999]:
+                    - link "Templates" [ref=f7e1000] [cursor=pointer]:
+                      - /url: /community/templates
+                  - listitem [ref=f7e1001]:
+                    - link "Themes" [ref=f7e1002] [cursor=pointer]:
+                      - /url: /community/themes
+                  - listitem [ref=f7e1003]:
+                    - link "Icons" [ref=f7e1004] [cursor=pointer]:
+                      - /url: /community/icons
+                  - listitem [ref=f7e1005]:
+                    - link "Pricing" [ref=f7e1006] [cursor=pointer]:
+                      - /url: /pricing
+              - generic [ref=f7e1007]:
+                - heading "Resources" [level=3] [ref=f7e1008]
+                - list [ref=f7e1009]:
+                  - listitem [ref=f7e1010]:
+                    - link "Publish" [ref=f7e1011] [cursor=pointer]:
+                      - /url: /sign-in
+                  - listitem [ref=f7e1012]:
+                    - link "Sign in" [ref=f7e1013] [cursor=pointer]:
+                      - /url: /sign-in
+              - generic [ref=f7e1014]:
+                - heading "Company" [level=3] [ref=f7e1015]
+                - list [ref=f7e1016]:
+                  - listitem [ref=f7e1017]:
+                    - link "Contact" [ref=f7e1018] [cursor=pointer]:
+                      - /url: mailto:support@21st.dev
+                  - listitem [ref=f7e1019]:
+                    - link "Privacy" [ref=f7e1020] [cursor=pointer]:
+                      - /url: /privacy
+                  - listitem [ref=f7e1021]:
+                    - link "Terms" [ref=f7e1022] [cursor=pointer]:
+                      - /url: /terms
+              - generic [ref=f7e1023]:
+                - heading "Connect" [level=3] [ref=f7e1024]
+                - list [ref=f7e1025]:
+                  - listitem [ref=f7e1026]:
+                    - link "X (Twitter)" [ref=f7e1027] [cursor=pointer]:
+                      - /url: https://x.com/21st_dev
+                  - listitem [ref=f7e1028]:
+                    - link "GitHub" [ref=f7e1029] [cursor=pointer]:
+                      - /url: https://github.com/21st-dev
+          - paragraph [ref=f7e1031]: © 2026 21st Labs, Inc.
+    - region "Notifications alt+T"
+  - alert [ref=f7e1032]

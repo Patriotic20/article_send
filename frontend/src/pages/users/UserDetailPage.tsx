@@ -44,7 +44,7 @@ export function UserDetailPage() {
           variant="ghost"
           size="sm"
           className="mb-2 -ml-2"
-          onClick={() => navigate("/users")}
+          onClick={() => navigate("/app/users")}
         >
           <ArrowLeft className="h-4 w-4" />
           {t("userDetail.back")}
