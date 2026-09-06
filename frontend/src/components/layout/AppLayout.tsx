@@ -61,7 +61,9 @@ export function AppLayout() {
   const visibleNav = navItems.filter((item) => hasPermission(item.perm));
 
   // Переход по ссылке закрывает шторку — иначе она осталась бы поверх контента.
-  useEffect(() => setMenuOpen(false), [pathname]);
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   // Esc закрывает шторку, а фон под ней не должен прокручиваться.
   useEffect(() => {

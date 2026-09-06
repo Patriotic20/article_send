@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { RouteFallback } from "@/components/RouteFallback";
+import { SiteLayout } from "@/site/components/SiteLayout";
 
 // Сайт конференции живёт в корне, личный кабинет — под /app. Один бандл,
 // две зоны маршрутизации: пути не пересекаются, поэтому изменения на сайте
@@ -55,7 +56,9 @@ export default function App() {
     <Suspense fallback={<RouteFallback fullscreen />}>
       <Routes>
         {/* Сайт конференции */}
-        <Route path="/" element={<HomePage />} />
+        <Route element={<SiteLayout />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
 
         {/* Кабинет подачи тезисов */}
         <Route path="/app/login" element={<LoginPage />} />

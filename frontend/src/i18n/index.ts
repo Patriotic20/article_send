@@ -5,6 +5,12 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en.json";
 import ru from "./locales/ru.json";
 import uz from "./locales/uz.json";
+// Тексты сайта конференции. Перенесены как есть из js/lang/*.json старого
+// сайта: там уже лежат все три языка, выверенные организаторами, и ключи
+// вида menu_general / deadline_tezis используются в контенте страниц.
+import siteEn from "./locales/site.en.json";
+import siteRu from "./locales/site.ru.json";
+import siteUz from "./locales/site.uz.json";
 
 export const LANGUAGES = [
   { code: "uz", label: "Oʻzbek" },
@@ -23,10 +29,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      uz: { translation: uz },
-      ru: { translation: ru },
-      en: { translation: en },
+      uz: { translation: uz, site: siteUz },
+      ru: { translation: ru, site: siteRu },
+      en: { translation: en, site: siteEn },
     },
+    ns: ["translation", "site"],
+    defaultNS: "translation",
     fallbackLng: "uz",
     supportedLngs: ["uz", "ru", "en"],
     interpolation: { escapeValue: false },

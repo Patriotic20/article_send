@@ -1,0 +1,156 @@
+- generic [ref=f21e2]:
+  - generic [ref=f21e6]:
+    - generic [ref=f21e8]:
+      - list [ref=f21e9]:
+        - listitem [ref=f21e10]:
+          - link "Facebook" [ref=f21e11] [cursor=pointer]:
+            - /url: https://www.facebook.com/navoiydavlat.konchilikinstituti.1
+        - listitem [ref=f21e14]:
+          - link "Telegram" [ref=f21e15] [cursor=pointer]:
+            - /url: https://t.me/ndktu_rasmiy
+        - listitem [ref=f21e19]:
+          - link "YouTube" [ref=f21e20] [cursor=pointer]:
+            - /url: https://www.youtube.com/@navdktu4642
+        - listitem [ref=f21e24]:
+          - link "Instagram" [ref=f21e25] [cursor=pointer]:
+            - /url: https://www.instagram.com/ndktu_official/
+      - generic [ref=f21e29]:
+        - generic [ref=f21e30]: 2026-yil 25-26-sentabr kunlari
+        - link "sharofovich@mail.ru" [ref=f21e31] [cursor=pointer]:
+          - /url: mailto:sharofovich@mail.ru
+        - combobox "Til" [ref=f21e36] [cursor=pointer]:
+          - option "Oʻzbek" [selected]
+          - option "Русский"
+          - option "English"
+    - banner [ref=f21e37]:
+      - generic [ref=f21e38]:
+        - link "Navoiy davlat konchilik va texnologiyalar universiteti VII-xalqaro ilmiy-texnikaviy anjuman" [ref=f21e39] [cursor=pointer]:
+          - /url: /
+          - img "Navoiy davlat konchilik va texnologiyalar universiteti" [ref=f21e40]
+          - generic [ref=f21e41]: VII-xalqaro ilmiy-texnikaviy anjuman
+        - navigation "Main" [ref=f21e42]:
+          - list [ref=f21e44]:
+            - listitem [ref=f21e45]:
+              - link "Bosh sahifa" [ref=f21e46] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f21e47]:
+              - button "Asosiy" [ref=f21e48] [cursor=pointer]
+            - listitem [ref=f21e51]:
+              - button "Mintaqa haqida" [expanded] [active] [ref=f21e52] [cursor=pointer]
+              - generic "Mintaqa haqida" [ref=f21e56]:
+                - list [ref=f21e57]:
+                  - listitem [ref=f21e58]:
+                    - link "Zarafshon vohasi" [ref=f21e59] [cursor=pointer]:
+                      - /url: /region/zarafshon
+                  - listitem [ref=f21e60]:
+                    - link "Alisher Navoiy" [ref=f21e61] [cursor=pointer]:
+                      - /url: /region/alisher-navoiy
+                  - listitem [ref=f21e62]:
+                    - link "Samarqand" [ref=f21e63] [cursor=pointer]:
+                      - /url: /region/samarqand
+                  - listitem [ref=f21e64]:
+                    - link "Buxoro" [ref=f21e65] [cursor=pointer]:
+                      - /url: /region/buxoro
+                  - listitem [ref=f21e66]:
+                    - link "Navoiy" [ref=f21e67] [cursor=pointer]:
+                      - /url: /region/navoiy
+                  - listitem [ref=f21e68]:
+                    - link "Nurota" [ref=f21e69] [cursor=pointer]:
+                      - /url: /region/nurota
+                  - listitem [ref=f21e70]:
+                    - link "Sarmishsoy" [ref=f21e71] [cursor=pointer]:
+                      - /url: /region/sarmish
+            - listitem [ref=f21e72]:
+              - button "Yoʻnalishlar" [ref=f21e73] [cursor=pointer]
+            - listitem [ref=f21e76]:
+              - button "Tashkilotchilar" [ref=f21e77] [cursor=pointer]
+            - listitem [ref=f21e80]:
+              - button "Mualliflarga" [ref=f21e81] [cursor=pointer]
+            - listitem [ref=f21e84]:
+              - link "Aloqa" [ref=f21e85] [cursor=pointer]:
+                - /url: /contacts
+        - link "Tezis topshirish" [ref=f21e90] [cursor=pointer]:
+          - /url: /app/login
+    - main [ref=f21e91]:
+      - generic [ref=f21e92]:
+        - generic [ref=f21e94]:
+          - generic [ref=f21e95]: VII-xalqaro ilmiy-texnikaviy anjuman
+          - 'heading "Zarafshon mintaqasini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar" [level=2] [ref=f21e96]'
+          - paragraph [ref=f21e97]: 2026-yil 25–26-sentabr
+        - generic [ref=f21e98]:
+          - generic [ref=f21e99]: 8 bosqichdan 1-si
+          - paragraph [ref=f21e100]: "Yangi saytning asosi qoʻyildi: sayt ildiz manzilni egalladi, shaxsiy kabinet /app/ manzilida qoldi. Sarlavha, futer va bosh sahifa bloklari texnik topshiriqqa muvofiq 2- va 3-bosqichlarda paydo boʻladi."
+    - contentinfo [ref=f21e101]:
+      - generic [ref=f21e102]:
+        - generic [ref=f21e103]:
+          - generic [ref=f21e104]: Navoiy davlat konchilik va texnologiyalar universiteti
+          - paragraph [ref=f21e107]: "Zarafshon mintaqasini kompleks innovatsion rivojlantirish: yutuqlar, muammolar va istiqbollar"
+          - paragraph [ref=f21e108]: 2026-yil 25-26-sentabr kunlari
+        - generic [ref=f21e109]:
+          - heading "Aloqa" [level=2] [ref=f21e110]
+          - list [ref=f21e111]:
+            - listitem [ref=f21e112]:
+              - generic [ref=f21e116]: Navoiy, Istiqlol MFY, G‘alaba shox koʻchasi, 76
+            - listitem [ref=f21e117]:
+              - link "+998 (79) 223-47-16" [ref=f21e120] [cursor=pointer]:
+                - /url: tel:+998792234716
+            - listitem [ref=f21e121]:
+              - link "sharofovich@mail.ru" [ref=f21e125] [cursor=pointer]:
+                - /url: mailto:sharofovich@mail.ru
+        - generic [ref=f21e126]:
+          - generic [ref=f21e127]:
+            - heading "Asosiy" [level=2] [ref=f21e128]
+            - list [ref=f21e129]:
+              - listitem [ref=f21e130]:
+                - link "Umumiy ma'lumotlar" [ref=f21e131] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=f21e132]:
+                - link "Anjuman risolasi" [ref=f21e133] [cursor=pointer]:
+                  - /url: /about/brochure
+              - listitem [ref=f21e134]:
+                - link "NDKTU anjumanlari" [ref=f21e135] [cursor=pointer]:
+                  - /url: /about/conferences
+          - generic [ref=f21e136]:
+            - heading "Mintaqa haqida" [level=2] [ref=f21e137]
+            - list [ref=f21e138]:
+              - listitem [ref=f21e139]:
+                - link "Zarafshon vohasi" [ref=f21e140] [cursor=pointer]:
+                  - /url: /region/zarafshon
+              - listitem [ref=f21e141]:
+                - link "Alisher Navoiy" [ref=f21e142] [cursor=pointer]:
+                  - /url: /region/alisher-navoiy
+              - listitem [ref=f21e143]:
+                - link "Samarqand" [ref=f21e144] [cursor=pointer]:
+                  - /url: /region/samarqand
+              - listitem [ref=f21e145]:
+                - link "Buxoro" [ref=f21e146] [cursor=pointer]:
+                  - /url: /region/buxoro
+              - listitem [ref=f21e147]:
+                - link "Navoiy" [ref=f21e148] [cursor=pointer]:
+                  - /url: /region/navoiy
+              - listitem [ref=f21e149]:
+                - link "Nurota" [ref=f21e150] [cursor=pointer]:
+                  - /url: /region/nurota
+          - generic [ref=f21e151]:
+            - heading "Yoʻnalishlar" [level=2] [ref=f21e152]
+            - list [ref=f21e153]:
+              - listitem [ref=f21e154]:
+                - link "Konchilik va qayta ishlash" [ref=f21e155] [cursor=pointer]:
+                  - /url: /sections/mining
+              - listitem [ref=f21e156]:
+                - link "Mashinasozlik" [ref=f21e157] [cursor=pointer]:
+                  - /url: /sections/machinery
+              - listitem [ref=f21e158]:
+                - link "Kimyo sanoati" [ref=f21e159] [cursor=pointer]:
+                  - /url: /sections/chemistry
+              - listitem [ref=f21e160]:
+                - link "Energetika va QTE" [ref=f21e161] [cursor=pointer]:
+                  - /url: /sections/energy
+              - listitem [ref=f21e162]:
+                - link "Qishloq xoʻjaligi va ekologiya" [ref=f21e163] [cursor=pointer]:
+                  - /url: /sections/agriculture
+      - generic [ref=f21e165]:
+        - generic [ref=f21e166]: © 2026 Navoiy davlat konchilik va texnologiyalar universiteti
+        - link "Tezis topshirish" [ref=f21e167] [cursor=pointer]:
+          - /url: /app/login
+  - region "Notifications alt+T"
