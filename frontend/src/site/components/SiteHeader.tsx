@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type PointerEvent } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronDown, FileUp, Menu, X } from "lucide-react";
@@ -33,6 +33,10 @@ export function SiteHeader() {
   // NavigationMenuLink нельзя передавать функцию ({ isActive }) => … —
   // она попадала в разметку текстом, и классы не применялись. Активный
   // пункт вычисляем по адресу сами.
+  // Radix решает открывать и закрывать раздел по событиям указателя;
+  // отменённое событие оставляет управление одному клику.
+  const preventPointer = (event: PointerEvent) => event.preventDefault();
+
   const isCurrent = (to: string) =>
     to === "/" ? pathname === "/" : pathname.startsWith(to);
 
@@ -106,7 +110,16 @@ export function SiteHeader() {
               {siteNav.map((entry) =>
                 isGroup(entry) ? (
                   <NavigationMenuItem key={entry.labelKey}>
-                    <NavigationMenuTrigger className="whitespace-nowrap px-3 text-sm font-medium">
+                    {/* Radix открывает раздел по наведению. Гасим указатель
+                        на триггере и панели: меню раскрывается только по
+                        клику, поэтому оно не выпрыгивает, когда курсор
+                        просто идёт через шапку к кнопке подачи тезиса. */}
+                    <NavigationMenuTrigger
+                      className="whitespace-nowrap px-3 text-sm font-medium"
+                      onPointerEnter={preventPointer}
+                      onPointerMove={preventPointer}
+                      onPointerLeave={preventPointer}
+                    >
                       {t(entry.labelKey)}
                     </NavigationMenuTrigger>
                     {/* Фон панели на тон светлее героя, рамка светлее фона:
@@ -114,6 +127,8 @@ export function SiteHeader() {
                       и на одинаковом цвете её края терялись. */}
                   <NavigationMenuContent
                     className="inset-x-4 border-white/20 bg-[hsl(240_60%_13%)] text-primary-foreground sm:inset-x-6"
+                    onPointerEnter={preventPointer}
+                    onPointerLeave={preventPointer}
                   >
                     <div className="p-6">
                       <div className="mb-5 border-b border-white/10 pb-4">
