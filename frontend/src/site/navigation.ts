@@ -202,3 +202,31 @@ export const siteNav: NavEntry[] = [
   },
   { labelKey: "nav_contacts", to: "/contacts" },
 ];
+
+
+/**
+ * Соседи страницы внутри своего раздела меню: по ним строятся переходы
+ * «предыдущая / следующая» и блок «читайте также» внизу страницы.
+ */
+export function findSiblings(pathname: string): {
+  group?: NavGroup;
+  current?: NavLeaf;
+  prev?: NavLeaf;
+  next?: NavLeaf;
+  related: NavLeaf[];
+} {
+  for (const entry of siteNav) {
+    if (!isGroup(entry)) continue;
+    const index = entry.items.findIndex((item) => item.to === pathname);
+    if (index === -1) continue;
+    const related = entry.items.filter((_, i) => i !== index).slice(0, 3);
+    return {
+      group: entry,
+      current: entry.items[index],
+      prev: entry.items[index - 1],
+      next: entry.items[index + 1],
+      related,
+    };
+  }
+  return { related: [] };
+}

@@ -18,16 +18,26 @@ const PARTNER_PARENT = { labelKey: "nav_partners", to: "/partners/nkmk" };
 
 export const aboutPages: Record<string, PageContent> = {
   index: {
-    titleKey: "conference_title",
+    // Заголовок обычным регистром: исходный ключ набран капсом и обрывается
+    // двоеточием, а подзаголовок дублировал название конференции из
+    // надзаголовка и содержал «V-международной» вместо VII.
+    titleKey: "page_about_title",
     shortTitleKey: "nav_general",
-    ledeKey: "conference_subtitle",
+    ledeKey: "page_about_lede",
     cover: "/media/university.webp",
+    coverCaptionKey: "caption_university",
     blocks: [
+      { type: "heading", key: "about_h_resources" },
       { type: "text", key: "paragraph_1" },
+      { type: "chips", key: "about_resources", headingKey: "about_resources_title" },
+      { type: "heading", key: "about_h_industries" },
       { type: "text", key: "paragraph_2" },
+      { type: "heading", key: "about_h_economy" },
       { type: "text", key: "paragraph_3" },
+      { type: "heading", key: "about_h_participants" },
       { type: "text", key: "paragraph_3_cont" },
-      { type: "heading", key: "topics_title" },
+      { type: "quote", key: "about_quote" },
+      { type: "heading", key: "about_h_format" },
       { type: "text", key: "paragraph_4" },
       {
         type: "bullets",
@@ -59,6 +69,7 @@ export const regionPages: Record<string, PageContent> = {
     titleKey: "nav_zarafshon",
     parent: REGION_PARENT,
     cover: "/media/regions/zarafshon.webp",
+    coverCaptionKey: "desc_zarafshon",
     blocks: [
       { type: "text", key: "zarafshon_text_1" },
       { type: "text", key: "zarafshon_text_2" },
@@ -67,6 +78,14 @@ export const regionPages: Record<string, PageContent> = {
       { type: "text", key: "zarafshon_text_4" },
       { type: "heading", key: "zarafshon_subtitle_qizilqum" },
       { type: "text", key: "zarafshon_text_5" },
+      {
+        type: "gallery",
+        headingKey: "gallery_title",
+        images: [
+          "/media/regions/zarafshon-2.webp",
+          "/media/regions/zarafshon-3.webp",
+        ],
+      },
     ],
   },
   "alisher-navoiy": {
@@ -82,6 +101,7 @@ export const regionPages: Record<string, PageContent> = {
     titleKey: "nav_samarqand",
     parent: REGION_PARENT,
     cover: "/media/regions/samarqand.webp",
+    coverCaptionKey: "desc_samarqand",
     blocks: [
       { type: "heading", key: "samarkand_title_1" },
       { type: "text", key: "samarkand_text_1" },
@@ -98,6 +118,7 @@ export const regionPages: Record<string, PageContent> = {
     titleKey: "nav_buxoro",
     parent: REGION_PARENT,
     cover: "/media/regions/buxoro.webp",
+    coverCaptionKey: "desc_buxoro",
     blocks: [
       { type: "heading", key: "buxoro_title_1" },
       { type: "text", key: "buxoro_text_1" },
@@ -112,6 +133,7 @@ export const regionPages: Record<string, PageContent> = {
     titleKey: "nav_navoiy",
     parent: REGION_PARENT,
     cover: "/media/regions/navoiy.webp",
+    coverCaptionKey: "desc_navoiy",
     blocks: [
       { type: "heading", key: "navoiy_title_1" },
       { type: "text", key: "navoiy_text_1" },
@@ -209,7 +231,7 @@ export const partnerPages: Record<string, PageContent> = {
 };
 
 export const submissionPage: PageContent = {
-  titleKey: "tezis_main",
+  titleKey: "page_submission_title",
   shortTitleKey: "nav_requirements",
   parent: { labelKey: "nav_authors", to: "/dates" },
   blocks: [{ type: "text", key: "tezis" }],
