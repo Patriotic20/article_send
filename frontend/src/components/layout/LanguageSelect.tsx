@@ -36,7 +36,7 @@ export function LanguageSelect({
         className={cn(
           "appearance-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
           onDark
-            ? "h-7 cursor-pointer rounded border border-white/20 bg-transparent py-0 pl-2 pr-6 text-xs text-primary-foreground/80 focus:ring-offset-primary"
+            ? "h-8 cursor-pointer rounded-md border border-white/35 bg-white/5 py-0 pl-2.5 pr-7 text-[13px] font-medium text-primary-foreground hover:bg-white/10 focus:ring-offset-primary"
             : "h-9 w-[110px] rounded-md border border-input bg-background pl-3 pr-8 text-sm sm:w-[130px]"
         )}
       >
@@ -52,7 +52,7 @@ export function LanguageSelect({
         className={cn(
           "pointer-events-none absolute",
           onDark
-            ? "right-1.5 h-3.5 w-3.5 text-primary-foreground/60"
+            ? "right-2 h-4 w-4 text-primary-foreground/80"
             : "right-2.5 h-4 w-4 text-muted-foreground"
         )}
       />
