@@ -182,6 +182,7 @@ export function HomePage() {
               key={person.id}
               nameKey={person.nameKey}
               positionKey={person.positionKey}
+              photo={person.photo}
             />
           ))}
         </div>

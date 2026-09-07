@@ -57,11 +57,18 @@ export const sections = [
   { id: "economy", titleKey: "service_economy_title", pointsKey: "service_economy_points" },
 ];
 
-/** Секретариат конференции: контакты по научным и организационным вопросам. */
+/**
+ * Секретариат конференции: контакты по научным и организационным вопросам.
+ *
+ * Фотографии — с прежнего сайта конференции; у четвёртого участника там
+ * стоял обезличенный силуэт из шаблона, поэтому у него остаются инициалы:
+ * это честнее, чем чужая картинка.
+ */
 export const secretariat = [1, 2, 3, 4].map((n) => ({
   id: `member-${n}`,
   nameKey: `team_member_${n}_name`,
   positionKey: `team_member_${n}_position`,
+  photo: n <= 3 ? `/media/team/member-${n}.webp` : undefined,
 }));
 
 /** Организаторы и партнёры: логотипы лежат в public/media/partners. */

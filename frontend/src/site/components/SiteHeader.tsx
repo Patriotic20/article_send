@@ -29,6 +29,13 @@ export function SiteHeader() {
   // Какой раздел раскрыт: нужно, чтобы затемнить страницу под панелью.
   const [openMenu, setOpenMenu] = useState("");
 
+  // Radix со свойством asChild склеивает className строкой, поэтому внутри
+  // NavigationMenuLink нельзя передавать функцию ({ isActive }) => … —
+  // она попадала в разметку текстом, и классы не применялись. Активный
+  // пункт вычисляем по адресу сами.
+  const isCurrent = (to: string) =>
+    to === "/" ? pathname === "/" : pathname.startsWith(to);
+
   // Переход по ссылке закрывает шторку.
   useEffect(() => {
     setOpen(false);
@@ -129,14 +136,19 @@ export function SiteHeader() {
                             <NavigationMenuLink asChild>
                               <NavLink
                                 to={item.to}
-                                className={({ isActive }) =>
-                                  cn(
-                                    "group/item flex items-center gap-3 rounded-lg p-2.5 transition-colors",
-                                    "hover:bg-white/10",
-                                    isActive && "bg-white/10"
-                                  )
-                                }
+                                className={cn(
+                                  "group/item relative flex items-center gap-3 overflow-hidden rounded-lg p-2.5 transition-colors",
+                                  "hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none",
+                                  isCurrent(item.to) && "bg-white/10"
+                                )}
                               >
+                                {/* Янтарная полоса слева — тот же маркер
+                                    выбора, что у заголовков секций. */}
+                                <span
+                                  aria-hidden="true"
+                                  className="absolute inset-y-1 left-0 w-0.5 origin-top scale-y-0 rounded-full bg-brand transition-transform duration-200 group-hover/item:scale-y-100 group-focus-visible/item:scale-y-100 motion-reduce:transition-none"
+                                />
+
                                 {item.thumb ? (
                                   <img
                                     src={item.thumb}
@@ -145,12 +157,12 @@ export function SiteHeader() {
                                     loading="lazy"
                                     width={48}
                                     height={48}
-                                    className="h-12 w-12 shrink-0 rounded-md object-cover"
+                                    className="h-12 w-12 shrink-0 rounded-md object-cover brightness-90 transition duration-200 group-hover/item:scale-105 group-hover/item:brightness-110 motion-reduce:transition-none motion-reduce:group-hover/item:scale-100"
                                   />
                                 ) : item.icon ? (
                                   <span
                                     aria-hidden="true"
-                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-white/10 text-brand"
+                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-white/10 text-brand transition-colors duration-200 group-hover/item:bg-brand group-hover/item:text-brand-foreground"
                                   >
                                     <item.icon className="h-5 w-5" />
                                   </span>
@@ -165,6 +177,10 @@ export function SiteHeader() {
                                     </span>
                                   )}
                                 </span>
+                                <ArrowRight
+                                  aria-hidden="true"
+                                  className="ml-auto h-4 w-4 shrink-0 -translate-x-1 text-brand opacity-0 transition duration-200 group-hover/item:translate-x-0 group-hover/item:opacity-100 motion-reduce:transition-none"
+                                />
                               </NavLink>
                             </NavigationMenuLink>
                           </li>
@@ -179,12 +195,10 @@ export function SiteHeader() {
                       <NavLink
                         to={entry.to}
                         end={entry.to === "/"}
-                        className={({ isActive }) =>
-                          cn(
-                            "inline-flex h-9 items-center whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                            isActive && "text-primary"
-                          )
-                        }
+                        className={cn(
+                          "inline-flex h-9 items-center whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                          isCurrent(entry.to) && "bg-accent text-primary"
+                        )}
                       >
                         {t(entry.labelKey)}
                       </NavLink>

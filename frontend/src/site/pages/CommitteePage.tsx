@@ -27,6 +27,7 @@ export function CommitteePage() {
               key={person.id}
               nameKey={person.nameKey}
               positionKey={person.positionKey}
+              photo={person.photo}
             />
           ))}
         </div>
