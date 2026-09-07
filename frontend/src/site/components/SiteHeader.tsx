@@ -44,6 +44,12 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  // Списки последних разделов прижимаются к правому краю своего пункта:
+  // при выравнивании по левому краю на ширине 1024 они вылезали за экран
+  // и добавляли горизонтальную прокрутку всей странице.
+  const groups = siteNav.filter(isGroup);
+  const alignRight = new Set(groups.slice(-2).map((g) => g.labelKey));
+
   const submitButton = (
     <Button asChild variant="brand" size="sm">
       <Link to="/app/login">
@@ -66,12 +72,15 @@ export function SiteHeader() {
               alt={tApp("auth.universityName")}
               className="h-10 w-10 shrink-0 object-contain"
             />
-            <span className="hidden max-w-[11rem] font-display text-sm font-semibold leading-tight text-primary xl:block">
+            <span className="hidden max-w-[13rem] font-display text-sm font-semibold leading-tight text-primary sm:block">
               {tApp("auth.conferenceShort")}
             </span>
           </Link>
 
-          <NavigationMenu className="mx-auto hidden lg:flex">
+          {/* Десктопное меню включается с 1280, а не с 1024: семь разделов
+            с русскими подписями на 1024 не помещались в строку и растягивали
+            страницу по горизонтали. Ниже — бургер. */}
+        <NavigationMenu className="mx-auto hidden xl:flex">
             <NavigationMenuList>
               {siteNav.map((entry) =>
                 isGroup(entry) ? (
@@ -79,7 +88,11 @@ export function SiteHeader() {
                     <NavigationMenuTrigger className="whitespace-nowrap text-sm font-medium">
                       {t(entry.labelKey)}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>
+                    <NavigationMenuContent
+                      className={cn(
+                        alignRight.has(entry.labelKey) && "left-auto right-0"
+                      )}
+                    >
                       <ul className="w-[320px] p-2">
                         {entry.items.map((item) => (
                           <li key={item.to}>
@@ -123,7 +136,7 @@ export function SiteHeader() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          <div className="ml-auto flex items-center gap-2 xl:ml-0">
             <div className="hidden sm:block">{submitButton}</div>
             {/* На самых узких экранах подпись не помещается, но подача тезиса —
                 главное действие сайта, поэтому кнопка остаётся, только иконкой. */}
@@ -141,7 +154,7 @@ export function SiteHeader() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="xl:hidden"
               aria-label={tApp("header.menu")}
               aria-expanded={open}
               onClick={() => setOpen(true)}
@@ -157,7 +170,7 @@ export function SiteHeader() {
           разделы показываются раскрытыми списками, а не аккордеоном: так
           до нужной ссылки один жест вместо двух. */}
       {open && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-50 xl:hidden">
           <div
             className="absolute inset-0 bg-black/50"
             onClick={() => setOpen(false)}
