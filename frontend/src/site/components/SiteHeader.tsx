@@ -44,12 +44,6 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  // Списки последних разделов прижимаются к правому краю своего пункта:
-  // при выравнивании по левому краю на ширине 1024 они вылезали за экран
-  // и добавляли горизонтальную прокрутку всей странице.
-  const groups = siteNav.filter(isGroup);
-  const alignRight = new Set(groups.slice(-2).map((g) => g.labelKey));
-
   const submitButton = (
     <Button asChild variant="brand" size="sm">
       <Link to="/app/login">
@@ -65,7 +59,10 @@ export function SiteHeader() {
     // шапки вместо всего экрана.
     <>
       <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-        <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
+        {/* relative — точка отсчёта выпадающих панелей: они растягиваются
+            по краям этого контейнера, поэтому у всех разделов общие границы
+            и при переходе между ними меняется только содержимое. */}
+        <div className="relative mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
           <Link to="/" className="flex shrink-0 items-center gap-2.5">
             <img
               src={logoUrl}
@@ -80,7 +77,11 @@ export function SiteHeader() {
           {/* Десктопное меню включается с 1280, а не с 1024: семь разделов
             с русскими подписями на 1024 не помещались в строку и растягивали
             страницу по горизонтали. Ниже — бургер. */}
-        <NavigationMenu className="mx-auto hidden xl:flex">
+        {/* [&>div]:!static — Radix ставит своей внутренней обёртке
+            position: relative инлайном, и панель считала бы координаты от
+            строки меню, а не от контейнера шапки. Инлайн-стиль перебивается
+            только important. */}
+        <NavigationMenu className="static mx-auto hidden [&>div]:!static xl:flex">
             <NavigationMenuList>
               {siteNav.map((entry) =>
                 isGroup(entry) ? (
@@ -89,16 +90,24 @@ export function SiteHeader() {
                       {t(entry.labelKey)}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent
-                      className={cn(
-                        alignRight.has(entry.labelKey) && "left-auto right-0"
-                      )}
-                    >
-                      {/* Ширина по содержимому: у «Авторам» четыре коротких
-                          пункта, у «О регионе» — семь длинных, и общие 320px
-                          давали то пустоту, то тесноту. Нижняя граница держит
-                          панель шире кнопки, верхняя не даёт длинным
-                          названиям растянуть её на пол-экрана. */}
-                      <ul className="w-max min-w-[13rem] max-w-[min(22rem,90vw)] p-2">
+                    className="inset-x-4 border-white/10 bg-primary text-primary-foreground sm:inset-x-6"
+                  >
+                    <div className="p-6">
+                      <div className="mb-5 border-b border-white/10 pb-4">
+                        <span className="sec-eyebrow">{t(entry.labelKey)}</span>
+                      </div>
+
+                      <ul
+                        className={cn(
+                          "grid gap-1",
+                          // Пять и больше пунктов раскладываются в три
+                          // колонки, короткие списки — в две: так панель
+                          // остаётся невысокой и не превращается в столбик.
+                          entry.items.length >= 5
+                            ? "grid-cols-3"
+                            : "grid-cols-2"
+                        )}
+                      >
                         {entry.items.map((item) => (
                           <li key={item.to}>
                             <NavigationMenuLink asChild>
@@ -106,18 +115,47 @@ export function SiteHeader() {
                                 to={item.to}
                                 className={({ isActive }) =>
                                   cn(
-                                    "block rounded-md px-3 py-2 text-sm leading-snug transition-colors hover:bg-accent hover:text-accent-foreground",
-                                    isActive && "bg-accent font-medium text-primary"
+                                    "group/item flex items-center gap-3 rounded-lg p-2.5 transition-colors",
+                                    "hover:bg-white/10",
+                                    isActive && "bg-white/10"
                                   )
                                 }
                               >
-                                {t(item.labelKey)}
+                                {item.thumb ? (
+                                  <img
+                                    src={item.thumb}
+                                    alt=""
+                                    aria-hidden="true"
+                                    loading="lazy"
+                                    width={48}
+                                    height={48}
+                                    className="h-12 w-12 shrink-0 rounded-md object-cover"
+                                  />
+                                ) : item.icon ? (
+                                  <span
+                                    aria-hidden="true"
+                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-white/10 text-brand"
+                                  >
+                                    <item.icon className="h-5 w-5" />
+                                  </span>
+                                ) : null}
+                                <span className="min-w-0">
+                                  <span className="block font-medium leading-snug">
+                                    {t(item.labelKey)}
+                                  </span>
+                                  {item.descKey && (
+                                    <span className="mt-0.5 block text-xs leading-snug text-primary-foreground/60">
+                                      {t(item.descKey)}
+                                    </span>
+                                  )}
+                                </span>
                               </NavLink>
                             </NavigationMenuLink>
                           </li>
                         ))}
                       </ul>
-                    </NavigationMenuContent>
+                    </div>
+                  </NavigationMenuContent>
                   </NavigationMenuItem>
                 ) : (
                   <NavigationMenuItem key={entry.to}>
