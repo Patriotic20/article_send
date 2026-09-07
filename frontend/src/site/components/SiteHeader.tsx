@@ -85,7 +85,7 @@ export function SiteHeader() {
               {siteNav.map((entry) =>
                 isGroup(entry) ? (
                   <NavigationMenuItem key={entry.labelKey}>
-                    <NavigationMenuTrigger className="whitespace-nowrap text-sm font-medium">
+                    <NavigationMenuTrigger className="whitespace-nowrap px-3 text-sm font-medium">
                       {t(entry.labelKey)}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent
