@@ -93,7 +93,12 @@ export function SiteHeader() {
                         alignRight.has(entry.labelKey) && "left-auto right-0"
                       )}
                     >
-                      <ul className="w-[320px] p-2">
+                      {/* Ширина по содержимому: у «Авторам» четыре коротких
+                          пункта, у «О регионе» — семь длинных, и общие 320px
+                          давали то пустоту, то тесноту. Нижняя граница держит
+                          панель шире кнопки, верхняя не даёт длинным
+                          названиям растянуть её на пол-экрана. */}
+                      <ul className="w-max min-w-[13rem] max-w-[min(22rem,90vw)] p-2">
                         {entry.items.map((item) => (
                           <li key={item.to}>
                             <NavigationMenuLink asChild>
