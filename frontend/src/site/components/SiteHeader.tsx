@@ -26,6 +26,8 @@ export function SiteHeader() {
   const { t: tApp } = useTranslation();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  // Какой раздел раскрыт: нужно, чтобы затемнить страницу под панелью.
+  const [openMenu, setOpenMenu] = useState("");
 
   // Переход по ссылке закрывает шторку.
   useEffect(() => {
@@ -58,7 +60,14 @@ export function SiteHeader() {
     // containing block, и position: fixed внутри него схлопывается до высоты
     // шапки вместо всего экрана.
     <>
-      <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <header
+        className={cn(
+          "sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80",
+          // Пока раскрыта панель, шапка непрозрачна: сквозь полупрозрачный
+          // фон просвечивало затемнение страницы и белая шапка сереет.
+          openMenu !== "" && "supports-[backdrop-filter]:bg-background"
+        )}
+      >
         {/* relative — точка отсчёта выпадающих панелей: они растягиваются
             по краям этого контейнера, поэтому у всех разделов общие границы
             и при переходе между ними меняется только содержимое. */}
@@ -81,7 +90,11 @@ export function SiteHeader() {
             position: relative инлайном, и панель считала бы координаты от
             строки меню, а не от контейнера шапки. Инлайн-стиль перебивается
             только important. */}
-        <NavigationMenu className="static mx-auto hidden [&>div]:!static xl:flex">
+        <NavigationMenu
+          value={openMenu}
+          onValueChange={setOpenMenu}
+          className="static mx-auto hidden [&>div]:!static xl:flex"
+        >
             <NavigationMenuList>
               {siteNav.map((entry) =>
                 isGroup(entry) ? (
@@ -89,8 +102,11 @@ export function SiteHeader() {
                     <NavigationMenuTrigger className="whitespace-nowrap px-3 text-sm font-medium">
                       {t(entry.labelKey)}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent
-                    className="inset-x-4 border-white/10 bg-primary text-primary-foreground sm:inset-x-6"
+                    {/* Фон панели на тон светлее героя, рамка светлее фона:
+                      панель раскрывается поверх тёмно-синего первого экрана,
+                      и на одинаковом цвете её края терялись. */}
+                  <NavigationMenuContent
+                    className="inset-x-4 border-white/20 bg-[hsl(240_60%_13%)] text-primary-foreground sm:inset-x-6"
                   >
                     <div className="p-6">
                       <div className="mb-5 border-b border-white/10 pb-4">
@@ -208,6 +224,16 @@ export function SiteHeader() {
         </div>
 
       </header>
+
+      {/* Затемнение страницы, пока раскрыта панель меню: отделяет её от
+          любого фона и заодно показывает, что остальная страница сейчас
+          не активна. Ниже шапки по z-index, поэтому сама шапка не гаснет. */}
+      {openMenu !== "" && (
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 z-30 hidden bg-black/50 xl:block"
+        />
+      )}
 
       {/* Мобильная шторка. Меню длинное (6 разделов, 20 ссылок), поэтому
           разделы показываются раскрытыми списками, а не аккордеоном: так
