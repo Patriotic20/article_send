@@ -9,7 +9,11 @@ import { DeadlineBanner } from "@/site/components/DeadlineBanner";
 import { PartnerStrip } from "@/site/components/PartnerStrip";
 import { DateTimeline } from "@/site/components/DateTimeline";
 import { PersonCard } from "@/site/components/PersonCard";
-import { sections, secretariat } from "@/site/content/conference";
+import {
+  SUBMISSION_CTA_ENABLED,
+  sections,
+  secretariat,
+} from "@/site/content/conference";
 
 // Порядок блоков — это порядок вопросов посетителя: что это, когда,
 // о чём, кто, как подать. См. раздел 06 технического задания.
@@ -147,12 +151,14 @@ export function HomePage() {
           </ol>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button asChild variant="brand" size="lg">
-              <Link to="/app/login">
-                {tApp("site.submitCta")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            {SUBMISSION_CTA_ENABLED && (
+              <Button asChild variant="brand" size="lg">
+                <Link to="/app/login">
+                  {tApp("site.submitCta")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            )}
             <Button
               asChild
               size="lg"

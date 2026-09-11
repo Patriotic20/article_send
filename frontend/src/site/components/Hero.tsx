@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SUBMISSION_CTA_ENABLED } from "@/site/content/conference";
 
 /**
  * Первый экран: название конференции слева, дата и место — правым нижним
@@ -40,12 +41,14 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild variant="brand" size="lg">
-              <Link to="/app/login">
-                {tApp("site.submitCta")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            {SUBMISSION_CTA_ENABLED && (
+              <Button asChild variant="brand" size="lg">
+                <Link to="/app/login">
+                  {tApp("site.submitCta")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            )}
             <Button
               asChild
               size="lg"

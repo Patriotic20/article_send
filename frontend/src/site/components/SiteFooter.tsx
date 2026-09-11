@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 import { isGroup, siteNav } from "@/site/navigation";
+import { SUBMISSION_CTA_ENABLED } from "@/site/content/conference";
 import logoUrl from "@/assets/logo.png";
 
 const PHONE = "+998 (79) 223-47-16";
@@ -92,9 +93,11 @@ export function SiteFooter() {
       <div className="border-t">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-xs text-muted-foreground sm:px-6">
           <span>© {new Date().getFullYear()} {tApp("auth.universityName")}</span>
-          <Link to="/app/login" className="hover:text-foreground">
-            {tApp("site.submitCta")}
-          </Link>
+          {SUBMISSION_CTA_ENABLED && (
+            <Link to="/app/login" className="hover:text-foreground">
+              {tApp("site.submitCta")}
+            </Link>
+          )}
         </div>
       </div>
     </footer>

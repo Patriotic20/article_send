@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, CalendarClock } from "lucide-react";
 
-import { SUBMISSION_DEADLINE, conferenceDates, daysUntil } from "@/site/content/conference";
+import {
+  SUBMISSION_CTA_ENABLED,
+  SUBMISSION_DEADLINE,
+  conferenceDates,
+  daysUntil,
+} from "@/site/content/conference";
 
 /**
  * Полоса с ближайшим сроком. Состояние вычисляется из дат конференции,
@@ -28,13 +33,15 @@ export function DeadlineBanner() {
             </span>{" "}
             {t("dates_days_left")}
           </p>
-          <Link
-            to="/app/login"
-            className="ml-auto inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline"
-          >
-            {tApp("site.submitCta")}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          {SUBMISSION_CTA_ENABLED && (
+            <Link
+              to="/app/login"
+              className="ml-auto inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline"
+            >
+              {tApp("site.submitCta")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          )}
         </div>
       </div>
     );

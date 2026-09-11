@@ -47,6 +47,14 @@ export const conferenceDates: ConferenceDate[] = [
 /** Крайний срок подачи тезисов — по нему живёт баннер на главной. */
 export const SUBMISSION_DEADLINE = conferenceDates[0];
 
+/**
+ * Показывать ли на публичном сайте кнопки «Подать тезис». Приём закрыт, и
+ * ведущая в кабинет кнопка только сбивала бы посетителей с толку. Сам
+ * /app/login остаётся доступным по прямой ссылке — авторам и жюри он нужен
+ * и после закрытия приёма. Чтобы вернуть кнопки, достаточно поставить true.
+ */
+export const SUBMISSION_CTA_ENABLED: boolean = false;
+
 /** Научные направления: ключи заголовка и списка тем из текстов сайта. */
 export const sections = [
   { id: "geology", titleKey: "service_geology_title", pointsKey: "service_geology_points" },

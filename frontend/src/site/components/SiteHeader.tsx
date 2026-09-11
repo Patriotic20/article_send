@@ -14,6 +14,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { isGroup, siteNav } from "@/site/navigation";
+import { SUBMISSION_CTA_ENABLED } from "@/site/content/conference";
 import logoUrl from "@/assets/logo.png";
 
 /**
@@ -57,14 +58,14 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const submitButton = (
+  const submitButton = SUBMISSION_CTA_ENABLED ? (
     <Button asChild variant="brand" size="sm">
       <Link to="/app/login">
         {tApp("site.submitCta")}
         <ArrowRight className="h-4 w-4" />
       </Link>
     </Button>
-  );
+  ) : null;
 
   return (
     // Шторка вынесена из <header> намеренно: backdrop-blur создаёт
@@ -225,20 +226,24 @@ export function SiteHeader() {
           </NavigationMenu>
 
           <div className="ml-auto flex items-center gap-2 xl:ml-0">
-            <div className="hidden sm:block">{submitButton}</div>
-            {/* На самых узких экранах подпись не помещается, но подача тезиса —
-                главное действие сайта, поэтому кнопка остаётся, только иконкой. */}
-            <Button
-              asChild
-              variant="brand"
-              size="icon"
-              className="sm:hidden"
-              aria-label={tApp("site.submitCta")}
-            >
-              <Link to="/app/login">
-                <FileUp className="h-4 w-4" />
-              </Link>
-            </Button>
+            {submitButton && (
+              <>
+                <div className="hidden sm:block">{submitButton}</div>
+                {/* На самых узких экранах подпись не помещается, но подача тезиса —
+                    главное действие сайта, поэтому кнопка остаётся, только иконкой. */}
+                <Button
+                  asChild
+                  variant="brand"
+                  size="icon"
+                  className="sm:hidden"
+                  aria-label={tApp("site.submitCta")}
+                >
+                  <Link to="/app/login">
+                    <FileUp className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </>
+            )}
             <Button
               variant="ghost"
               size="icon"
@@ -335,7 +340,9 @@ export function SiteHeader() {
               )}
             </div>
 
-            <div className="mt-auto border-t p-4">{submitButton}</div>
+            {submitButton && (
+              <div className="mt-auto border-t p-4">{submitButton}</div>
+            )}
           </nav>
         </div>
       )}

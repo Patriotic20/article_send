@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { tableOfContents, type PageContent } from "@/site/content/types";
 import { findSiblings, type NavLeaf } from "@/site/navigation";
 import {
+  SUBMISSION_CTA_ENABLED,
   SUBMISSION_DEADLINE,
   conferenceDates,
   daysUntil,
@@ -185,12 +186,14 @@ export function ContentPage({ page }: { page: PageContent }) {
                   <p className="mt-1 text-sm text-muted-foreground">
                     {t(nextDate.labelKey)}
                   </p>
-                  <Button asChild variant="brand" size="sm" className="mt-4 w-full">
-                    <Link to="/app/login">
-                      {tApp("site.submitCta")}
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
+                  {SUBMISSION_CTA_ENABLED && (
+                    <Button asChild variant="brand" size="sm" className="mt-4 w-full">
+                      <Link to="/app/login">
+                        {tApp("site.submitCta")}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               )}
 
@@ -237,12 +240,14 @@ export function ContentPage({ page }: { page: PageContent }) {
             )}
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button asChild variant="brand" size="lg">
-              <Link to="/app/login">
-                {tApp("site.submitCta")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            {SUBMISSION_CTA_ENABLED && (
+              <Button asChild variant="brand" size="lg">
+                <Link to="/app/login">
+                  {tApp("site.submitCta")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            )}
             <Button
               asChild
               size="lg"
